@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>iOS 26 Liquid Suite - Tasks v68 (ECharts)</title>
+    <title>iOS 26 Liquid Suite - Tasks v69 (Stats & Nier)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -15,6 +15,9 @@
             --spring: cubic-bezier(0.32, 0.72, 0, 1);
             --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
             --blur-strength: 60px;
+            --theme-bg-overlay: none;
+            --app-watermark: "";
+            --app-watermark-opacity: 0;
         }
 
         /* --- THEMES --- */
@@ -28,6 +31,20 @@
         [data-theme="christmas"] { --bg-color: #2a1b18; --card-bg: rgba(62, 39, 35, 0.85); --text-primary: #fff8e1; --text-secondary: rgba(255, 235, 238, 0.7); --glass-border: rgba(255, 82, 82, 0.3); --input-bg: rgba(45, 25, 25, 0.9); --accent-blue: #4caf50; --hm-bg: rgba(255,255,255,0.08); --accent-purple: #ffd700; --accent-red: #d32f2f; --accent-green: #388e3c; --accent-orange: #f57c00; }
         [data-theme="madoka"] { --bg-color: #fff1f8; --card-bg: rgba(255, 240, 245, 0.75); --text-primary: #880e4f; --text-secondary: #ad1457; --glass-border: rgba(255, 140, 180, 0.5); --input-bg: rgba(255, 255, 255, 0.9); --accent-blue: #ff4081; --hm-bg: rgba(255, 64, 129, 0.1); --accent-purple: #ba68c8; --accent-red: #ff1744; --accent-green: #69f0ae; --accent-orange: #ffd740; }
         [data-theme="frieren"] { --bg-color: #f1f8e9; --card-bg: rgba(255, 255, 255, 0.9); --text-primary: #263238; --text-secondary: #546e7a; --glass-border: rgba(67, 160, 71, 0.5); --input-bg: #ffffff; --accent-blue: #2e7d32; --hm-bg: rgba(0,0,0,0.06); --accent-purple: #ba68c8; --accent-red: #e53935; --accent-green: #2e7d32; --accent-orange: #fb8c00; }
+        [data-theme="nier"] { --bg-color: #d1cfc3; --card-bg: rgba(220, 218, 205, 0.9); --text-primary: #3b3a36; --text-secondary: #75746d; --glass-border: rgba(59, 58, 54, 0.3); --input-bg: #cecbbd; --accent-blue: #4f4e48; --hm-bg: rgba(59, 58, 54, 0.08); --accent-purple: #6d6c66; --accent-red: #8c3f3f; --accent-green: #566b56; --accent-orange: #9c8c68; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="nier-gray"] { --bg-color: #4f4e48; --card-bg: rgba(70, 69, 65, 0.9); --text-primary: #dad8c8; --text-secondary: #a09f95; --glass-border: rgba(218, 216, 200, 0.2); --input-bg: #5c5b55; --accent-blue: #dad8c8; --hm-bg: rgba(255, 255, 255, 0.08); --accent-purple: #b0afaa; --accent-red: #d67a7a; --accent-green: #9fb89f; --accent-orange: #c4b595; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="bladerunner"] { --bg-color: #050505; --card-bg: rgba(10, 15, 20, 0.85); --text-primary: #00cecf; --text-secondary: #5f7e7e; --glass-border: rgba(255, 0, 60, 0.3); --input-bg: rgba(0, 20, 20, 0.8); --accent-blue: #ff003c; --hm-bg: rgba(0, 206, 207, 0.1); --accent-purple: #bd00ff; --accent-red: #ff003c; --accent-green: #00ff9f; --accent-orange: #ffb800; font-family: 'Rajdhani', 'Orbitron', sans-serif; }
+        [data-theme="sodagreen"] { --bg-color: #f4f9f4; --card-bg: rgba(255, 255, 255, 0.8); --text-primary: #2d5a27; --text-secondary: #6e8b6b; --glass-border: rgba(106, 190, 124, 0.3); --input-bg: #ffffff; --accent-blue: #4caf50; --hm-bg: rgba(76, 175, 80, 0.1); --accent-purple: #9c27b0; --accent-red: #e91e63; --accent-green: #2e7d32; --accent-orange: #ff9800; font-family: 'Inter', sans-serif; }
+        [data-theme="bluegate"] { --bg-color: #e3f2fd; --card-bg: rgba(255, 255, 255, 0.85); --text-primary: #1565c0; --text-secondary: #64b5f6; --glass-border: rgba(33, 150, 243, 0.3); --input-bg: #ffffff; --accent-blue: #2196f3; --hm-bg: rgba(33, 150, 243, 0.1); --accent-purple: #7e57c2; --accent-red: #ef5350; --accent-green: #66bb6a; --accent-orange: #ffa726; font-family: 'Inter', sans-serif; }
+        [data-theme="usagi"] { --bg-color: #fffde7; --card-bg: rgba(255, 253, 230, 0.9); --text-primary: #5d4037; --text-secondary: #8d6e63; --glass-border: rgba(255, 235, 59, 0.5); --input-bg: #ffffff; --accent-blue: #fbc02d; --hm-bg: rgba(251, 192, 45, 0.15); --accent-purple: #ba68c8; --accent-red: #e57373; --accent-green: #a5d6a7; --accent-orange: #fdd835; font-family: 'Inter', sans-serif; }
+        [data-theme="eason"] { --bg-color: #e0e0e0; --card-bg: rgba(240, 240, 240, 0.85); --text-primary: #212121; --text-secondary: #616161; --glass-border: rgba(97, 97, 97, 0.2); --input-bg: #f5f5f5; --accent-blue: #546e7a; --hm-bg: rgba(84, 110, 122, 0.1); --accent-purple: #9575cd; --accent-red: #e57373; --accent-green: #81c784; --accent-orange: #ffb74d; --theme-bg-overlay: radial-gradient(circle at 18% 65%, rgba(10, 10, 10, 0.12) 0 20%, rgba(10, 10, 10, 0.06) 21% 22%, transparent 23%), repeating-radial-gradient(circle at 18% 65%, rgba(10, 10, 10, 0.06) 0 1px, transparent 1px 7px), linear-gradient(135deg, rgba(84, 110, 122, 0.10) 0%, transparent 40%); --app-watermark: "K歌之王\A明年今日\A夕阳无限好\A浮夸"; --app-watermark-opacity: 0.12; font-family: 'Inter', sans-serif; }
+        [data-theme="jackson"] { --bg-color: #1a0505; --card-bg: rgba(40, 10, 10, 0.9); --text-primary: #ffcdd2; --text-secondary: #e57373; --glass-border: rgba(211, 47, 47, 0.4); --input-bg: #2b0b0b; --accent-blue: #d32f2f; --hm-bg: rgba(211, 47, 47, 0.15); --accent-purple: #ef5350; --accent-red: #d32f2f; --accent-green: #4caf50; --accent-orange: #ff9800; --theme-bg-overlay: radial-gradient(circle at 20% 60%, rgba(255, 255, 255, 0.06) 0 20%, rgba(255, 255, 255, 0.03) 21% 22%, transparent 23%), repeating-radial-gradient(circle at 20% 60%, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 7px), linear-gradient(135deg, rgba(255, 152, 0, 0.10) 0%, transparent 45%); --app-watermark: "少年的你\A送你一朵小红花\A你保护世界 我保护你"; --app-watermark-opacity: 0.10; font-family: 'Inter', sans-serif; }
+        [data-theme="eva-01"] { --bg-color: #181024; --card-bg: rgba(30, 20, 45, 0.9); --text-primary: #a5eb78; --text-secondary: #b39ddb; --glass-border: rgba(165, 235, 120, 0.3); --input-bg: rgba(45, 30, 65, 0.9); --accent-blue: #7c4dff; --hm-bg: rgba(124, 77, 255, 0.15); --accent-purple: #7c4dff; --accent-red: #ff5252; --accent-green: #a5eb78; --accent-orange: #ff9100; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="eva-02"] { --bg-color: #5a0c0c; --card-bg: rgba(90, 20, 20, 0.86); --text-primary: #ffe0d6; --text-secondary: #ffab91; --glass-border: rgba(255, 138, 101, 0.35); --input-bg: rgba(105, 25, 25, 0.9); --accent-blue: #ff5252; --hm-bg: rgba(255, 82, 82, 0.16); --accent-purple: #ff7043; --accent-red: #ff5252; --accent-green: #66bb6a; --accent-orange: #ff7043; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="darksouls"] { --bg-color: #050505; --card-bg: rgba(20, 20, 20, 0.9); --text-primary: #e0e0e0; --text-secondary: #9e9e9e; --glass-border: rgba(255, 152, 0, 0.2); --input-bg: #111111; --accent-blue: #ff9800; --hm-bg: rgba(255, 152, 0, 0.1); --accent-purple: #9c27b0; --accent-red: #b71c1c; --accent-green: #4caf50; --accent-orange: #ff9800; font-family: serif; }
+        [data-theme="bloodborne"] { --bg-color: #0a0a0a; --card-bg: rgba(25, 20, 20, 0.9); --text-primary: #d7ccc8; --text-secondary: #8d6e63; --glass-border: rgba(183, 28, 28, 0.3); --input-bg: #1a1a1a; --accent-blue: #b71c1c; --hm-bg: rgba(183, 28, 28, 0.1); --accent-purple: #7b1fa2; --accent-red: #b71c1c; --accent-green: #388e3c; --accent-orange: #f57f17; font-family: serif; }
+        [data-theme="liesofp"] { --bg-color: #0e0c0a; --card-bg: rgba(25, 20, 16, 0.9); --text-primary: #e7dfd3; --text-secondary: rgba(231, 223, 211, 0.65); --glass-border: rgba(176, 141, 87, 0.28); --input-bg: rgba(18, 14, 12, 0.92); --accent-blue: #b08d57; --hm-bg: rgba(176, 141, 87, 0.12); --accent-purple: #5c6bc0; --accent-red: #b71c1c; --accent-green: #2e7d32; --accent-orange: #ffb74d; font-family: serif; }
+        [data-theme="eldenring"] { --bg-color: #070b08; --card-bg: rgba(16, 22, 18, 0.9); --text-primary: #e8e3d8; --text-secondary: rgba(232, 227, 216, 0.6); --glass-border: rgba(201, 180, 88, 0.22); --input-bg: rgba(12, 16, 13, 0.92); --accent-blue: #c9b458; --hm-bg: rgba(201, 180, 88, 0.12); --accent-purple: #7e57c2; --accent-red: #d32f2f; --accent-green: #43a047; --accent-orange: #ffb74d; font-family: serif; }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
 
@@ -36,7 +53,8 @@
             display: flex; justify-content: center; align-items: center;
             overflow: hidden; color: var(--text-primary);
             transition: background-color 0.4s ease;
-            background-image: radial-gradient(at 0% 0%, rgba(255,255,255,0.03) 0, transparent 50%), 
+            background-image: var(--theme-bg-overlay, none),
+                              radial-gradient(at 0% 0%, rgba(255,255,255,0.03) 0, transparent 50%), 
                               radial-gradient(at 50% 100%, rgba(255,255,255,0.03) 0, transparent 50%);
         }
 
@@ -47,6 +65,21 @@
             box-shadow: 0 40px 100px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
             position: relative; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
             transition: background 0.3s ease, border-color 0.3s ease;
+        }
+        .app-card::before {
+            content: var(--app-watermark, "");
+            position: absolute;
+            left: 28px;
+            bottom: 22px;
+            white-space: pre-line;
+            font-size: 14px;
+            letter-spacing: 0.6px;
+            line-height: 1.35;
+            color: var(--text-primary);
+            opacity: var(--app-watermark-opacity, 0);
+            pointer-events: none;
+            z-index: 1;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
 
         .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: 0.2s ease; z-index: 40; }
@@ -61,8 +94,8 @@
         .header h1:focus { border-bottom-color: var(--accent-blue); }
 
         .header-controls { display: flex; gap: 10px; align-items: center; }
-        .search-bar { display: flex; align-items: center; background: rgba(125,125,125,0.1); border-radius: 12px; padding: 0 12px; height: 40px; transition: 0.2s ease; width: 180px; border: 1px solid transparent; }
-        .search-bar:focus-within { background: rgba(125,125,125,0.15); width: 220px; border-color: var(--glass-border); }
+        .search-bar { display: flex; align-items: center; background: rgba(125,125,125,0.1); border-radius: 12px; padding: 0 12px; height: 40px; transition: 0.2s ease; width: 220px; border: 1px solid transparent; }
+        .search-bar:focus-within { background: rgba(125,125,125,0.15); width: 300px; border-color: var(--glass-border); }
         .search-input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 15px; outline: none; margin-left: 8px; }
         .search-icon { color: var(--text-secondary); width: 16px; height: 16px; }
         .header-btn { height: 40px; padding: 0 14px; border-radius: 12px; border: 1px solid transparent; background: rgba(125,125,125,0.1); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: 0.2s ease; font-size: 14px; font-weight: 500; }
@@ -97,6 +130,19 @@
         .act-control-item:hover { background: rgba(125,125,125,0.2); color: var(--text-primary); }
         .act-control-item.highlight { color: var(--accent-blue); } /* For Total Count */
         
+        /* STATS GRID */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px; transition: 0.2s; }
+        .stat-card:hover { background: rgba(125,125,125,0.06); }
+        .stat-label { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 24px; font-weight: 700; color: var(--text-primary); }
+        .stat-sub { font-size: 11px; color: var(--text-secondary); display: flex; align-items: center; gap: 4px; }
+        .stat-sub.positive { color: var(--accent-green); }
+        .stat-sub.negative { color: var(--accent-red); }
+        
+        .adv-charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        @media (max-width: 800px) { .stats-grid { grid-template-columns: 1fr 1fr; } .adv-charts-grid { grid-template-columns: 1fr; } }
+
         /* HEATMAP */
         .heatmap-container { 
             width: 100%; margin-top: 0; 
@@ -146,8 +192,8 @@
         #globalTooltip.visible { opacity: 1; }
 
         /* CHART (ECHARTS) */
-        .chart-container { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px; position: relative; min-height: 350px; height: 350px; }
-        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .chart-container { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px; position: relative; min-height: 350px; height: 350px; margin-bottom: 24px; }
+        .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0; }
         .chart-title { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
         .chart-toggle { height: 32px; background: rgba(125,125,125,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 12px; font-size: 13px; font-weight: 600; color: var(--text-secondary); border: 1px solid transparent; transition: 0.2s; cursor: pointer; gap: 6px; }
         .chart-toggle:hover { background: rgba(125,125,125,0.2); color: var(--text-primary); }
@@ -240,21 +286,35 @@
         .md-tool-btn:hover { background: rgba(125,125,125,0.15); color: var(--text-primary); }
 
         /* THEME PICKER */
-        #themeModal { width: 680px; max-width: 90vw; }
-        .theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; padding: 24px; overflow-y: auto; flex: 1; min-height: 0; scrollbar-width: thin; }
-        .theme-card { background: rgba(125,125,125,0.05); border-radius: 18px; padding: 16px; cursor: pointer; transition: 0.2s var(--spring); border: 2px solid transparent; display: flex; flex-direction: column; gap: 12px; }
+        #themeModal { width: 820px; max-width: 94vw; height: 86vh; max-height: 86vh; }
+        .theme-grid { 
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            gap: 20px;
+            padding: 24px 24px 44px 24px;
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+            scrollbar-width: thin;
+        }
+        .theme-grid::-webkit-scrollbar { width: 4px; }
+        .theme-grid::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 2px; }
+        
+        .theme-card { background: rgba(125,125,125,0.05); border-radius: 24px; padding: 20px; cursor: pointer; transition: 0.2s var(--spring); border: 2px solid transparent; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; flex: 1 0 240px; min-width: 240px; max-width: 360px; }
+        .collab-badge { position: absolute; top: 0; right: 0; background: var(--accent-blue); color: var(--bg-color); font-size: 10px; font-weight: 800; padding: 6px 10px; border-bottom-left-radius: 14px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 5; }
         .theme-card:hover { transform: translateY(-4px); background: rgba(125,125,125,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .theme-card.selected { border-color: var(--accent-blue); background: rgba(125,125,125,0.15); }
-        .preview-box { height: 80px; border-radius: 12px; width: 100%; position: relative; padding: 12px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; pointer-events: none; }
-        .mini-header { height: 8px; width: 40%; background: currentColor; opacity: 0.8; border-radius: 4px; margin-bottom: 6px; }
-        .mini-row { height: 6px; width: 100%; background: currentColor; opacity: 0.15; border-radius: 3px; }
+        .preview-box { height: 110px; border-radius: 16px; width: 100%; position: relative; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; pointer-events: none; }
+        .mini-header { height: 10px; width: 40%; background: currentColor; opacity: 0.8; border-radius: 5px; margin-bottom: 8px; }
+        .mini-row { height: 8px; width: 100%; background: currentColor; opacity: 0.15; border-radius: 4px; }
         .mini-row.short { width: 70%; }
-        .mini-fab { position: absolute; bottom: 10px; right: 10px; width: 20px; height: 20px; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .mini-fab { position: absolute; bottom: 14px; right: 14px; width: 28px; height: 28px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
         .theme-info { display: flex; justify-content: space-between; align-items: center; padding: 0 4px; }
-        .theme-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
-        .selected-icon { width: 20px; height: 20px; background: var(--accent-blue); color: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.5); transition: 0.2s var(--spring); }
+        .theme-name { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+        .selected-icon { width: 24px; height: 24px; background: var(--accent-blue); color: var(--bg-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.5); transition: 0.2s var(--spring); }
         .theme-card.selected .selected-icon { opacity: 1; transform: scale(1); }
-        .selected-icon svg { width: 12px; height: 12px; stroke-width: 4px; }
+        .selected-icon svg { width: 14px; height: 14px; stroke-width: 4px; }
 
         /* MODALS & POPUPS */
         .glass-popup { position: absolute; bottom: 65px; left: 0; background: var(--card-bg); backdrop-filter: blur(40px); border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 30px 80px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.95); transition: 0.2s; z-index: 100; width: 280px; padding: 16px; }
@@ -271,7 +331,7 @@
         .dp-cell.is-today { font-weight: 800; color: var(--accent-blue); position: relative; }
         .dp-cell.is-today::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent-blue); }
 
-        .detail-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95); width: 85%; max-width: 550px; max-height: 80vh; background: var(--card-bg); backdrop-filter: blur(50px); border-radius: 32px; border: 1px solid var(--glass-border); box-shadow: 0 50px 150px rgba(0,0,0,0.5); z-index: 200; opacity: 0; pointer-events: none; display: flex; flex-direction: column; transition: 0.25s var(--spring); }
+        .detail-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95); width: 85%; max-width: 550px; max-height: 80vh; background: var(--card-bg); backdrop-filter: blur(50px); border-radius: 32px; border: 1px solid var(--glass-border); box-shadow: 0 50px 150px rgba(0,0,0,0.5); z-index: 200; opacity: 0; pointer-events: none; display: flex; flex-direction: column; transition: 0.25s var(--spring); overflow: hidden; }
         .detail-modal.open { opacity: 1; pointer-events: all; transform: translate(-50%, -50%) scale(1); }
         .detail-content { padding: 36px; overflow-y: auto; flex: 1; }
         .detail-text { font-size: 18px; line-height: 1.6; color: var(--text-primary); margin-bottom: 24px; word-break: break-word; }
@@ -328,8 +388,8 @@
         <div class="modal-overlay" id="modalOverlay" onclick="window.closeOverlays()"></div>
 
         <div class="detail-modal" id="themeModal">
-            <div style="padding: 24px 30px; border-bottom: 1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center;">
-                <h3 style="margin:0; font-size:18px; color:var(--text-primary); font-weight:600;">Appearance</h3>
+            <div style="padding: 24px 30px; border-bottom: 1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center; flex-shrink: 0;">
+                <h3 id="themeModalTitle" style="margin:0; font-size:18px; color:var(--text-primary); font-weight:600;">Appearance</h3>
                 <button class="detail-icon-btn" onclick="window.closeThemePicker()"><i data-lucide="x"></i></button>
             </div>
             <div class="theme-grid" id="themeGrid"></div>
@@ -352,7 +412,7 @@
 
         <div class="detail-modal" id="trashModal" style="max-width: 600px;">
              <div style="padding: 24px 30px; border-bottom: 1px solid var(--glass-border); display:flex; justify-content:space-between; align-items:center;">
-                <h3 style="margin:0; font-size:18px; color:var(--text-primary); font-weight:600;">Trash Bin</h3>
+                <h3 id="trashModalTitle" style="margin:0; font-size:18px; color:var(--text-primary); font-weight:600;">Trash Bin</h3>
                 <button class="detail-icon-btn" onclick="window.closeTrash()"><i data-lucide="x"></i></button>
             </div>
             <div class="detail-content" id="trashList" style="padding: 20px; max-height: 30vh; overflow-y: auto;"></div>
@@ -401,7 +461,7 @@
                 
                 <div id="activityView" class="activity-view">
                     <div class="act-header">
-                        <div class="act-title">Activity Dashboard</div>
+                        <div class="act-title" id="actTitle">Activity Dashboard</div>
                         <div style="display:flex; gap:10px; align-items:center;">
                             <div class="act-control-item highlight" id="totalCompletedDisplay">0 Completed</div>
                             <div class="act-control-item" style="gap:10px; padding:0 6px;">
@@ -415,6 +475,29 @@
                         </div>
                     </div>
 
+                    <div class="stats-grid" id="statsGrid">
+                        <div class="stat-card">
+                            <div class="stat-label">This Week</div>
+                            <div class="stat-value" id="statWeek">0</div>
+                            <div class="stat-sub" id="statWeekDiff">--</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">This Month</div>
+                            <div class="stat-value" id="statMonth">0</div>
+                            <div class="stat-sub" id="statMonthDiff">--</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">This Year</div>
+                            <div class="stat-value" id="statYear">0</div>
+                            <div class="stat-sub" id="statYearDiff">--</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Completion Rate</div>
+                            <div class="stat-value" id="statRate">0%</div>
+                            <div class="stat-sub">Lifetime</div>
+                        </div>
+                    </div>
+
                     <div class="heatmap-container">
                         <div class="heatmap-wrapper">
                             <div class="heatmap-grid" id="heatmapGrid"></div>
@@ -424,22 +507,51 @@
                         </div>
                     </div>
 
-                    <div class="chart-container">
-                        <div class="chart-header">
-                            <span class="chart-title">Monthly Trend</span>
-                            <button class="chart-toggle" onclick="window.toggleChartType()">
+                    <div class="adv-charts-grid">
+                        <div class="chart-container" style="min-height: 320px; height: 320px;">
+                            <div class="chart-header">
+                                <span class="chart-title">Monthly Trend</span>
+                                <button class="chart-toggle" onclick="window.toggleChartType()">
                                 <i data-lucide="bar-chart-2" id="chartIcon"></i>
                                 <span id="chartLabel">Switch to Bar</span>
                             </button>
+                            </div>
+                            <div id="activityChart" style="width:100%; height:250px;"></div>
                         </div>
-                        <div id="activityChart" style="width:100%; height:300px;"></div>
+                        
+                        <div class="chart-container" style="min-height: 320px; height: 320px;">
+                            <div class="chart-header">
+                                <span class="chart-title">Day of Week</span>
+                                <button class="chart-toggle" onclick="window.toggleDowChartType()">
+                                    <i data-lucide="activity" id="dowChartIcon"></i>
+                                    <span id="dowChartLabel">Switch to Line</span>
+                                </button>
+                            </div>
+                            <div id="dowChart" style="width:100%; height:250px;"></div>
+                        </div>
+
+                        <div class="chart-container" style="min-height: 320px; height: 320px;">
+                            <div class="chart-header">
+                                <span class="chart-title">Productivity Hours</span>
+                                <button class="chart-toggle" onclick="window.toggleTodChartType()">
+                                    <i data-lucide="bar-chart-2" id="todChartIcon"></i>
+                                    <span id="todChartLabel">Switch to Bar</span>
+                                </button>
+                            </div>
+                            <div id="todChart" style="width:100%; height:250px;"></div>
+                        </div>
+
+                        <div class="chart-container" style="min-height: 320px; height: 320px;">
+                            <div class="chart-header"><span class="chart-title">Task Distribution</span></div>
+                            <div id="pieChart" style="width:100%; height:250px;"></div>
+                        </div>
                     </div>
                 </div>
 
                 <div id="listView">
                     <div id="pinnedContainer" class="section-container">
                         <div class="section-inner">
-                            <div class="section-title"><i data-lucide="pin" style="width:12px;"></i> Pinned</div>
+                            <div class="section-title" id="pinnedTitle"><i data-lucide="pin" style="width:12px;"></i> Pinned</div>
                             <div id="pinnedList"></div>
                         </div>
                     </div>
@@ -525,8 +637,13 @@
         let showArchived = false;
         let isActivityView = false;
         let chartType = 'line'; 
+        let dowChartType = 'bar';
+        let todChartType = 'line';
         let fullCalendarYear = new Date().getFullYear();
         let myChart = null; // ECharts instance
+        let dowChartInst = null;
+        let todChartInst = null;
+        let pieChartInst = null;
         
         let newTaskDate = null;
         let pickerCurrentDate = new Date(); 
@@ -541,15 +658,521 @@
             { id: 'monokai', name: 'Monokai', bg:'#272822', text:'#f8f8f2', acc:'#fd971f' },
             { id: 'onedark', name: 'One Dark', bg:'#21252b', text:'#e6e6e6', acc:'#61afef' },
             { id: 'xcode', name: 'Xcode', bg:'#18181b', text:'#ffffff', acc:'#0a84ff' },
-            { id: 'chiikawa', name: 'Chiikawa', bg:'#fffafb', text:'#5d4037', acc:'#76c4ea' },
-            { id: 'hellokitty', name: 'Hello Kitty', bg:'#fff0f5', text:'#212121', acc:'#d50000' },
+            { id: 'chiikawa', name: 'Chiikawa', bg:'#fffafb', text:'#5d4037', acc:'#76c4ea', type: 'collab' },
+            { id: 'hellokitty', name: 'Hello Kitty', bg:'#fff0f5', text:'#212121', acc:'#d50000', type: 'collab' },
             { id: 'christmas', name: 'Christmas', bg:'#2a1b18', text:'#fff8e1', acc:'#4caf50' },
-            { id: 'madoka', name: 'Madoka', bg:'#fff1f8', text:'#880e4f', acc:'#ff4081' },
-            { id: 'frieren', name: 'Frieren', bg:'#f1f8e9', text:'#263238', acc:'#2e7d32' }
+            { id: 'madoka', name: 'Madoka', bg:'#fff1f8', text:'#880e4f', acc:'#ff4081', type: 'collab' },
+            { id: 'frieren', name: 'Frieren', bg:'#f1f8e9', text:'#263238', acc:'#2e7d32' },
+            { id: 'nier', name: 'Nier', bg:'#d1cfc3', text:'#3b3a36', acc:'#4f4e48', type: 'collab' },
+            { id: 'nier-gray', name: 'Nier: Gray', bg:'#4f4e48', text:'#dad8c8', acc:'#dad8c8', type: 'collab' },
+            { id: 'bladerunner', name: 'Blade Runner', bg:'#050505', text:'#00cecf', acc:'#ff003c', type: 'collab' },
+            { id: 'sodagreen', name: 'Sodagreen', bg:'#f4f9f4', text:'#2d5a27', acc:'#4caf50', type: 'collab' },
+            { id: 'bluegate', name: 'Blue Gate', bg:'#e3f2fd', text:'#1565c0', acc:'#2196f3', type: 'collab' },
+            { id: 'usagi', name: 'Usagi', bg:'#fffde7', text:'#5d4037', acc:'#fdd835', type: 'collab' },
+            { id: 'eason', name: 'Eason Chan', bg:'#e0e0e0', text:'#212121', acc:'#546e7a', type: 'collab' },
+            { id: 'jackson', name: 'Jackson Yee', bg:'#1a0505', text:'#ffcdd2', acc:'#d32f2f', type: 'collab' },
+            { id: 'eva-01', name: 'EVA Unit-01', bg:'#181024', text:'#a5eb78', acc:'#7c4dff', type: 'collab' },
+            { id: 'eva-02', name: 'EVA Unit-02', bg:'#2b0505', text:'#ffccbc', acc:'#d50000', type: 'collab' },
+            { id: 'darksouls', name: 'Dark Souls', bg:'#050505', text:'#e0e0e0', acc:'#ff9800', type: 'collab' },
+            { id: 'bloodborne', name: 'Bloodborne', bg:'#0a0a0a', text:'#d7ccc8', acc:'#b71c1c', type: 'collab' },
+            { id: 'liesofp', name: 'Lies of P', bg:'#0e0c0a', text:'#e7dfd3', acc:'#b08d57', type: 'collab' },
+            { id: 'eldenring', name: 'Elden Ring', bg:'#070b08', text:'#e8e3d8', acc:'#c9b458', type: 'collab' }
         ];
 
+        // NIER TEXT MAPPING
+        const NIER_TEXT = {
+            appTitle: "YoRHa Missions",
+            searchInputPlaceholder: "Scan Memory...",
+            emptyTodoText: "No active units detected. Glory to Mankind.",
+            actTitle: "Combat Records",
+            pinnedTitle: "Priority Directives",
+            trashModalTitle: "Data Dump",
+            themeModalTitle: "Interface Customization",
+            totalCompletedSuffix: " Targets Neutralized",
+            chartTitleTrend: "Signal Analysis",
+            chartTitleDow: "Operation Cycles",
+            chartTitleTod: "Engagement Hours",
+            chartTitlePie: "Mission Types",
+            chartLabelBar: "Bar Viz",
+            chartLabelLine: "Line Viz",
+            statLabelWeek: "Cycle Report",
+            statLabelMonth: "Lunar Report",
+            statLabelYear: "Orbit Report",
+            statLabelRate: "Success Rate",
+            recurrenceLabels: { 'none': 'Single', 'daily': 'Daily Cycle', 'workdays': 'Combat Days', 'weekly': 'Weekly Cycle', 'monthly': 'Lunar Cycle', 'yearly': 'Solar Cycle' }
+        };
+
+        const BLADERUNNER_TEXT = {
+            appTitle: "Blade Runner",
+            searchInputPlaceholder: "Voight-Kampff Test...",
+            emptyTodoText: "All replicants retired.",
+            actTitle: "Baseline Test",
+            pinnedTitle: "Core Memories",
+            trashModalTitle: "Retired Units",
+            themeModalTitle: "Visual Cortex",
+            totalCompletedSuffix: " Retired",
+            chartTitleTrend: "System Drift",
+            chartTitleDow: "Shift Cycle",
+            chartTitleTod: "Active Hours",
+            chartTitlePie: "Unit Class",
+            chartLabelBar: "Bar Scan",
+            chartLabelLine: "Line Scan",
+            statLabelWeek: "Weekly Baseline",
+            statLabelMonth: "Monthly Baseline",
+            statLabelYear: "Yearly Baseline",
+            statLabelRate: "Humanity Index",
+            recurrenceLabels: { 'none': 'One-off', 'daily': 'Daily Test', 'workdays': 'Duty Cycle', 'weekly': 'Weekly Check', 'monthly': 'Monthly Check', 'yearly': 'Annual Check' }
+        };
+
+        const SODAGREEN_TEXT = {
+            appTitle: "无与伦比的美丽",
+            searchInputPlaceholder: "写下你的小情歌...",
+            emptyTodoText: "今天也是雨过天晴。",
+            actTitle: "四季回响",
+            pinnedTitle: "狂热",
+            trashModalTitle: "被遗忘的时光",
+            themeModalTitle: "冬未了",
+            totalCompletedSuffix: " 个音符",
+            chartTitleTrend: "频率",
+            chartTitleDow: "苏打周期",
+            chartTitleTod: "日光倾城",
+            chartTitlePie: "乐章分布",
+            chartLabelBar: "查看柱状",
+            chartLabelLine: "查看曲线",
+            statLabelWeek: "本周旋律",
+            statLabelMonth: "本月乐章",
+            statLabelYear: "年度专辑",
+            statLabelRate: "完成度",
+            recurrenceLabels: { 'none': '单曲', 'daily': '天天唱', 'workdays': '工作日', 'weekly': '每周练', 'monthly': '每月演', 'yearly': '年度巡演' }
+        };
+
+        const BLUEGATE_TEXT = {
+            appTitle: "蓝色大门",
+            searchInputPlaceholder: "我叫张士豪...",
+            emptyTodoText: "于是，我们都变成了大人。",
+            actTitle: "青春记事",
+            pinnedTitle: "秘密",
+            trashModalTitle: "丢弃的信",
+            themeModalTitle: "夏日色彩",
+            totalCompletedSuffix: " 件心事",
+            chartTitleTrend: "成长轨迹",
+            chartTitleDow: "单车日子",
+            chartTitleTod: "午后时光",
+            chartTitlePie: "心情分布",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "这周的我",
+            statLabelMonth: "这个月",
+            statLabelYear: "这一年",
+            statLabelRate: "成长率",
+            recurrenceLabels: { 'none': '一次', 'daily': '每天', 'workdays': '上学日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const CHIIKAWA_TEXT = {
+            appTitle: "Chiikawa",
+            searchInputPlaceholder: "Yaha! (Search...)",
+            emptyTodoText: "Waaa... (Empty)",
+            actTitle: "Collection",
+            pinnedTitle: "Favorites",
+            trashModalTitle: "Scary Place",
+            themeModalTitle: "Dress Up",
+            totalCompletedSuffix: " Weeded",
+            chartTitleTrend: "Weeding Log",
+            chartTitleDow: "Working Days",
+            chartTitleTod: "Yummy Time",
+            chartTitlePie: "Types",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "Week",
+            statLabelMonth: "Month",
+            statLabelYear: "Year",
+            statLabelRate: "Success",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Daily', 'workdays': 'Work', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const HELLOKITTY_TEXT = {
+            appTitle: "Hello Kitty",
+            searchInputPlaceholder: "Find friends...",
+            emptyTodoText: "Have a lovely day!",
+            actTitle: "Memories",
+            pinnedTitle: "Important!",
+            trashModalTitle: "Recycle",
+            themeModalTitle: "Style",
+            totalCompletedSuffix: " Apples",
+            chartTitleTrend: "Friendship",
+            chartTitleDow: "Play Dates",
+            chartTitleTod: "Tea Time",
+            chartTitlePie: "Activities",
+            chartLabelBar: "Bar",
+            chartLabelLine: "Line",
+            statLabelWeek: "Weekly Fun",
+            statLabelMonth: "Monthly Fun",
+            statLabelYear: "Yearly Fun",
+            statLabelRate: "Happiness",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Every Day', 'workdays': 'School Days', 'weekly': 'Every Week', 'monthly': 'Every Month', 'yearly': 'Every Year' }
+        };
+
+        const MADOKA_TEXT = {
+            appTitle: "Magical Contract",
+            searchInputPlaceholder: "Wish for...",
+            emptyTodoText: "No witches found.",
+            actTitle: "Entropy",
+            pinnedTitle: "Soul Gems",
+            trashModalTitle: "Grief Seeds",
+            themeModalTitle: "Transformation",
+            totalCompletedSuffix: " Witches Defeated",
+            chartTitleTrend: "Energy Levels",
+            chartTitleDow: "Time Loops",
+            chartTitleTod: "Witching Hour",
+            chartTitlePie: "Contracts",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "This Timeline",
+            statLabelMonth: "Month Cycle",
+            statLabelYear: "Year Cycle",
+            statLabelRate: "Hope Ratio",
+            recurrenceLabels: { 'none': 'One Wish', 'daily': 'Daily Hunt', 'workdays': 'School Days', 'weekly': 'Weekly Hunt', 'monthly': 'Walpurgisnacht', 'yearly': 'Yearly' }
+        };
+
+        const USAGI_TEXT = {
+            appTitle: "Usagi",
+            searchInputPlaceholder: "Ura! Yaha! (Search...)",
+            emptyTodoText: "Pulya! (Empty)",
+            actTitle: "Food Log",
+            pinnedTitle: "Treasure",
+            trashModalTitle: "Recycle Bin",
+            themeModalTitle: "Outfits",
+            totalCompletedSuffix: " Yummy Things",
+            chartTitleTrend: "Eating Habits",
+            chartTitleDow: "Party Days",
+            chartTitleTod: "Snack Time",
+            chartTitlePie: "Food Types",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "Weekly Snacks",
+            statLabelMonth: "Monthly Snacks",
+            statLabelYear: "Yearly Snacks",
+            statLabelRate: "Satisfaction",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Daily Feast', 'workdays': 'Work', 'weekly': 'Weekly Feast', 'monthly': 'Monthly Feast', 'yearly': 'Yearly Feast' }
+        };
+
+        const EASON_TEXT = {
+            appTitle: "Eason Chan",
+            searchInputPlaceholder: "想听什么歌...",
+            emptyTodoText: "明年今日，未见你一年。",
+            actTitle: "H3M",
+            pinnedTitle: "The Key",
+            trashModalTitle: "Trash",
+            themeModalTitle: "DUO",
+            totalCompletedSuffix: " 首金曲",
+            chartTitleTrend: "K歌之王",
+            chartTitleDow: "七百年后",
+            chartTitleTod: "夕阳无限好",
+            chartTitlePie: "浮夸",
+            chartLabelBar: "柱状",
+            chartLabelLine: "曲线",
+            statLabelWeek: "本周精选",
+            statLabelMonth: "本月大碟",
+            statLabelYear: "年度之歌",
+            statLabelRate: "传唱度",
+            recurrenceLabels: { 'none': '单曲循环', 'daily': '日日听', 'workdays': '通勤听', 'weekly': '每周榜单', 'monthly': '月度回顾', 'yearly': '年度总结' }
+        };
+
+        const JACKSON_TEXT = {
+            appTitle: "Jackson Yee",
+            searchInputPlaceholder: "寻找千纸鹤...",
+            emptyTodoText: "你保护世界，我保护你。",
+            actTitle: "少年的你",
+            pinnedTitle: "红海",
+            trashModalTitle: "粉碎",
+            themeModalTitle: "封闭货车",
+            totalCompletedSuffix: " 朵小红花",
+            chartTitleTrend: "成长记录",
+            chartTitleDow: "千禧日程",
+            chartTitleTod: "冷静时刻",
+            chartTitlePie: "多面千玺",
+            chartLabelBar: "柱状",
+            chartLabelLine: "曲线",
+            statLabelWeek: "本周行程",
+            statLabelMonth: "本月通告",
+            statLabelYear: "年度作品",
+            statLabelRate: "完美率",
+            recurrenceLabels: { 'none': '一次', 'daily': '每日打卡', 'workdays': '工作行程', 'weekly': '周记', 'monthly': '月结', 'yearly': '年鉴' }
+        };
+
+        const EVA01_TEXT = {
+            appTitle: "NERV HQ",
+            searchInputPlaceholder: "Pattern Blue? (Search...)",
+            emptyTodoText: "All Angels Eliminated.",
+            actTitle: "Synchronization Graph",
+            pinnedTitle: "Central Dogma",
+            trashModalTitle: "GeoFront Disposal",
+            themeModalTitle: "Magi System",
+            totalCompletedSuffix: " Angels Defeated",
+            chartTitleTrend: "Sync Ratio",
+            chartTitleDow: "Attack Cycle",
+            chartTitleTod: "Active Time Limit",
+            chartTitlePie: "Target Analysis",
+            chartLabelBar: "Bar",
+            chartLabelLine: "Line",
+            statLabelWeek: "Weekly Sync",
+            statLabelMonth: "Monthly Sync",
+            statLabelYear: "Yearly Sync",
+            statLabelRate: "Sync Rate",
+            recurrenceLabels: { 'none': 'Single Sortie', 'daily': 'Daily Training', 'workdays': 'Duty Shift', 'weekly': 'Weekly Maint', 'monthly': 'Monthly Eval', 'yearly': 'Annual Review' }
+        };
+
+        const EVA02_TEXT = {
+            appTitle: "Unit-02",
+            searchInputPlaceholder: "Anta Baka? (Search...)",
+            emptyTodoText: "I'm the best!",
+            actTitle: "Combat Data",
+            pinnedTitle: "My Stuff",
+            trashModalTitle: "Useless Junk",
+            themeModalTitle: "Plugsuit Mode",
+            totalCompletedSuffix: " Kills",
+            chartTitleTrend: "Performance",
+            chartTitleDow: "Sortie Schedule",
+            chartTitleTod: "Prime Time",
+            chartTitlePie: "Kill Stats",
+            chartLabelBar: "Bar",
+            chartLabelLine: "Line",
+            statLabelWeek: "Weekly Score",
+            statLabelMonth: "Monthly Score",
+            statLabelYear: "Yearly Score",
+            statLabelRate: "Ace Ratio",
+            recurrenceLabels: { 'none': 'One-off', 'daily': 'Daily', 'workdays': 'School', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const DARKSOULS_TEXT = {
+            appTitle: "Dark Souls",
+            searchInputPlaceholder: "Seek Souls...",
+            emptyTodoText: "Victory Achieved.",
+            actTitle: "Bonfire Level",
+            pinnedTitle: "Covenants",
+            trashModalTitle: "Abyss",
+            themeModalTitle: "Attunement",
+            totalCompletedSuffix: " Lords Slain",
+            chartTitleTrend: "Soul Memory",
+            chartTitleDow: "Cycle",
+            chartTitleTod: "Time is Convoluted",
+            chartTitlePie: "Build Stats",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "Weekly Souls",
+            statLabelMonth: "Monthly Souls",
+            statLabelYear: "Yearly Souls",
+            statLabelRate: "Survival Rate",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Daily Death', 'workdays': 'Grind', 'weekly': 'Weekly Boss', 'monthly': 'New Game+', 'yearly': 'Age of Fire' }
+        };
+
+        const BLOODBORNE_TEXT = {
+            appTitle: "Bloodborne",
+            searchInputPlaceholder: "Seek Paleblood...",
+            emptyTodoText: "Nightmare Slain.",
+            actTitle: "Insight",
+            pinnedTitle: "Caryll Runes",
+            trashModalTitle: "Hunter's Nightmare",
+            themeModalTitle: "Messengers",
+            totalCompletedSuffix: " Prey Slaughtered",
+            chartTitleTrend: "Blood Echoes",
+            chartTitleDow: "Hunt Nights",
+            chartTitleTod: "Moon Phase",
+            chartTitlePie: "Trick Weapons",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "Weekly Hunt",
+            statLabelMonth: "Monthly Hunt",
+            statLabelYear: "Yearly Hunt",
+            statLabelRate: "Beasthood",
+            recurrenceLabels: { 'none': 'One Hunt', 'daily': 'Nightly Hunt', 'workdays': 'Patrol', 'weekly': 'Weekly Ritual', 'monthly': 'Full Moon', 'yearly': 'Great One' }
+        };
+
+        const LIESOFPI_TEXT = {
+            appTitle: "Lies of P",
+            searchInputPlaceholder: "Search for Truth...",
+            emptyTodoText: "Strings cut. Silence remains.",
+            actTitle: "Stargazer Log",
+            pinnedTitle: "Geppetto's Orders",
+            trashModalTitle: "Discarded Parts",
+            themeModalTitle: "Workshop",
+            totalCompletedSuffix: " Puppets Defeated",
+            chartTitleTrend: "Ergo Intake",
+            chartTitleDow: "Patrol Cycle",
+            chartTitleTod: "Curfew Hours",
+            chartTitlePie: "Weapons",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const ELDENRING_TEXT = {
+            appTitle: "Elden Ring",
+            searchInputPlaceholder: "Seek Grace...",
+            emptyTodoText: "All is calm at the Site of Grace.",
+            actTitle: "Grace Map",
+            pinnedTitle: "Great Runes",
+            trashModalTitle: "Tarnished Remains",
+            themeModalTitle: "Roundtable Hold",
+            totalCompletedSuffix: " Demigods Felled",
+            chartTitleTrend: "Runes Gained",
+            chartTitleDow: "Journey",
+            chartTitleTod: "Nightfall",
+            chartTitlePie: "Builds",
+            chartLabelBar: "Bars",
+            chartLabelLine: "Lines",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Once', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const STANDARD_TEXT = {
+            appTitle: "Tasks",
+            searchInputPlaceholder: "Search",
+            emptyTodoText: "All caught up.",
+            actTitle: "Activity Dashboard",
+            pinnedTitle: "Pinned",
+            trashModalTitle: "Trash Bin",
+            themeModalTitle: "Appearance",
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        function getActiveTexts() {
+            let texts = STANDARD_TEXT;
+            if (config.theme.includes('nier')) texts = NIER_TEXT;
+            else if (config.theme === 'bladerunner') texts = BLADERUNNER_TEXT;
+            else if (config.theme === 'sodagreen') texts = SODAGREEN_TEXT;
+            else if (config.theme === 'bluegate') texts = BLUEGATE_TEXT;
+            else if (config.theme === 'chiikawa') texts = CHIIKAWA_TEXT;
+            else if (config.theme === 'hellokitty') texts = HELLOKITTY_TEXT;
+            else if (config.theme === 'madoka') texts = MADOKA_TEXT;
+            else if (config.theme === 'usagi') texts = USAGI_TEXT;
+            else if (config.theme === 'eason') texts = EASON_TEXT;
+            else if (config.theme === 'jackson') texts = JACKSON_TEXT;
+            else if (config.theme === 'eva-01') texts = EVA01_TEXT;
+            else if (config.theme === 'eva-02') texts = EVA02_TEXT;
+            else if (config.theme === 'darksouls') texts = DARKSOULS_TEXT;
+            else if (config.theme === 'bloodborne') texts = BLOODBORNE_TEXT;
+            else if (config.theme === 'liesofp') texts = LIESOFPI_TEXT;
+            else if (config.theme === 'eldenring') texts = ELDENRING_TEXT;
+            return texts;
+        }
+
+        function syncChartToggleUI() {
+            const texts = getActiveTexts();
+
+            const chartLabel = document.getElementById('chartLabel');
+            const chartIcon = document.getElementById('chartIcon');
+            if (chartLabel && chartIcon) {
+                const isLine = chartType === 'line';
+                chartLabel.innerText = isLine ? texts.chartLabelBar : texts.chartLabelLine;
+                chartIcon.setAttribute('data-lucide', isLine ? 'bar-chart-2' : 'activity');
+            }
+
+            const dowChartLabel = document.getElementById('dowChartLabel');
+            const dowChartIcon = document.getElementById('dowChartIcon');
+            if (dowChartLabel && dowChartIcon) {
+                const isLine = dowChartType === 'line';
+                dowChartLabel.innerText = isLine ? texts.chartLabelBar : texts.chartLabelLine;
+                dowChartIcon.setAttribute('data-lucide', isLine ? 'bar-chart-2' : 'activity');
+            }
+
+            const todChartLabel = document.getElementById('todChartLabel');
+            const todChartIcon = document.getElementById('todChartIcon');
+            if (todChartLabel && todChartIcon) {
+                const isLine = todChartType === 'line';
+                todChartLabel.innerText = isLine ? texts.chartLabelBar : texts.chartLabelLine;
+                todChartIcon.setAttribute('data-lucide', isLine ? 'bar-chart-2' : 'activity');
+            }
+        }
+
+        function updateThemeText() {
+            const texts = getActiveTexts();
+            
+            // Only update Title if it matches one of the defaults
+            const currentTitle = document.getElementById('appTitle').innerText;
+            const allTitles = [
+                STANDARD_TEXT.appTitle, NIER_TEXT.appTitle, 
+                BLADERUNNER_TEXT.appTitle, SODAGREEN_TEXT.appTitle, BLUEGATE_TEXT.appTitle,
+                CHIIKAWA_TEXT.appTitle, HELLOKITTY_TEXT.appTitle, MADOKA_TEXT.appTitle,
+                USAGI_TEXT.appTitle, EASON_TEXT.appTitle, JACKSON_TEXT.appTitle,
+                EVA01_TEXT.appTitle, EVA02_TEXT.appTitle, DARKSOULS_TEXT.appTitle, BLOODBORNE_TEXT.appTitle,
+                LIESOFPI_TEXT.appTitle, ELDENRING_TEXT.appTitle,
+                "火佛修一"
+            ];
+            
+            if (allTitles.includes(currentTitle) || currentTitle === "Tasks") {
+                 document.getElementById('appTitle').innerText = texts.appTitle;
+                 config.title = texts.appTitle; 
+            }
+
+            document.getElementById('searchInput').placeholder = texts.searchInputPlaceholder;
+            document.getElementById('emptyTodoText').innerText = texts.emptyTodoText;
+            
+            const actTitle = document.getElementById('actTitle');
+            if(actTitle) actTitle.innerText = texts.actTitle;
+            
+            const trashTitle = document.getElementById('trashModalTitle');
+            if(trashTitle) trashTitle.innerText = texts.trashModalTitle;
+            
+            const themeTitle = document.getElementById('themeModalTitle');
+            if(themeTitle) themeTitle.innerText = texts.themeModalTitle;
+
+            const pinnedTitle = document.getElementById('pinnedTitle');
+            if(pinnedTitle) pinnedTitle.innerHTML = `<i data-lucide="pin" style="width:12px;"></i> ${texts.pinnedTitle}`;
+            
+            // Stats Labels
+            const statLabels = document.querySelectorAll('.stat-label');
+            if(statLabels.length >= 4) {
+                statLabels[0].innerText = texts.statLabelWeek;
+                statLabels[1].innerText = texts.statLabelMonth;
+                statLabels[2].innerText = texts.statLabelYear;
+                statLabels[3].innerText = texts.statLabelRate;
+            }
+
+            // Chart Titles
+            const chartTitles = document.querySelectorAll('.chart-title');
+            if(chartTitles.length >= 4) {
+                chartTitles[0].innerText = texts.chartTitleTrend;
+                chartTitles[1].innerText = texts.chartTitleDow;
+                chartTitles[2].innerText = texts.chartTitleTod;
+                chartTitles[3].innerText = texts.chartTitlePie;
+            }
+
+            // Recurrence Labels update in dropdown
+            document.getElementById('recurNone').innerText = texts.recurrenceLabels.none;
+            document.getElementById('recurDaily').innerHTML = `<i data-lucide="rotate-cw"></i> ${texts.recurrenceLabels.daily}`;
+            document.getElementById('recurWork').innerHTML = `<i data-lucide="briefcase"></i> ${texts.recurrenceLabels.workdays}`;
+            document.getElementById('recurWeekly').innerHTML = `<i data-lucide="calendar-days"></i> ${texts.recurrenceLabels.weekly}`;
+            document.getElementById('recurMonthly').innerHTML = `<i data-lucide="calendar"></i> ${texts.recurrenceLabels.monthly}`;
+            document.getElementById('recurYearly').innerHTML = `<i data-lucide="calendar-clock"></i> ${texts.recurrenceLabels.yearly}`;
+
+            syncChartToggleUI();
+            lucide.createIcons();
+            // Re-render heatmap to update suffix
+            renderHeatmap(currentHeatmapYear);
+        }
+
         document.documentElement.setAttribute('data-theme', config.theme);
-        document.getElementById('appTitle').innerText = config.title;
+        // document.getElementById('appTitle').innerText = config.title; // Moved to updateThemeText init
+
 
         const els = {
             viewContainer: document.getElementById('viewContainer'),
@@ -588,6 +1211,16 @@
             trashModal: document.getElementById('trashModal'),
             trashList: document.getElementById('trashList'),
             activityChart: document.getElementById('activityChart'),
+            dowChart: document.getElementById('dowChart'),
+            todChart: document.getElementById('todChart'),
+            pieChart: document.getElementById('pieChart'),
+            statWeek: document.getElementById('statWeek'),
+            statWeekDiff: document.getElementById('statWeekDiff'),
+            statMonth: document.getElementById('statMonth'),
+            statMonthDiff: document.getElementById('statMonthDiff'),
+            statYear: document.getElementById('statYear'),
+            statYearDiff: document.getElementById('statYearDiff'),
+            statRate: document.getElementById('statRate'),
             calendarModal: document.getElementById('calendarModal'),
             yearScrollContainer: document.getElementById('yearScrollContainer'),
             fullCalTitle: document.getElementById('fullCalTitle'),
@@ -660,6 +1293,7 @@
                 
                 renderHeatmap(currentHeatmapYear);
                 renderChart(); // Init ECharts
+                renderAdvancedStats();
             } else {
                 els.listView.style.display = 'block';
                 els.activityView.classList.remove('active');
@@ -725,13 +1359,22 @@
             const colorAccent = style.getPropertyValue('--accent-blue').trim();
             const colorText = style.getPropertyValue('--text-secondary').trim();
             const colorGrid = style.getPropertyValue('--glass-border').trim();
+            const colorPrimary = style.getPropertyValue('--text-primary').trim();
+            const colorBg = style.getPropertyValue('--input-bg').trim();
+
+            const seriesBase = {
+                data: data,
+                type: chartType,
+                itemStyle: { color: colorAccent },
+                lineStyle: { width: 3, color: colorAccent }
+            };
 
             const option = {
                 tooltip: { 
                     trigger: 'axis',
-                    backgroundColor: style.getPropertyValue('--input-bg').trim(),
+                    backgroundColor: colorBg,
                     borderColor: colorGrid,
-                    textStyle: { color: style.getPropertyValue('--text-primary').trim() }
+                    textStyle: { color: colorPrimary }
                 },
                 grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
                 xAxis: {
@@ -747,11 +1390,12 @@
                     axisLabel: { color: colorText }
                 },
                 series: [{
-                    data: data,
-                    type: chartType, // 'line' or 'bar'
-                    smooth: true,
-                    itemStyle: { color: colorAccent, borderRadius: [4, 4, 0, 0] },
-                    lineStyle: { width: 3, color: colorAccent },
+                    ...seriesBase,
+                    smooth: chartType === 'line',
+                    symbol: chartType === 'line' ? 'circle' : 'none',
+                    symbolSize: chartType === 'line' ? 7 : 0,
+                    barMaxWidth: chartType === 'bar' ? 22 : undefined,
+                    itemStyle: chartType === 'bar' ? { color: colorAccent, borderRadius: [6, 6, 0, 0] } : { color: colorAccent },
                     areaStyle: chartType === 'line' ? {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                           { offset: 0, color: colorAccent },
@@ -764,17 +1408,194 @@
             myChart.setOption(option);
         }
 
+        function getDatesInScope(todo) {
+             const dates = [...(todo.completionHistory || [])];
+             if (todo.completedAt && (todo.completed || todo.archived)) dates.push(todo.completedAt);
+             return dates.map(d => new Date(d));
+        }
+
+        function calculateStats() {
+            const now = new Date();
+            const startOfWeek = new Date(now); startOfWeek.setDate(now.getDate() - now.getDay()); startOfWeek.setHours(0,0,0,0);
+            const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+            const startOfYear = new Date(now.getFullYear(), 0, 1);
+            
+            // Previous periods for comparison
+            const startOfLastWeek = new Date(startOfWeek); startOfLastWeek.setDate(startOfLastWeek.getDate() - 7);
+            const endOfLastWeek = new Date(startOfWeek);
+            
+            const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+            const endOfLastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+
+            const startOfLastYear = new Date(now.getFullYear() - 1, 0, 1);
+            const endOfLastYear = new Date(now.getFullYear() - 1, 11, 31);
+
+            let week = 0, lastWeek = 0;
+            let month = 0, lastMonth = 0;
+            let year = 0, lastYear = 0;
+            let total = 0, completed = 0;
+
+            todos.forEach(t => {
+                if (!t.deleted) {
+                    if (t.completed || t.archived) completed++;
+                    total++;
+                    
+                    const dates = getDatesInScope(t);
+                    dates.forEach(d => {
+                        if (d >= startOfWeek) week++;
+                        else if (d >= startOfLastWeek && d < endOfLastWeek) lastWeek++;
+                        
+                        if (d >= startOfMonth) month++;
+                        else if (d >= startOfLastMonth && d <= endOfLastMonth) lastMonth++;
+                        
+                        if (d >= startOfYear) year++;
+                        else if (d >= startOfLastYear && d <= endOfLastYear) lastYear++;
+                    });
+                }
+            });
+
+            els.statWeek.innerText = week;
+            renderDiff(els.statWeekDiff, week, lastWeek);
+            
+            els.statMonth.innerText = month;
+            renderDiff(els.statMonthDiff, month, lastMonth);
+            
+            els.statYear.innerText = year;
+            renderDiff(els.statYearDiff, year, lastYear);
+            
+            const rate = total > 0 ? Math.round((completed / total) * 100) : 0;
+            els.statRate.innerText = rate + "%";
+        }
+
+        function renderDiff(el, current, previous) {
+            if (previous === 0) {
+                el.innerHTML = current > 0 ? '<span class="stat-sub positive">↑ ∞</span> vs last' : '<span class="stat-sub">--</span> vs last';
+                return;
+            }
+            const diff = current - previous;
+            const pct = Math.round((diff / previous) * 100);
+            const isPos = diff >= 0;
+            el.innerHTML = `<span class="stat-sub ${isPos ? 'positive' : 'negative'}">${isPos ? '↑' : '↓'} ${Math.abs(pct)}%</span> vs last`;
+        }
+
+        function renderAdvancedStats() {
+            calculateStats();
+            
+            const style = getComputedStyle(document.documentElement);
+            const colorAccent = style.getPropertyValue('--accent-blue').trim();
+            const colorText = style.getPropertyValue('--text-secondary').trim();
+            const colorGrid = style.getPropertyValue('--glass-border').trim();
+            const colorPrimary = style.getPropertyValue('--text-primary').trim();
+            const colorBg = style.getPropertyValue('--input-bg').trim();
+            
+            // Day of Week
+            if (dowChartInst) dowChartInst.dispose();
+            dowChartInst = echarts.init(els.dowChart);
+            const dowData = [0,0,0,0,0,0,0]; // Sun-Sat
+            
+            // Time of Day
+            if (todChartInst) todChartInst.dispose();
+            todChartInst = echarts.init(els.todChart);
+            const todData = new Array(24).fill(0);
+            
+            // Pie (Distribution)
+            if (pieChartInst) pieChartInst.dispose();
+            pieChartInst = echarts.init(els.pieChart);
+            let recurrent = 0, oneTime = 0;
+            
+            todos.forEach(t => {
+                if (!t.deleted) {
+                    if (t.recurrence && t.recurrence !== 'none') recurrent++; else oneTime++;
+                    
+                    const dates = getDatesInScope(t);
+                    dates.forEach(d => {
+                        dowData[d.getDay()]++;
+                        todData[d.getHours()]++;
+                    });
+                }
+            });
+
+            // DoW Chart
+            dowChartInst.setOption({
+                tooltip: { trigger: 'axis', backgroundColor: colorBg, borderColor: colorGrid, textStyle: { color: colorPrimary } },
+                grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+                xAxis: { type: 'category', data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], axisLine: { lineStyle: { color: colorText } }, axisTick: { show: false } },
+                yAxis: { type: 'value', splitLine: { lineStyle: { color: colorGrid, type: 'dashed' } }, axisLabel: { color: colorText } },
+                series: [{
+                    data: dowData,
+                    type: dowChartType,
+                    smooth: dowChartType === 'line',
+                    symbol: dowChartType === 'line' ? 'circle' : 'none',
+                    symbolSize: dowChartType === 'line' ? 7 : 0,
+                    barMaxWidth: dowChartType === 'bar' ? 22 : undefined,
+                    itemStyle: dowChartType === 'bar' ? { color: colorAccent, borderRadius: [6, 6, 0, 0] } : { color: colorAccent },
+                    lineStyle: { width: 3, color: colorAccent },
+                    areaStyle: dowChartType === 'line' ? { opacity: 0.2, color: colorAccent } : null
+                }]
+            });
+            
+            // ToD Chart
+            todChartInst.setOption({
+                tooltip: { trigger: 'axis', backgroundColor: colorBg, borderColor: colorGrid, textStyle: { color: colorPrimary } },
+                grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
+                xAxis: { type: 'category', data: Array.from({length:24},(_,i)=>i), axisLine: { lineStyle: { color: colorText } }, axisTick: { show: false } },
+                yAxis: { type: 'value', splitLine: { lineStyle: { color: colorGrid, type: 'dashed' } }, axisLabel: { color: colorText } },
+                series: [{
+                    data: todData,
+                    type: todChartType,
+                    smooth: todChartType === 'line',
+                    symbol: todChartType === 'line' ? 'circle' : 'none',
+                    symbolSize: todChartType === 'line' ? 7 : 0,
+                    barMaxWidth: todChartType === 'bar' ? 22 : undefined,
+                    itemStyle: todChartType === 'bar' ? { color: colorAccent, borderRadius: [6, 6, 0, 0] } : { color: colorAccent },
+                    lineStyle: { width: 3, color: colorAccent },
+                    areaStyle: todChartType === 'line' ? { opacity: 0.2, color: colorAccent } : null
+                }]
+            });
+            
+            // Pie Chart
+            pieChartInst.setOption({
+                tooltip: { trigger: 'item' },
+                series: [{
+                    type: 'pie', radius: ['40%', '70%'],
+                    itemStyle: { borderRadius: 5, borderColor: style.getPropertyValue('--card-bg').trim(), borderWidth: 2 },
+                    label: { show: false },
+                    data: [
+                        { value: oneTime, name: 'One-time', itemStyle: { color: colorAccent } },
+                        { value: recurrent, name: 'Recurring', itemStyle: { color: style.getPropertyValue('--accent-purple').trim() } }
+                    ]
+                }]
+            });
+        }
+
         window.toggleChartType = function() {
             chartType = chartType === 'line' ? 'bar' : 'line';
-            document.getElementById('chartLabel').innerText = chartType === 'line' ? 'Switch to Bar' : 'Switch to Line';
-            const iconName = chartType === 'line' ? 'bar-chart-2' : 'activity';
-            document.getElementById('chartIcon').setAttribute('data-lucide', iconName);
+            syncChartToggleUI();
             lucide.createIcons();
             renderChart();
         }
+
+        window.toggleDowChartType = function() {
+            dowChartType = dowChartType === 'line' ? 'bar' : 'line';
+            syncChartToggleUI();
+            lucide.createIcons();
+            if (isActivityView) renderAdvancedStats();
+        }
+
+        window.toggleTodChartType = function() {
+            todChartType = todChartType === 'line' ? 'bar' : 'line';
+            syncChartToggleUI();
+            lucide.createIcons();
+            if (isActivityView) renderAdvancedStats();
+        }
         
         // Resize chart on window resize
-        window.addEventListener('resize', () => { if(myChart) myChart.resize(); });
+        window.addEventListener('resize', () => { 
+            if(myChart) myChart.resize(); 
+            if(dowChartInst) dowChartInst.resize();
+            if(todChartInst) todChartInst.resize();
+            if(pieChartInst) pieChartInst.resize();
+        });
 
 
         // --- FULL YEAR CALENDAR ---
@@ -896,7 +1717,8 @@
                     });
                 }
             });
-            document.getElementById('totalCompletedDisplay').innerText = `${totalAll} Completed`;
+            const texts = getActiveTexts();
+            document.getElementById('totalCompletedDisplay').innerText = `${totalAll}${texts.totalCompletedSuffix}`;
 
             const startDate = new Date(year, 0, 1);
             const endDate = new Date(year, 11, 31);
@@ -957,6 +1779,7 @@
                         <div class="mini-row short" style="background:${t.text}"></div>
                         <div class="mini-fab" style="background:${t.acc}"></div>
                     </div>
+                    ${t.type === 'collab' ? '<div class="collab-badge">COLLAB</div>' : ''}
                     <div class="theme-info">
                         <span class="theme-name">${t.name}</span>
                         ${config.theme === t.id ? '<div class="selected-icon"><i data-lucide="check"></i></div>' : ''}
@@ -973,8 +1796,9 @@
             config.theme = id;
             document.documentElement.setAttribute('data-theme', id);
             saveConfig();
+            updateThemeText();
             window.openThemePicker(); 
-            if(isActivityView) setTimeout(renderChart, 100); // Re-render chart with new colors
+            if(isActivityView) setTimeout(() => { renderChart(); renderAdvancedStats(); }, 100); // Re-render chart with new colors
         }
 
         window.closeThemePicker = function() { els.themeModal.classList.remove('open'); els.modalOverlay.classList.remove('active'); }
@@ -1049,12 +1873,22 @@
 
         window.setRecurrence = function(type) {
             newRecurrence = type;
-            const labels = { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' };
-            els.taskRecurDisplay.innerText = labels[type];
+            const texts = getActiveTexts();
+            const fallbackLabels = { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' };
+            els.taskRecurDisplay.innerText = (texts.recurrenceLabels && texts.recurrenceLabels[type]) ? texts.recurrenceLabels[type] : fallbackLabels[type];
             if(type !== 'none') { els.taskRecurTrigger.classList.add('active'); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); } else { els.taskRecurTrigger.classList.remove('active'); }
             document.querySelectorAll('.recur-btn').forEach(btn => btn.classList.remove('active'));
-            if(type !== 'none') document.getElementById('recur' + type.charAt(0).toUpperCase() + type.slice(1)).classList.add('active');
-            else document.getElementById('recurNone').classList.add('active');
+            const recurBtnIdByType = {
+                none: 'recurNone',
+                daily: 'recurDaily',
+                workdays: 'recurWork',
+                weekly: 'recurWeekly',
+                monthly: 'recurMonthly',
+                yearly: 'recurYearly'
+            };
+            const btnId = recurBtnIdByType[type] || 'recurNone';
+            const btn = document.getElementById(btnId);
+            if (btn) btn.classList.add('active');
         }
 
         window.toggleExpand = function() {
@@ -1196,13 +2030,14 @@
             if (pinnedTasks.length > 0) { els.pinnedContainer.classList.add('active'); pinnedTasks.forEach(t => els.pinnedList.appendChild(createTodoElement(t))); } else { els.pinnedContainer.classList.remove('active'); }
             els.todoList.innerHTML = '';
             els.emptyTodo.style.display = (normalTasks.length === 0 && pinnedTasks.length === 0) ? 'flex' : 'none';
-            els.emptyTodoText.innerText = showArchived ? 'No archived tasks.' : 'All caught up.';
+            els.emptyTodoText.innerText = showArchived ? 'No archived tasks.' : (config.theme.includes('nier') ? NIER_TEXT.emptyTodoText : STANDARD_TEXT.emptyTodoText);
             normalTasks.forEach(t => els.todoList.appendChild(createTodoElement(t)));
             lucide.createIcons();
         }
 
         function init() {
             document.getElementById('dateDisplay').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+            updateThemeText();
             renderTodos();
             document.addEventListener('click', (e) => { if (!els.taskDatePicker.contains(e.target) && !els.taskDateTrigger.contains(e.target)) els.taskDatePicker.classList.remove('open'); });
             els.todoInput.addEventListener('input', function() { if(!isExpanded) { this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px'; } });
