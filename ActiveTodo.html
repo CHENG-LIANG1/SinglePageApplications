@@ -7,8 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    
 
     <style>
         :root {
@@ -18,6 +17,37 @@
             --theme-bg-overlay: none;
             --app-watermark: "";
             --app-watermark-opacity: 0;
+            --radius-app: 28px;
+            --radius-capsule: 28px;
+            --radius-capsule-expanded: 36px;
+            --radius-item: 16px;
+            --radius-card: 20px;
+            --radius-chip: 12px;
+            --radius-btn: 12px;
+            --radius-sm: 8px;
+            --radius-modal: 32px;
+            --collab-emblem: "";
+            --collab-emblem-opacity: 0;
+            --collab-emblem-bg: rgba(255,255,255,0.35);
+            --collab-emblem-fg: var(--text-primary);
+            --collab-header-stripe: none;
+            --collab-mesh: none;
+            --collab-mesh-opacity: 0;
+            --collab-card-overlay: none;
+            --collab-ring-shadow: none;
+            --collab-corners: none;
+            --collab-frame: none;
+            --collab-frame-opacity: 0;
+            --collab-emblem-sheen: none;
+            --app-specular: radial-gradient(1200px 600px at 18% 0%, rgba(255,255,255,0.14), transparent 60%), radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.08), transparent 65%), linear-gradient(180deg, rgba(255,255,255,0.06), transparent 45%);
+            --app-grain: repeating-linear-gradient(0deg, rgba(255,255,255,0.028) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,0.020) 0 1px, transparent 1px 4px);
+            --control-surface: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+            --control-surface-hover: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03));
+            --control-shadow: 0 10px 26px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.12);
+            --control-shadow-hover: 0 14px 34px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.18);
+            --accent-gradient: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            --btn-on-accent: #ffffff;
+            --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         /* --- THEMES --- */
@@ -26,13 +56,25 @@
         [data-theme="monokai"] { --bg-color: #272822; --card-bg: rgba(39, 40, 34, 0.75); --text-primary: #f8f8f2; --text-secondary: #a5a4a1; --glass-border: rgba(253, 151, 31, 0.15); --input-bg: rgba(25, 25, 20, 0.9); --accent-blue: #fd971f; --hm-bg: rgba(255,255,255,0.05); --accent-purple: #ae81ff; --accent-red: #f92672; --accent-green: #a6e22e; --accent-orange: #e6db74; }
         [data-theme="onedark"] { --bg-color: #21252b; --card-bg: rgba(33, 37, 43, 0.75); --text-primary: #abb2bf; --text-secondary: #7c8491; --glass-border: rgba(97, 175, 239, 0.15); --input-bg: rgba(40, 44, 52, 0.9); --accent-blue: #61afef; --hm-bg: rgba(255,255,255,0.05); --accent-purple: #c678dd; --accent-red: #e06c75; --accent-green: #98c379; --accent-orange: #d19a66; }
         [data-theme="xcode"] { --bg-color: #18181b; --card-bg: rgba(44, 44, 48, 0.75); --text-primary: #ffffff; --text-secondary: #9999a0; --glass-border: rgba(255, 255, 255, 0.12); --input-bg: rgba(58, 58, 62, 0.9); --accent-blue: #0a84ff; --hm-bg: rgba(255,255,255,0.08); --accent-purple: #ac8e68; --accent-red: #ff453a; --accent-green: #32d74b; --accent-orange: #ff9f0a; }
+        [data-theme="curse"] { --bg-color: #06030b; --card-bg: rgba(22, 12, 34, 0.72); --text-primary: #f5f3ff; --text-secondary: rgba(245, 243, 255, 0.62); --glass-border: rgba(168, 85, 247, 0.18); --input-bg: rgba(18, 10, 28, 0.88); --accent-blue: #a855f7; --hm-bg: rgba(168, 85, 247, 0.10); --accent-purple: #6366f1; --accent-red: #fb7185; --accent-green: #34d399; --accent-orange: #fbbf24; font-family: 'Inter', sans-serif; }
+        [data-theme="apple"] { --bg-color: #0b0c10; --card-bg: rgba(255, 255, 255, 0.08); --text-primary: #f5f5f7; --text-secondary: rgba(245, 245, 247, 0.62); --glass-border: rgba(255, 255, 255, 0.16); --input-bg: rgba(255, 255, 255, 0.08); --accent-blue: #0a84ff; --hm-bg: rgba(10, 132, 255, 0.14); --accent-purple: #bf5af2; --accent-red: #ff453a; --accent-green: #32d74b; --accent-orange: #ff9f0a; font-family: 'Inter', sans-serif; }
+        [data-theme="samsung"] { --bg-color: #070a17; --card-bg: rgba(20, 24, 44, 0.72); --text-primary: #eef2ff; --text-secondary: rgba(238, 242, 255, 0.62); --glass-border: rgba(47, 111, 255, 0.20); --input-bg: rgba(18, 20, 36, 0.88); --accent-blue: #2f6fff; --hm-bg: rgba(47, 111, 255, 0.14); --accent-purple: #7c4dff; --accent-red: #ff5a7a; --accent-green: #2dd4bf; --accent-orange: #ffb020; font-family: 'Inter', sans-serif; }
+        [data-theme="google"] { --bg-color: #0b1016; --card-bg: rgba(25, 32, 40, 0.72); --text-primary: #eaf2ff; --text-secondary: rgba(234, 242, 255, 0.62); --glass-border: rgba(66, 133, 244, 0.22); --input-bg: rgba(20, 26, 34, 0.9); --accent-blue: #4285f4; --hm-bg: rgba(66, 133, 244, 0.14); --accent-purple: #a142f4; --accent-red: #ea4335; --accent-green: #34a853; --accent-orange: #fbbc05; font-family: 'Inter', sans-serif; }
+        [data-theme="xiaomi"] { --bg-color: #0b0b0b; --card-bg: rgba(22, 22, 22, 0.78); --text-primary: #fafafa; --text-secondary: rgba(250, 250, 250, 0.62); --glass-border: rgba(255, 105, 0, 0.22); --input-bg: rgba(16, 16, 16, 0.92); --accent-blue: #ff6900; --hm-bg: rgba(255, 105, 0, 0.16); --accent-purple: #7c4dff; --accent-red: #ff3b30; --accent-green: #34c759; --accent-orange: #ffb020; font-family: 'Inter', sans-serif; }
+        [data-theme="angrymiao"] { --bg-color: #050505; --card-bg: rgba(14, 14, 14, 0.82); --text-primary: #f5f5f5; --text-secondary: rgba(245, 245, 245, 0.58); --glass-border: rgba(255, 0, 60, 0.22); --input-bg: rgba(10, 10, 10, 0.92); --accent-blue: #ff003c; --hm-bg: rgba(255, 0, 60, 0.14); --accent-purple: #c084fc; --accent-red: #ff003c; --accent-green: #00ff9f; --accent-orange: #ffb800; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="steam"] { --bg-color: #0f1b2b; --card-bg: rgba(19, 32, 51, 0.78); --text-primary: #e6f1ff; --text-secondary: rgba(230, 241, 255, 0.62); --glass-border: rgba(102, 192, 244, 0.20); --input-bg: rgba(15, 26, 40, 0.92); --accent-blue: #66c0f4; --hm-bg: rgba(102, 192, 244, 0.14); --accent-purple: #8b5cf6; --accent-red: #ef4444; --accent-green: #22c55e; --accent-orange: #f59e0b; font-family: 'Inter', sans-serif; }
+        [data-theme="playstation"] { --bg-color: #001428; --card-bg: rgba(0, 32, 64, 0.74); --text-primary: #e9f2ff; --text-secondary: rgba(233, 242, 255, 0.62); --glass-border: rgba(0, 112, 209, 0.22); --input-bg: rgba(0, 26, 52, 0.92); --accent-blue: #0070d1; --hm-bg: rgba(0, 112, 209, 0.14); --accent-purple: #7c4dff; --accent-red: #ff3b30; --accent-green: #34c759; --accent-orange: #ff9f0a; font-family: 'Inter', sans-serif; }
+        [data-theme="nintendo"] { --bg-color: #fff7f7; --card-bg: rgba(255, 255, 255, 0.92); --text-primary: #1f1f1f; --text-secondary: rgba(31, 31, 31, 0.62); --glass-border: rgba(230, 0, 18, 0.22); --input-bg: rgba(255, 255, 255, 0.96); --accent-blue: #e60012; --hm-bg: rgba(0, 0, 0, 0.06); --accent-purple: #ff375f; --accent-red: #e60012; --accent-green: #34c759; --accent-orange: #ff9f0a; --btn-on-accent: #ffffff; font-family: 'Inter', sans-serif; }
+        [data-theme="xbox"] { --bg-color: #06110b; --card-bg: rgba(10, 28, 18, 0.76); --text-primary: #eafff3; --text-secondary: rgba(234, 255, 243, 0.62); --glass-border: rgba(16, 124, 16, 0.24); --input-bg: rgba(8, 22, 14, 0.92); --accent-blue: #107c10; --hm-bg: rgba(16, 124, 16, 0.14); --accent-purple: #22c55e; --accent-red: #ef4444; --accent-green: #22c55e; --accent-orange: #f59e0b; font-family: 'Inter', sans-serif; }
+        [data-theme="xiaohongshu"] { --bg-color: #fff7f8; --card-bg: rgba(255, 255, 255, 0.92); --text-primary: #1f1f1f; --text-secondary: rgba(31, 31, 31, 0.62); --glass-border: rgba(255, 36, 66, 0.22); --input-bg: rgba(255, 255, 255, 0.96); --accent-blue: #ff2442; --hm-bg: rgba(0, 0, 0, 0.06); --accent-purple: #ff375f; --accent-red: #ff2442; --accent-green: #34c759; --accent-orange: #ff9f0a; --btn-on-accent: #ffffff; font-family: 'Inter', sans-serif; }
+        [data-theme="razer"] { --bg-color: #020202; --card-bg: rgba(8, 12, 8, 0.84); --text-primary: #eaffea; --text-secondary: rgba(234, 255, 234, 0.58); --glass-border: rgba(68, 214, 44, 0.22); --input-bg: rgba(6, 10, 6, 0.94); --accent-blue: #44d62c; --hm-bg: rgba(68, 214, 44, 0.14); --accent-purple: #00ff9f; --accent-red: #ff3b30; --accent-green: #44d62c; --accent-orange: #ffb800; font-family: 'Inter', sans-serif; }
         [data-theme="chiikawa"] { --bg-color: #fffafb; --card-bg: rgba(255, 255, 255, 0.85); --text-primary: #5d4037; --text-secondary: #8d6e63; --glass-border: rgba(118, 196, 234, 0.5); --input-bg: rgba(255, 250, 252, 1); --accent-blue: #76c4ea; --hm-bg: rgba(0,0,0,0.06); --accent-purple: #bd93f9; --accent-red: #e57373; --accent-green: #a5d6a7; --accent-orange: #ffd54f; }
         [data-theme="hellokitty"] { --bg-color: #fff0f5; --card-bg: rgba(255, 255, 255, 0.9); --text-primary: #212121; --text-secondary: #616161; --glass-border: rgba(255, 23, 68, 0.4); --input-bg: #ffffff; --accent-blue: #d50000; --hm-bg: rgba(0,0,0,0.06); --accent-purple: #f06292; --accent-red: #d50000; --accent-green: #00c853; --accent-orange: #ff9100; }
         [data-theme="christmas"] { --bg-color: #2a1b18; --card-bg: rgba(62, 39, 35, 0.85); --text-primary: #fff8e1; --text-secondary: rgba(255, 235, 238, 0.7); --glass-border: rgba(255, 82, 82, 0.3); --input-bg: rgba(45, 25, 25, 0.9); --accent-blue: #4caf50; --hm-bg: rgba(255,255,255,0.08); --accent-purple: #ffd700; --accent-red: #d32f2f; --accent-green: #388e3c; --accent-orange: #f57c00; }
         [data-theme="madoka"] { --bg-color: #fff1f8; --card-bg: rgba(255, 240, 245, 0.75); --text-primary: #880e4f; --text-secondary: #ad1457; --glass-border: rgba(255, 140, 180, 0.5); --input-bg: rgba(255, 255, 255, 0.9); --accent-blue: #ff4081; --hm-bg: rgba(255, 64, 129, 0.1); --accent-purple: #ba68c8; --accent-red: #ff1744; --accent-green: #69f0ae; --accent-orange: #ffd740; }
         [data-theme="frieren"] { --bg-color: #f1f8e9; --card-bg: rgba(255, 255, 255, 0.9); --text-primary: #263238; --text-secondary: #546e7a; --glass-border: rgba(67, 160, 71, 0.5); --input-bg: #ffffff; --accent-blue: #2e7d32; --hm-bg: rgba(0,0,0,0.06); --accent-purple: #ba68c8; --accent-red: #e53935; --accent-green: #2e7d32; --accent-orange: #fb8c00; }
         [data-theme="nier"] { --bg-color: #d1cfc3; --card-bg: rgba(220, 218, 205, 0.9); --text-primary: #3b3a36; --text-secondary: #75746d; --glass-border: rgba(59, 58, 54, 0.3); --input-bg: #cecbbd; --accent-blue: #4f4e48; --hm-bg: rgba(59, 58, 54, 0.08); --accent-purple: #6d6c66; --accent-red: #8c3f3f; --accent-green: #566b56; --accent-orange: #9c8c68; font-family: 'JetBrains Mono', monospace; }
-        [data-theme="nier-gray"] { --bg-color: #4f4e48; --card-bg: rgba(70, 69, 65, 0.9); --text-primary: #dad8c8; --text-secondary: #a09f95; --glass-border: rgba(218, 216, 200, 0.2); --input-bg: #5c5b55; --accent-blue: #dad8c8; --hm-bg: rgba(255, 255, 255, 0.08); --accent-purple: #b0afaa; --accent-red: #d67a7a; --accent-green: #9fb89f; --accent-orange: #c4b595; font-family: 'JetBrains Mono', monospace; }
+        [data-theme="nier-gray"] { --bg-color: #4f4e48; --card-bg: rgba(70, 69, 65, 0.9); --text-primary: #dad8c8; --text-secondary: #a09f95; --glass-border: rgba(218, 216, 200, 0.2); --input-bg: #5c5b55; --accent-blue: #dad8c8; --hm-bg: rgba(255, 255, 255, 0.08); --accent-purple: #b0afaa; --accent-red: #d67a7a; --accent-green: #9fb89f; --accent-orange: #c4b595; --btn-on-accent: #2b2a26; font-family: 'JetBrains Mono', monospace; }
         [data-theme="bladerunner"] { --bg-color: #050505; --card-bg: rgba(10, 15, 20, 0.85); --text-primary: #00cecf; --text-secondary: #5f7e7e; --glass-border: rgba(255, 0, 60, 0.3); --input-bg: rgba(0, 20, 20, 0.8); --accent-blue: #ff003c; --hm-bg: rgba(0, 206, 207, 0.1); --accent-purple: #bd00ff; --accent-red: #ff003c; --accent-green: #00ff9f; --accent-orange: #ffb800; font-family: 'Rajdhani', 'Orbitron', sans-serif; }
         [data-theme="sodagreen"] { --bg-color: #f4f9f4; --card-bg: rgba(255, 255, 255, 0.8); --text-primary: #2d5a27; --text-secondary: #6e8b6b; --glass-border: rgba(106, 190, 124, 0.3); --input-bg: #ffffff; --accent-blue: #4caf50; --hm-bg: rgba(76, 175, 80, 0.1); --accent-purple: #9c27b0; --accent-red: #e91e63; --accent-green: #2e7d32; --accent-orange: #ff9800; font-family: 'Inter', sans-serif; }
         [data-theme="bluegate"] { --bg-color: #e3f2fd; --card-bg: rgba(255, 255, 255, 0.85); --text-primary: #1565c0; --text-secondary: #64b5f6; --glass-border: rgba(33, 150, 243, 0.3); --input-bg: #ffffff; --accent-blue: #2196f3; --hm-bg: rgba(33, 150, 243, 0.1); --accent-purple: #7e57c2; --accent-red: #ef5350; --accent-green: #66bb6a; --accent-orange: #ffa726; font-family: 'Inter', sans-serif; }
@@ -46,6 +88,52 @@
         [data-theme="liesofp"] { --bg-color: #0e0c0a; --card-bg: rgba(25, 20, 16, 0.9); --text-primary: #e7dfd3; --text-secondary: rgba(231, 223, 211, 0.65); --glass-border: rgba(176, 141, 87, 0.28); --input-bg: rgba(18, 14, 12, 0.92); --accent-blue: #b08d57; --hm-bg: rgba(176, 141, 87, 0.12); --accent-purple: #5c6bc0; --accent-red: #b71c1c; --accent-green: #2e7d32; --accent-orange: #ffb74d; font-family: serif; }
         [data-theme="eldenring"] { --bg-color: #070b08; --card-bg: rgba(16, 22, 18, 0.9); --text-primary: #e8e3d8; --text-secondary: rgba(232, 227, 216, 0.6); --glass-border: rgba(201, 180, 88, 0.22); --input-bg: rgba(12, 16, 13, 0.92); --accent-blue: #c9b458; --hm-bg: rgba(201, 180, 88, 0.12); --accent-purple: #7e57c2; --accent-red: #d32f2f; --accent-green: #43a047; --accent-orange: #ffb74d; font-family: serif; }
 
+        [data-theme="chiikawa"] { --radius-app: 34px; --radius-capsule: 34px; --radius-item: 20px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "CHIIKAWA × TASKS"; --collab-emblem-opacity: 0.95; --collab-emblem-bg: rgba(255,255,255,0.65); --collab-emblem-fg: #5d4037; --collab-header-stripe: linear-gradient(90deg, rgba(118,196,234,0.9), rgba(255,213,79,0.9), rgba(189,147,249,0.9)); --collab-mesh: radial-gradient(circle at 20% 15%, rgba(118,196,234,0.55) 0%, transparent 55%), radial-gradient(circle at 80% 25%, rgba(255,213,79,0.45) 0%, transparent 55%), radial-gradient(circle at 55% 85%, rgba(229,115,115,0.30) 0%, transparent 60%); --collab-mesh-opacity: 0.85; --collab-card-overlay: radial-gradient(circle at 12% 18%, rgba(118,196,234,0.12) 0 9px, transparent 10px), radial-gradient(circle at 82% 30%, rgba(255,213,79,0.10) 0 10px, transparent 11px), radial-gradient(circle at 72% 78%, rgba(189,147,249,0.10) 0 12px, transparent 13px); }
+        [data-theme="hellokitty"] { --radius-app: 38px; --radius-capsule: 38px; --radius-item: 24px; --radius-card: 24px; --radius-btn: 16px; --radius-modal: 36px; --collab-emblem: "HELLO KITTY × TASKS"; --collab-emblem-opacity: 0.95; --collab-emblem-bg: rgba(255,255,255,0.78); --collab-emblem-fg: #212121; --collab-header-stripe: linear-gradient(90deg, rgba(213,0,0,0.85), rgba(240,98,146,0.85), rgba(255,145,0,0.85)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(240,98,146,0.55) 0%, transparent 58%), radial-gradient(circle at 82% 26%, rgba(213,0,0,0.35) 0%, transparent 60%), radial-gradient(circle at 55% 88%, rgba(255,145,0,0.20) 0%, transparent 65%); --collab-mesh-opacity: 0.8; --collab-card-overlay: radial-gradient(circle at 14% 26%, rgba(213,0,0,0.08) 0 10px, transparent 11px), radial-gradient(circle at 72% 18%, rgba(240,98,146,0.08) 0 9px, transparent 10px), radial-gradient(circle at 82% 78%, rgba(255,145,0,0.06) 0 12px, transparent 13px); }
+        [data-theme="madoka"] { --radius-app: 30px; --radius-capsule: 32px; --radius-item: 18px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "MADOKA × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(255,255,255,0.72); --collab-emblem-fg: #880e4f; --collab-header-stripe: linear-gradient(90deg, rgba(255,64,129,0.88), rgba(186,104,200,0.85), rgba(255,215,64,0.85)); --collab-mesh: radial-gradient(circle at 20% 22%, rgba(255,64,129,0.45) 0%, transparent 58%), radial-gradient(circle at 78% 18%, rgba(186,104,200,0.35) 0%, transparent 60%), radial-gradient(circle at 55% 88%, rgba(255,215,64,0.22) 0%, transparent 62%); --collab-mesh-opacity: 0.85; --collab-card-overlay: radial-gradient(circle at 18% 30%, rgba(255,64,129,0.08) 0 8px, transparent 9px), radial-gradient(circle at 72% 22%, rgba(186,104,200,0.08) 0 10px, transparent 11px), radial-gradient(circle at 82% 82%, rgba(255,215,64,0.07) 0 11px, transparent 12px); }
+        [data-theme="nier"], [data-theme="nier-gray"] { --radius-app: 18px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 24px; --collab-emblem: "NIER × TASKS"; --collab-emblem-opacity: 0.82; --collab-emblem-bg: rgba(0,0,0,0.10); --collab-emblem-fg: var(--text-primary); --collab-header-stripe: linear-gradient(90deg, rgba(0,0,0,0.25), rgba(0,0,0,0), rgba(0,0,0,0.25)); --collab-mesh: radial-gradient(circle at 18% 22%, rgba(0,0,0,0.25) 0%, transparent 60%), radial-gradient(circle at 82% 30%, rgba(0,0,0,0.12) 0%, transparent 62%); --collab-mesh-opacity: 0.35; --collab-card-overlay: repeating-linear-gradient(0deg, rgba(0,0,0,0.10) 0px, rgba(0,0,0,0.10) 1px, transparent 2px, transparent 6px); --collab-ring-shadow: inset 0 0 0 1px rgba(0,0,0,0.08), inset 0 0 0 2px rgba(0,0,0,0.04); }
+        [data-theme="bladerunner"] { --radius-app: 20px; --radius-capsule: 20px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem: "BLADE RUNNER × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(0,0,0,0.35); --collab-emblem-fg: #00cecf; --collab-header-stripe: linear-gradient(90deg, rgba(255,0,60,0.75), rgba(0,206,207,0.75), rgba(189,0,255,0.65)); --collab-mesh: radial-gradient(circle at 16% 18%, rgba(255,0,60,0.38) 0%, transparent 58%), radial-gradient(circle at 82% 22%, rgba(0,206,207,0.30) 0%, transparent 60%), radial-gradient(circle at 60% 88%, rgba(189,0,255,0.22) 0%, transparent 62%); --collab-mesh-opacity: 0.75; --collab-card-overlay: linear-gradient(135deg, rgba(0,206,207,0.06) 0%, transparent 40%), repeating-linear-gradient(90deg, rgba(255,0,60,0.06) 0 1px, transparent 1px 10px); --collab-ring-shadow: 0 0 0 1px rgba(0,206,207,0.14), 0 0 40px rgba(255,0,60,0.08); }
+        [data-theme="curse"] { --radius-app: 22px; --radius-capsule: 24px; --radius-item: 16px; --radius-card: 20px; --radius-btn: 12px; --radius-modal: 28px; --collab-emblem: "咒 × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(10, 5, 18, 0.55); --collab-emblem-fg: rgba(245, 243, 255, 0.92); --collab-header-stripe: linear-gradient(90deg, rgba(168,85,247,0.85), rgba(99,102,241,0.75), rgba(251,113,133,0.70)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(168,85,247,0.44) 0%, transparent 60%), radial-gradient(circle at 82% 22%, rgba(99,102,241,0.26) 0%, transparent 64%), radial-gradient(circle at 58% 88%, rgba(251,113,133,0.18) 0%, transparent 66%); --collab-mesh-opacity: 0.72; --collab-card-overlay: radial-gradient(circle at 18% 20%, rgba(168,85,247,0.10) 0 14px, transparent 15px), radial-gradient(circle at 78% 28%, rgba(99,102,241,0.08) 0 12px, transparent 13px), repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 7px); --collab-ring-shadow: 0 0 0 1px rgba(168,85,247,0.10), 0 0 50px rgba(99,102,241,0.10); }
+        [data-theme="apple"] { --radius-app: 30px; --radius-capsule: 30px; --radius-item: 18px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "APPLE × TASKS"; --collab-emblem-opacity: 0.82; --collab-emblem-bg: rgba(255,255,255,0.18); --collab-emblem-fg: rgba(245,245,247,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(10,132,255,0.88), rgba(191,90,242,0.70), rgba(255,159,10,0.65)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(10,132,255,0.30) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(191,90,242,0.20) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(255,159,10,0.12) 0%, transparent 68%); --collab-mesh-opacity: 0.6; --collab-card-overlay: radial-gradient(circle at 18% 0%, rgba(255,255,255,0.10) 0%, transparent 65%); --collab-ring-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 0 80px rgba(10,132,255,0.10); }
+        [data-theme="samsung"] { --radius-app: 28px; --radius-capsule: 28px; --radius-item: 16px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 32px; --collab-emblem: "SAMSUNG × TASKS"; --collab-emblem-opacity: 0.86; --collab-emblem-bg: rgba(10, 14, 28, 0.55); --collab-emblem-fg: rgba(238,242,255,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(47,111,255,0.92), rgba(124,77,255,0.75), rgba(45,212,191,0.65)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(47,111,255,0.36) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(124,77,255,0.22) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(45,212,191,0.14) 0%, transparent 68%); --collab-mesh-opacity: 0.66; --collab-card-overlay: linear-gradient(180deg, rgba(255,255,255,0.04), transparent 40%), repeating-linear-gradient(90deg, rgba(47,111,255,0.06) 0 1px, transparent 1px 14px); --collab-ring-shadow: 0 0 0 1px rgba(47,111,255,0.10), 0 0 60px rgba(124,77,255,0.10); }
+        [data-theme="google"] { --radius-app: 28px; --radius-capsule: 28px; --radius-item: 16px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 32px; --collab-emblem: "GOOGLE × TASKS"; --collab-emblem-opacity: 0.88; --collab-emblem-bg: rgba(16, 18, 22, 0.55); --collab-emblem-fg: rgba(234,242,255,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(66,133,244,0.92), rgba(52,168,83,0.82), rgba(251,188,5,0.82), rgba(234,67,53,0.82)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(66,133,244,0.32) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(52,168,83,0.18) 0%, transparent 66%), radial-gradient(circle at 56% 88%, rgba(251,188,5,0.16) 0%, transparent 68%); --collab-mesh-opacity: 0.62; --collab-card-overlay: radial-gradient(circle at 14% 24%, rgba(66,133,244,0.10) 0 12px, transparent 13px), radial-gradient(circle at 76% 18%, rgba(52,168,83,0.08) 0 12px, transparent 13px), radial-gradient(circle at 86% 78%, rgba(251,188,5,0.07) 0 14px, transparent 15px); --collab-ring-shadow: 0 0 0 1px rgba(66,133,244,0.10), 0 0 70px rgba(66,133,244,0.08); }
+        [data-theme="xiaomi"] { --radius-app: 26px; --radius-capsule: 26px; --radius-item: 16px; --radius-card: 20px; --radius-btn: 14px; --radius-modal: 30px; --collab-emblem: "小米 × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(12, 12, 12, 0.55); --collab-emblem-fg: rgba(250,250,250,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(255,105,0,0.92), rgba(255,176,32,0.80), rgba(124,77,255,0.55)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(255,105,0,0.34) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(255,176,32,0.18) 0%, transparent 66%), radial-gradient(circle at 60% 88%, rgba(124,77,255,0.12) 0%, transparent 68%); --collab-mesh-opacity: 0.62; --collab-card-overlay: repeating-linear-gradient(90deg, rgba(255,105,0,0.06) 0 1px, transparent 1px 14px), linear-gradient(180deg, rgba(255,255,255,0.04), transparent 44%); --collab-ring-shadow: 0 0 0 1px rgba(255,105,0,0.12), 0 0 70px rgba(255,105,0,0.10); }
+        [data-theme="angrymiao"] { --radius-app: 18px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem: "ANGRY MIAO × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(0,0,0,0.55); --collab-emblem-fg: rgba(245,245,245,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(255,0,60,0.88), rgba(255,184,0,0.70), rgba(0,255,159,0.55)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(255,0,60,0.30) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(255,184,0,0.14) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,255,159,0.10) 0%, transparent 68%); --collab-mesh-opacity: 0.55; --collab-card-overlay: repeating-linear-gradient(135deg, rgba(255,255,255,0.10) 0 1px, transparent 1px 10px); --collab-ring-shadow: 0 0 0 1px rgba(255,0,60,0.12), 0 0 70px rgba(255,0,60,0.10); }
+        [data-theme="steam"] { --radius-app: 22px; --radius-capsule: 22px; --radius-item: 14px; --radius-card: 20px; --radius-btn: 12px; --radius-modal: 28px; --collab-emblem: "STEAM × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(15, 26, 40, 0.55); --collab-emblem-fg: rgba(230,241,255,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(102,192,244,0.92), rgba(139,92,246,0.70), rgba(34,197,94,0.55)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(102,192,244,0.34) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(139,92,246,0.18) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(34,197,94,0.12) 0%, transparent 68%); --collab-mesh-opacity: 0.62; --collab-card-overlay: linear-gradient(180deg, rgba(102,192,244,0.05), transparent 40%), radial-gradient(circle at 18% 22%, rgba(0,0,0,0.18) 0%, transparent 55%); --collab-ring-shadow: 0 0 0 1px rgba(102,192,244,0.12), 0 0 70px rgba(102,192,244,0.10); }
+        [data-theme="playstation"] { --radius-app: 26px; --radius-capsule: 26px; --radius-item: 16px; --radius-card: 20px; --radius-btn: 14px; --radius-modal: 30px; --collab-emblem: "PLAYSTATION × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(0, 24, 54, 0.62); --collab-emblem-fg: rgba(233,242,255,0.94); --collab-header-stripe: linear-gradient(90deg, rgba(0,112,209,0.92), rgba(124,77,255,0.70), rgba(0,162,255,0.70)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(0,112,209,0.38) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(124,77,255,0.20) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,162,255,0.14) 0%, transparent 68%); --collab-mesh-opacity: 0.68; --collab-card-overlay: repeating-linear-gradient(90deg, rgba(0,112,209,0.06) 0 1px, transparent 1px 16px), radial-gradient(circle at 18% 0%, rgba(255,255,255,0.08) 0%, transparent 65%); --collab-ring-shadow: 0 0 0 1px rgba(0,112,209,0.12), 0 0 80px rgba(0,112,209,0.10); }
+        [data-theme="nintendo"] { --radius-app: 32px; --radius-capsule: 32px; --radius-item: 20px; --radius-card: 24px; --radius-btn: 16px; --radius-modal: 36px; --collab-emblem: "NINTENDO × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(255,255,255,0.82); --collab-emblem-fg: rgba(31,31,31,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(230,0,18,0.92), rgba(255,55,95,0.72), rgba(230,0,18,0.92)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(230,0,18,0.22) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(255,55,95,0.14) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,0,0,0.06) 0%, transparent 68%); --collab-mesh-opacity: 0.65; --collab-card-overlay: radial-gradient(circle at 14% 26%, rgba(230,0,18,0.06) 0 12px, transparent 13px), radial-gradient(circle at 82% 78%, rgba(255,55,95,0.06) 0 14px, transparent 15px); --collab-ring-shadow: 0 0 0 1px rgba(230,0,18,0.10), 0 0 90px rgba(230,0,18,0.06); }
+        [data-theme="xbox"] { --radius-app: 22px; --radius-capsule: 22px; --radius-item: 14px; --radius-card: 20px; --radius-btn: 12px; --radius-modal: 28px; --collab-emblem: "XBOX × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(6, 18, 10, 0.62); --collab-emblem-fg: rgba(234,255,243,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(16,124,16,0.92), rgba(34,197,94,0.70), rgba(16,124,16,0.92)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(16,124,16,0.30) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(34,197,94,0.18) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,0,0,0.14) 0%, transparent 68%); --collab-mesh-opacity: 0.62; --collab-card-overlay: repeating-linear-gradient(135deg, rgba(16,124,16,0.08) 0 1px, transparent 1px 12px); --collab-ring-shadow: 0 0 0 1px rgba(16,124,16,0.14), 0 0 80px rgba(16,124,16,0.10); }
+        [data-theme="xiaohongshu"] { --radius-app: 34px; --radius-capsule: 34px; --radius-item: 20px; --radius-card: 24px; --radius-btn: 16px; --radius-modal: 36px; --collab-emblem: "小红书 × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(255,255,255,0.84); --collab-emblem-fg: rgba(31,31,31,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(255,36,66,0.92), rgba(255,55,95,0.78), rgba(255,159,10,0.50)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(255,36,66,0.20) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(255,55,95,0.12) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,0,0,0.06) 0%, transparent 68%); --collab-mesh-opacity: 0.68; --collab-card-overlay: radial-gradient(circle at 14% 26%, rgba(255,36,66,0.06) 0 12px, transparent 13px), radial-gradient(circle at 82% 78%, rgba(255,55,95,0.06) 0 14px, transparent 15px); --collab-ring-shadow: 0 0 0 1px rgba(255,36,66,0.10), 0 0 90px rgba(255,36,66,0.06); }
+        [data-theme="razer"] { --radius-app: 18px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem: "RAZER × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(0,0,0,0.65); --collab-emblem-fg: rgba(234,255,234,0.92); --collab-header-stripe: linear-gradient(90deg, rgba(68,214,44,0.92), rgba(0,255,159,0.65), rgba(68,214,44,0.92)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(68,214,44,0.26) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(0,255,159,0.14) 0%, transparent 66%), radial-gradient(circle at 58% 88%, rgba(0,0,0,0.20) 0%, transparent 68%); --collab-mesh-opacity: 0.58; --collab-card-overlay: repeating-linear-gradient(90deg, rgba(68,214,44,0.08) 0 1px, transparent 1px 12px), repeating-linear-gradient(0deg, rgba(255,255,255,0.10) 0 1px, transparent 1px 8px); --collab-ring-shadow: 0 0 0 1px rgba(68,214,44,0.14), 0 0 90px rgba(68,214,44,0.12); }
+        [data-theme="sodagreen"] { --radius-app: 30px; --radius-capsule: 30px; --radius-item: 18px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "SODAGREEN × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(255,255,255,0.65); --collab-emblem-fg: #2d5a27; --collab-header-stripe: linear-gradient(90deg, rgba(76,175,80,0.90), rgba(46,125,50,0.85), rgba(255,152,0,0.75)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(76,175,80,0.40) 0%, transparent 60%), radial-gradient(circle at 82% 22%, rgba(156,39,176,0.18) 0%, transparent 62%), radial-gradient(circle at 55% 88%, rgba(255,152,0,0.16) 0%, transparent 65%); --collab-mesh-opacity: 0.75; --collab-card-overlay: radial-gradient(circle at 18% 30%, rgba(76,175,80,0.10) 0 14px, transparent 15px), radial-gradient(circle at 76% 22%, rgba(46,125,50,0.08) 0 12px, transparent 13px), radial-gradient(circle at 82% 82%, rgba(255,152,0,0.07) 0 16px, transparent 17px); }
+        [data-theme="bluegate"] { --radius-app: 30px; --radius-capsule: 30px; --radius-item: 18px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "BLUE GATE × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(255,255,255,0.65); --collab-emblem-fg: #1565c0; --collab-header-stripe: linear-gradient(90deg, rgba(33,150,243,0.90), rgba(100,181,246,0.85), rgba(126,87,194,0.70)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(33,150,243,0.40) 0%, transparent 60%), radial-gradient(circle at 82% 22%, rgba(100,181,246,0.28) 0%, transparent 62%), radial-gradient(circle at 60% 88%, rgba(126,87,194,0.18) 0%, transparent 64%); --collab-mesh-opacity: 0.8; --collab-card-overlay: linear-gradient(180deg, rgba(33,150,243,0.05), transparent 40%), repeating-linear-gradient(90deg, rgba(33,150,243,0.06) 0 1px, transparent 1px 12px); }
+        [data-theme="usagi"] { --radius-app: 34px; --radius-capsule: 34px; --radius-item: 20px; --radius-card: 22px; --radius-btn: 14px; --radius-modal: 34px; --collab-emblem: "USAGI × TASKS"; --collab-emblem-opacity: 0.95; --collab-emblem-bg: rgba(255,255,255,0.65); --collab-emblem-fg: #5d4037; --collab-header-stripe: linear-gradient(90deg, rgba(251,192,45,0.92), rgba(255,221,40,0.92), rgba(186,104,200,0.78)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(251,192,45,0.55) 0%, transparent 58%), radial-gradient(circle at 82% 22%, rgba(255,221,40,0.40) 0%, transparent 60%), radial-gradient(circle at 60% 88%, rgba(186,104,200,0.18) 0%, transparent 64%); --collab-mesh-opacity: 0.82; --collab-card-overlay: radial-gradient(circle at 14% 26%, rgba(251,192,45,0.10) 0 11px, transparent 12px), radial-gradient(circle at 72% 18%, rgba(255,221,40,0.10) 0 10px, transparent 11px), radial-gradient(circle at 82% 78%, rgba(186,104,200,0.08) 0 12px, transparent 13px); }
+        [data-theme="eason"] { --collab-emblem: "EASON × TASKS"; --collab-emblem-opacity: 0.92; --collab-emblem-bg: rgba(255,255,255,0.55); --collab-emblem-fg: #212121; --collab-header-stripe: linear-gradient(90deg, rgba(84,110,122,0.9), rgba(149,117,205,0.8), rgba(255,183,77,0.8)); --collab-mesh: radial-gradient(circle at 20% 16%, rgba(84,110,122,0.35) 0%, transparent 60%), radial-gradient(circle at 84% 22%, rgba(149,117,205,0.25) 0%, transparent 62%), radial-gradient(circle at 56% 88%, rgba(255,183,77,0.18) 0%, transparent 65%); --collab-mesh-opacity: 0.6; }
+        [data-theme="jackson"] { --collab-emblem: "JACKSON × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(0,0,0,0.22); --collab-emblem-fg: #ffcdd2; --collab-header-stripe: linear-gradient(90deg, rgba(211,47,47,0.85), rgba(255,152,0,0.55), rgba(211,47,47,0.85)); --collab-mesh: radial-gradient(circle at 22% 18%, rgba(211,47,47,0.32) 0%, transparent 62%), radial-gradient(circle at 82% 26%, rgba(255,152,0,0.18) 0%, transparent 64%); --collab-mesh-opacity: 0.55; }
+        [data-theme="eva-01"] { --radius-app: 16px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem: "EVA-01 × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(0,0,0,0.30); --collab-emblem-fg: #a5eb78; --collab-header-stripe: repeating-linear-gradient(135deg, rgba(124,77,255,0.90) 0 10px, rgba(165,235,120,0.90) 10px 20px); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(124,77,255,0.30) 0%, transparent 62%), radial-gradient(circle at 82% 22%, rgba(165,235,120,0.22) 0%, transparent 65%); --collab-mesh-opacity: 0.7; --collab-card-overlay: repeating-linear-gradient(135deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 10px); }
+        [data-theme="eva-02"] { --radius-app: 16px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem: "EVA-02 × TASKS"; --collab-emblem-opacity: 0.9; --collab-emblem-bg: rgba(0,0,0,0.30); --collab-emblem-fg: #ffe0d6; --collab-header-stripe: repeating-linear-gradient(135deg, rgba(255,82,82,0.90) 0 10px, rgba(255,112,67,0.90) 10px 20px); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(255,82,82,0.28) 0%, transparent 62%), radial-gradient(circle at 82% 24%, rgba(255,112,67,0.20) 0%, transparent 66%); --collab-mesh-opacity: 0.7; --collab-card-overlay: repeating-linear-gradient(135deg, rgba(0,0,0,0.16) 0 1px, transparent 1px 10px); }
+        [data-theme="darksouls"], [data-theme="bloodborne"], [data-theme="liesofp"], [data-theme="eldenring"] { --radius-app: 16px; --radius-capsule: 18px; --radius-item: 12px; --radius-card: 18px; --radius-btn: 10px; --radius-modal: 26px; --collab-emblem-opacity: 0.86; --collab-emblem-bg: rgba(0,0,0,0.35); --collab-emblem-fg: var(--text-primary); --collab-header-stripe: linear-gradient(90deg, rgba(201,180,88,0.75), rgba(255,152,0,0.55), rgba(183,28,28,0.55)); --collab-mesh: radial-gradient(circle at 18% 18%, rgba(201,180,88,0.16) 0%, transparent 62%), radial-gradient(circle at 82% 26%, rgba(255,152,0,0.12) 0%, transparent 66%), radial-gradient(circle at 60% 88%, rgba(183,28,28,0.10) 0%, transparent 66%); --collab-mesh-opacity: 0.45; --collab-card-overlay: radial-gradient(circle at 50% 0%, rgba(0,0,0,0.18) 0%, transparent 60%); }
+        [data-theme="darksouls"] { --collab-emblem: "DARK SOULS × TASKS"; }
+        [data-theme="bloodborne"] { --collab-emblem: "BLOODBORNE × TASKS"; }
+        [data-theme="liesofp"] { --collab-emblem: "LIES OF P × TASKS"; }
+        [data-theme="eldenring"] { --collab-emblem: "ELDEN RING × TASKS"; }
+
+        [data-theme="chiikawa"], [data-theme="hellokitty"], [data-theme="madoka"], [data-theme="nier"], [data-theme="nier-gray"], [data-theme="bladerunner"], [data-theme="sodagreen"], [data-theme="bluegate"], [data-theme="usagi"], [data-theme="eason"], [data-theme="jackson"], [data-theme="eva-01"], [data-theme="eva-02"], [data-theme="darksouls"], [data-theme="bloodborne"], [data-theme="liesofp"], [data-theme="eldenring"], [data-theme="curse"], [data-theme="apple"], [data-theme="samsung"], [data-theme="google"], [data-theme="xiaomi"], [data-theme="angrymiao"], [data-theme="steam"], [data-theme="playstation"], [data-theme="nintendo"], [data-theme="xbox"], [data-theme="xiaohongshu"], [data-theme="razer"] {
+            --collab-emblem-sheen: linear-gradient(120deg, rgba(255,255,255,0.42) 0%, transparent 38%, rgba(255,255,255,0.14) 58%, transparent 78%, rgba(255,255,255,0.10) 100%);
+            --collab-corners: radial-gradient(320px 220px at 0% 0%, rgba(255,255,255,0.10), transparent 60%), radial-gradient(300px 220px at 100% 0%, rgba(255,255,255,0.08), transparent 60%), radial-gradient(320px 240px at 100% 100%, rgba(255,255,255,0.06), transparent 62%), radial-gradient(340px 240px at 0% 100%, rgba(255,255,255,0.06), transparent 62%);
+            --collab-frame: linear-gradient(180deg, rgba(255,255,255,0.10), transparent 55%), repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 18px);
+            --collab-frame-opacity: 0.55;
+        }
+
+        [data-theme="chiikawa"], [data-theme="hellokitty"], [data-theme="madoka"], [data-theme="frieren"], [data-theme="sodagreen"], [data-theme="bluegate"], [data-theme="usagi"], [data-theme="eason"], [data-theme="nintendo"], [data-theme="xiaohongshu"] {
+            --app-specular: radial-gradient(1200px 600px at 18% 0%, rgba(255,255,255,0.10), transparent 62%), radial-gradient(900px 500px at 110% 10%, rgba(255,255,255,0.06), transparent 68%), linear-gradient(180deg, rgba(255,255,255,0.05), transparent 50%);
+            --app-grain: repeating-linear-gradient(0deg, rgba(0,0,0,0.018) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(0,0,0,0.014) 0 1px, transparent 1px 4px);
+            --control-shadow: 0 10px 24px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10);
+            --control-shadow-hover: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.14);
+            --collab-frame: linear-gradient(180deg, rgba(0,0,0,0.05), transparent 62%), repeating-linear-gradient(90deg, rgba(0,0,0,0.035) 0 1px, transparent 1px 22px);
+            --collab-frame-opacity: 0.26;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-tap-highlight-color: transparent; }
 
         body {
@@ -58,11 +146,47 @@
                               radial-gradient(at 50% 100%, rgba(255,255,255,0.03) 0, transparent 50%);
         }
 
+        .background-mesh {
+            position: fixed;
+            inset: -25%;
+            background: var(--collab-mesh);
+            opacity: var(--collab-mesh-opacity);
+            filter: blur(80px) saturate(160%);
+            pointer-events: none;
+            z-index: 0;
+            transform: translateZ(0);
+            animation: meshFloat 18s ease-in-out infinite;
+        }
+
+        .outside-tagline {
+            position: fixed;
+            left: 22px;
+            top: 18px;
+            max-width: min(520px, calc(100vw - 44px));
+            color: var(--text-primary);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            line-height: 1.35;
+            white-space: pre-line;
+            text-shadow: 0 18px 50px rgba(0,0,0,0.35);
+            transition: opacity 0.35s ease;
+        }
+        @media (max-width: 720px) {
+            .outside-tagline { top: 12px; left: 14px; font-size: 11px; max-width: calc(100vw - 28px); }
+        }
+
         .app-card {
             width: 94vw; max-width: 1100px; height: 90vh; max-height: 920px;
-            background: var(--card-bg); backdrop-filter: blur(var(--blur-strength)) saturate(180%);
-            border-radius: 28px; border: 1px solid var(--glass-border);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
+            background-color: var(--card-bg);
+            background-image: var(--collab-card-overlay), var(--collab-corners), var(--app-specular), var(--app-grain);
+            background-blend-mode: overlay, overlay, soft-light, normal;
+            backdrop-filter: blur(var(--blur-strength)) saturate(180%);
+            border-radius: var(--radius-app); border: 1px solid var(--glass-border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.05), var(--collab-ring-shadow);
             position: relative; display: flex; flex-direction: column; overflow: hidden; z-index: 10;
             transition: background 0.3s ease, border-color 0.3s ease;
         }
@@ -81,12 +205,57 @@
             z-index: 1;
             text-shadow: 0 10px 30px rgba(0,0,0,0.25);
         }
+        .app-card::after {
+            content: var(--collab-emblem, "");
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: var(--collab-emblem-bg);
+            background-image: var(--collab-emblem-sheen);
+            background-blend-mode: overlay;
+            color: var(--collab-emblem-fg);
+            border: 1px solid var(--glass-border);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            opacity: var(--collab-emblem-opacity);
+            pointer-events: none;
+            z-index: 25;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+            max-width: calc(100% - 320px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform-origin: top right;
+            animation: emblemBreathe 7.5s ease-in-out infinite;
+        }
+        @media (max-width: 720px) {
+            .app-card::after { max-width: calc(100% - 190px); }
+        }
+        @media (max-width: 520px) {
+            .app-card::after { top: 8px; right: 10px; padding: 6px 8px; font-size: 9px; }
+        }
 
         .modal-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); opacity: 0; pointer-events: none; transition: 0.2s ease; z-index: 40; }
         .modal-overlay.active { opacity: 1; pointer-events: all; }
         .view-container { flex: 1; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .view-container::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--collab-frame);
+            opacity: var(--collab-frame-opacity);
+            pointer-events: none;
+            z-index: 2;
+            mix-blend-mode: overlay;
+        }
         
-        .header { padding: 32px 40px 20px 40px; z-index: 20; flex-shrink: 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--glass-border); }
+        .header { padding: 32px 40px 20px 40px; z-index: 20; flex-shrink: 0; display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1px solid var(--glass-border); position: relative; }
+        .header::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--collab-header-stripe); opacity: 0.75; pointer-events: none; }
         .header-left { display: flex; flex-direction: column; }
         .header-subtitle { font-size: 13px; color: var(--accent-blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
         .header h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.5px; color: var(--text-primary); line-height: 1.1; outline: none; border-bottom: 2px solid transparent; cursor: text; transition: 0.2s; }
@@ -94,13 +263,41 @@
         .header h1:focus { border-bottom-color: var(--accent-blue); }
 
         .header-controls { display: flex; gap: 10px; align-items: center; }
-        .search-bar { display: flex; align-items: center; background: rgba(125,125,125,0.1); border-radius: 12px; padding: 0 12px; height: 40px; transition: 0.2s ease; width: 220px; border: 1px solid transparent; }
-        .search-bar:focus-within { background: rgba(125,125,125,0.15); width: 300px; border-color: var(--glass-border); }
+        .search-bar { display: flex; align-items: center; background: rgba(125,125,125,0.06); background-image: var(--control-surface); border-radius: var(--radius-btn); padding: 0 12px; height: 40px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), width 0.2s ease; width: 220px; border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 12px 30px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); backdrop-filter: blur(14px); }
+        .search-bar:focus-within { background-image: var(--control-surface-hover); width: 300px; border-color: var(--glass-border); box-shadow: 0 16px 42px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); transform: translateY(-1px); }
         .search-input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 15px; outline: none; margin-left: 8px; }
         .search-icon { color: var(--text-secondary); width: 16px; height: 16px; }
-        .header-btn { height: 40px; padding: 0 14px; border-radius: 12px; border: 1px solid transparent; background: rgba(125,125,125,0.1); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; transition: 0.2s ease; font-size: 14px; font-weight: 500; }
-        .header-btn:hover { background: rgba(125,125,125,0.2); color: var(--text-primary); border-color: var(--glass-border); }
-        .header-btn.active { background: var(--accent-blue); color: var(--bg-color); box-shadow: 0 0 15px rgba(0,0,0,0.1); }
+        .header-btn {
+            height: 40px; padding: 0 14px;
+            border-radius: var(--radius-btn);
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(125,125,125,0.08);
+            background-image: var(--control-surface);
+            color: var(--text-secondary);
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            cursor: pointer;
+            transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint);
+            font-size: 14px; font-weight: 600;
+            box-shadow: var(--control-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .header-btn::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(120deg, transparent 0 30%, rgba(255,255,255,0.36) 45%, transparent 60%);
+            transform: translateX(-120%);
+            opacity: 0;
+            transition: transform 0.65s var(--ease-out-quint), opacity 0.25s ease;
+            pointer-events: none;
+        }
+        .header-btn:hover { color: var(--text-primary); border-color: var(--glass-border); background-image: var(--control-surface-hover); box-shadow: var(--control-shadow-hover); transform: translateY(-1px); }
+        .header-btn:hover::before { transform: translateX(120%); opacity: 0.35; }
+        .header-btn:active { transform: translateY(0) scale(0.98); }
+        .header-btn:focus-visible { outline: none; box-shadow: var(--control-shadow-hover), 0 0 0 3px var(--glass-border); }
+        .header-btn.active { background-image: var(--accent-gradient); color: var(--btn-on-accent); border-color: transparent; box-shadow: 0 16px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.10) inset; }
+        .header-btn.active::before { opacity: 0.18; transform: translateX(0); }
         .header-btn svg { width: 18px; height: 18px; }
 
         .scroll-content { flex: 1; overflow-y: auto; padding: 24px 40px 140px 40px; scrollbar-width: thin; }
@@ -119,7 +316,7 @@
         .act-control-item {
             height: 32px; 
             background: rgba(125,125,125,0.1); 
-            border-radius: 8px; /* Consistent Radius */
+            border-radius: var(--radius-sm);
             display: flex; align-items: center; justify-content: center;
             padding: 0 12px; 
             font-size: 13px; font-weight: 600; 
@@ -132,7 +329,7 @@
         
         /* STATS GRID */
         .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
-        .stat-card { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 4px; transition: 0.2s; }
+        .stat-card { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-item); padding: 16px; display: flex; flex-direction: column; gap: 4px; transition: 0.2s; }
         .stat-card:hover { background: rgba(125,125,125,0.06); }
         .stat-label { font-size: 11px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
         .stat-value { font-size: 24px; font-weight: 700; color: var(--text-primary); }
@@ -146,7 +343,7 @@
         /* HEATMAP */
         .heatmap-container { 
             width: 100%; margin-top: 0; 
-            border: 1px solid var(--glass-border); border-radius: 20px; 
+            border: 1px solid var(--glass-border); border-radius: var(--radius-card); 
             padding: 24px; background: rgba(125,125,125,0.03);
             display: flex; flex-direction: column;
         }
@@ -182,7 +379,7 @@
         #globalTooltip {
             position: fixed; top: 0; left: 0;
             background: var(--input-bg); border: 1px solid var(--glass-border);
-            padding: 8px 12px; border-radius: 8px; 
+            padding: 8px 12px; border-radius: var(--radius-sm); 
             font-size: 11px; color: var(--text-primary);
             pointer-events: none; opacity: 0; z-index: 10000;
             box-shadow: 0 8px 24px rgba(0,0,0,0.5);
@@ -192,11 +389,15 @@
         #globalTooltip.visible { opacity: 1; }
 
         /* CHART (ECHARTS) */
-        .chart-container { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: 20px; padding: 24px; position: relative; min-height: 350px; height: 350px; margin-bottom: 24px; }
+        .chart-container { background: rgba(125,125,125,0.03); border: 1px solid var(--glass-border); border-radius: var(--radius-card); padding: 24px; position: relative; min-height: 350px; height: 350px; margin-bottom: 24px; }
         .chart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0; }
         .chart-title { font-size: 14px; font-weight: 600; color: var(--text-secondary); }
-        .chart-toggle { height: 32px; background: rgba(125,125,125,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 12px; font-size: 13px; font-weight: 600; color: var(--text-secondary); border: 1px solid transparent; transition: 0.2s; cursor: pointer; gap: 6px; }
-        .chart-toggle:hover { background: rgba(125,125,125,0.2); color: var(--text-primary); }
+        .chart-toggle { height: 32px; background: rgba(125,125,125,0.08); background-image: var(--control-surface); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; padding: 0 12px; font-size: 13px; font-weight: 700; color: var(--text-secondary); border: 1px solid rgba(255,255,255,0.08); transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); cursor: pointer; gap: 6px; box-shadow: var(--control-shadow); position: relative; overflow: hidden; }
+        .chart-toggle::before { content:''; position:absolute; inset:-1px; background: linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.30) 48%, transparent 62%); transform: translateX(-120%); opacity:0; transition: transform 0.7s var(--ease-out-quint), opacity 0.25s ease; pointer-events:none; }
+        .chart-toggle:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); box-shadow: var(--control-shadow-hover); transform: translateY(-1px); }
+        .chart-toggle:hover::before { transform: translateX(120%); opacity: 0.28; }
+        .chart-toggle:active { transform: translateY(0) scale(0.99); }
+        .chart-toggle:focus-visible { outline: none; box-shadow: var(--control-shadow-hover), 0 0 0 3px var(--glass-border); }
         .chart-toggle svg { width: 14px; height: 14px; }
 
         /* LIST VIEW */
@@ -209,23 +410,39 @@
         .section-title { font-size: 12px; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px; opacity: 0.9; }
 
         .todo-item {
-            background: rgba(125,125,125,0.05); margin-bottom: 8px; padding: 18px 24px;
-            border-radius: 16px; display: flex; align-items: flex-start; 
+            background: rgba(125,125,125,0.04);
+            background-image: radial-gradient(140% 140% at 12% 0%, rgba(255,255,255,0.10), transparent 55%), linear-gradient(180deg, rgba(255,255,255,0.06), transparent 40%);
+            margin-bottom: 8px; padding: 18px 24px;
+            border-radius: var(--radius-item); display: flex; align-items: flex-start; 
             border: 1px solid var(--glass-border); 
             transition: opacity 0.4s var(--ease-in-out), transform 0.4s var(--spring), max-height 0.4s var(--ease-in-out), margin-bottom 0.4s var(--ease-in-out), padding 0.4s var(--ease-in-out), border 0.4s;
             min-height: 56px; opacity: 1; transform: translateX(0); max-height: 200px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden;
+            box-shadow: 0 10px 26px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); overflow: hidden;
+            position: relative;
+        }
+        .todo-item::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: radial-gradient(60% 120% at 30% 0%, rgba(255,255,255,0.18), transparent 60%), linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.25) 48%, transparent 62%);
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.25s ease, transform 0.25s var(--ease-out-quint);
+            pointer-events: none;
         }
         .todo-item.pinned { background: rgba(125,125,125,0.08); border-color: var(--accent-blue); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .slide-out-right { transform: translateX(100px); opacity: 0; max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; pointer-events: none; }
         .slide-out-left { transform: translateX(-100px); opacity: 0; max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; pointer-events: none; }
-        .todo-item:hover { background: rgba(125,125,125,0.08); border-color: var(--text-secondary); }
+        .todo-item:hover { background: rgba(125,125,125,0.06); border-color: var(--text-secondary); transform: translateY(-1px); }
+        .todo-item:hover::before { opacity: 0.65; transform: translateY(0); }
         
-        .custom-checkbox { width: 24px; height: 24px; border: 2px solid var(--text-secondary); border-radius: 8px; margin-right: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-top: 3px; transition: background 0.3s var(--spring), border-color 0.3s, transform 0.2s; opacity: 0.6; }
+        .custom-checkbox { width: 24px; height: 24px; border: 2px solid var(--text-secondary); border-radius: var(--radius-sm); margin-right: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; margin-top: 3px; transition: background 0.3s var(--spring), border-color 0.3s, transform 0.2s; opacity: 0.6; position: relative; overflow: hidden; }
+        .custom-checkbox::before { content:''; position:absolute; inset:-1px; background: radial-gradient(60% 120% at 30% 0%, rgba(255,255,255,0.18), transparent 60%), linear-gradient(180deg, rgba(255,255,255,0.08), transparent 55%); opacity: 0; transition: opacity 0.2s ease; pointer-events:none; }
         .todo-item:hover .custom-checkbox { opacity: 1; }
+        .todo-item:hover .custom-checkbox::before { opacity: 1; }
         .custom-checkbox svg { width: 16px; height: 16px; stroke-width: 3px; color: var(--bg-color); stroke-dasharray: 24; stroke-dashoffset: 24; transition: stroke-dashoffset 0.4s cubic-bezier(0.65, 0, 0.45, 1); }
         
-        .todo-item.completed .custom-checkbox { background: var(--accent-blue); border-color: var(--accent-blue); transform: scale(1.05); opacity: 1; }
+        .todo-item.completed .custom-checkbox { background: var(--accent-gradient); border-color: transparent; transform: scale(1.05); opacity: 1; box-shadow: 0 18px 46px rgba(0,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.12) inset; animation: checkPop 360ms var(--ease-out-quint); }
         .todo-item.completed .custom-checkbox svg { stroke-dashoffset: 0; }
         .todo-item.completed .todo-text { text-decoration: line-through; color: var(--text-secondary); opacity: 0.6; transition: opacity 0.3s; font-size: 16px; }
         .todo-item.recurring-done .todo-text { text-decoration: line-through; color: var(--text-secondary); opacity: 0.6; font-size: 16px; }
@@ -238,7 +455,7 @@
         .todo-content { flex: 1; display: flex; flex-direction: column; gap: 6px; justify-content: center; min-width: 0; cursor: pointer; }
         .todo-text { font-size: 16px; color: var(--text-primary); font-weight: 400; line-height: 1.6; }
         .todo-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 2px; }
-        .deadline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; color: var(--text-secondary); height: 24px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--glass-border); background: rgba(125,125,125,0.05); }
+        .deadline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--text-secondary); height: 24px; padding: 0 8px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.04); background-image: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)); box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
         .deadline-badge.p-critical { color: var(--accent-red); border-color: rgba(255, 69, 58, 0.3); background: rgba(255, 69, 58, 0.1); }
         .deadline-badge.p-high { color: var(--accent-orange); border-color: rgba(255, 159, 10, 0.3); background: rgba(255, 159, 10, 0.1); }
         .deadline-badge.p-medium { color: var(--accent-blue); border-color: rgba(10, 132, 255, 0.3); background: rgba(10, 132, 255, 0.1); }
@@ -247,9 +464,11 @@
 
         .item-actions { opacity: 0; display: flex; align-items: center; gap: 6px; margin-left: 12px; margin-top: 2px; transition: 0.2s; }
         .todo-item:hover .item-actions { opacity: 1; }
-        .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0; width: 28px; height: 28px; border-radius: 8px; transition: 0.15s; display: flex; align-items: center; justify-content: center; }
+        .icon-btn { background: rgba(125,125,125,0.04); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); cursor: pointer; padding: 0; width: 30px; height: 30px; border-radius: var(--radius-sm); transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); backdrop-filter: blur(14px); }
         .icon-btn svg { width: 14px; height: 14px; }
-        .icon-btn:hover { background: rgba(125,125,125,0.2); color: var(--text-primary); }
+        .icon-btn:hover { background: rgba(125,125,125,0.10); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .icon-btn:active { transform: translateY(0) scale(0.97); }
+        .icon-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
         .icon-btn.archive:hover { background: rgba(159, 90, 253, 0.15); color: var(--accent-purple); }
         .icon-btn.unarchive:hover { background: rgba(41, 151, 255, 0.15); color: var(--accent-blue); }
         .icon-btn.delete:hover { background: rgba(255, 69, 58, 0.15); color: var(--accent-red); }
@@ -259,31 +478,50 @@
         .floating-input-container { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 70%; max-width: 700px; z-index: 50; transition: all 0.4s var(--spring); }
         .input-hidden { transform: translateX(-50%) translateY(200%); opacity: 0; pointer-events: none; }
         .floating-input-container.expanded { bottom: 50%; left: 50%; transform: translate(-50%, 50%); width: 80%; max-width: 800px; height: auto; min-height: 320px; }
-        .input-capsule { width: 100%; min-height: 56px; height: auto; background: var(--input-bg); backdrop-filter: blur(40px); border-radius: 28px; display: flex; align-items: flex-end; padding: 8px 8px 8px 16px; border: 1px solid var(--glass-border); box-shadow: 0 25px 70px rgba(0,0,0,0.3); transition: 0.3s var(--spring); position: relative; flex-direction: row; }
+        .input-capsule { width: 100%; min-height: 56px; height: auto; background: var(--input-bg); backdrop-filter: blur(40px); border-radius: var(--radius-capsule); display: flex; align-items: flex-end; padding: 8px 8px 8px 16px; border: 1px solid var(--glass-border); box-shadow: 0 25px 70px rgba(0,0,0,0.3); transition: 0.3s var(--spring); position: relative; flex-direction: row; }
         .input-left-controls { display: flex; gap: 8px; margin-bottom: 7px; margin-right: 12px; align-items: center; flex-shrink: 0; }
-        .meta-trigger { background: rgba(125,125,125,0.1); color: var(--text-secondary); border-radius: 12px; padding: 4px 10px; font-size: 12px; font-weight: 500; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; transition: 0.15s; }
-        .meta-trigger:hover, .meta-trigger.active { background: var(--accent-blue); color: var(--bg-color); }
+        .meta-trigger { background: rgba(125,125,125,0.06); background-image: var(--control-surface); color: var(--text-secondary); border-radius: var(--radius-chip); padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
+        .meta-trigger::before { content:''; position:absolute; inset:-1px; background: linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.30) 48%, transparent 62%); transform: translateX(-120%); opacity:0; transition: transform 0.7s var(--ease-out-quint), opacity 0.25s ease; pointer-events:none; }
+        .meta-trigger:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); transform: translateY(-1px); }
+        .meta-trigger:hover::before { transform: translateX(120%); opacity: 0.26; }
+        .meta-trigger.active { background-image: var(--accent-gradient); color: var(--btn-on-accent); border-color: transparent; box-shadow: 0 16px 40px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.10) inset; }
+        .meta-trigger.active::before { opacity: 0.16; transform: translateX(0); }
+        .meta-trigger:active { transform: translateY(0) scale(0.98); }
+        .meta-trigger:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
         .meta-trigger svg { width: 13px; height: 13px; } 
-        .expand-btn { background: transparent; border: 1px solid rgba(125,125,125,0.2); color: var(--text-secondary); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.15s; }
-        .expand-btn:hover { background: rgba(125,125,125,0.3); color: var(--text-primary); }
+        .expand-btn { background: rgba(125,125,125,0.04); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); backdrop-filter: blur(14px); }
+        .expand-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .expand-btn:active { transform: translateY(0) scale(0.97); }
+        .expand-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
         .expand-btn svg { width: 12px; height: 12px; }
         .text-input { flex: 1; background: transparent; border: none; color: var(--text-primary); font-size: 16px; outline: none; font-weight: 400; resize: none; overflow: hidden; min-height: 24px; max-height: 140px; line-height: 1.5; padding: 10px 0; margin-right: 10px; width: 100%; transition: padding 0.2s ease, margin 0.2s ease; }
-        .action-btn { width: 44px; height: 44px; border-radius: 50%; border: none; background: var(--accent-blue); color: var(--bg-color); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s var(--spring); flex-shrink: 0; }
-        .action-btn:hover { transform: scale(1.1); filter: brightness(1.1); }
-        .floating-input-container.expanded .input-capsule { flex-direction: column; align-items: flex-start; padding: 28px; background: var(--card-bg); border-radius: 36px; box-shadow: 0 50px 120px rgba(0,0,0,0.5); }
+        .action-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.10); background: var(--accent-gradient); color: var(--btn-on-accent); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), filter 0.18s var(--ease-out-quint); flex-shrink: 0; box-shadow: 0 16px 42px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.14); position: relative; overflow: hidden; }
+        .action-btn::before { content:''; position:absolute; inset:-1px; background: radial-gradient(60% 120% at 30% 0%, rgba(255,255,255,0.35), transparent 60%); opacity: 0.55; pointer-events:none; }
+        .action-btn:hover { transform: translateY(-1px) scale(1.06); filter: saturate(1.05) brightness(1.03); box-shadow: 0 22px 60px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.12) inset; }
+        .action-btn:active { transform: translateY(0) scale(0.98); }
+        .action-btn:focus-visible { outline: none; box-shadow: 0 22px 60px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.12) inset, 0 0 0 3px var(--glass-border); }
+        .floating-input-container.expanded .input-capsule { flex-direction: column; align-items: flex-start; padding: 28px; background: var(--card-bg); border-radius: var(--radius-capsule-expanded); box-shadow: 0 50px 120px rgba(0,0,0,0.5); }
         .floating-input-container.expanded .input-left-controls { width: 100%; justify-content: flex-start; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); }
         .floating-input-container.expanded .text-input { font-size: 16px; max-height: none; min-height: 150px; overflow-y: auto; padding: 0; margin: 0; scrollbar-width: thin; scrollbar-color: rgba(125,125,125,0.2) transparent; }
-        .floating-input-container.expanded .action-btn { position: absolute; bottom: 28px; right: 28px; width: 64px; height: 64px; background: var(--accent-blue); color: var(--bg-color); box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 60; }
+        .floating-input-container.expanded .action-btn { position: absolute; bottom: 28px; right: 28px; width: 64px; height: 64px; background: var(--accent-gradient); color: var(--btn-on-accent); box-shadow: 0 26px 78px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.12) inset; z-index: 60; }
         .recurrence-options { display: none; width: 100%; gap: 6px; margin-bottom: 20px; }
         .floating-input-container.expanded .recurrence-options { display: flex; flex-wrap: wrap; }
-        .recur-btn { background: rgba(125,125,125,0.05); border: 1px solid rgba(125,125,125,0.1); color: var(--text-secondary); border-radius: 10px; padding: 6px 10px; font-size: 11px; font-weight: 600; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
-        .recur-btn:hover { background: rgba(125,125,125,0.15); color: var(--text-primary); }
-        .recur-btn.active { background: var(--accent-orange); color: #fff; border-color: var(--accent-orange); }
+        .recur-btn { background: rgba(125,125,125,0.05); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 11px; font-weight: 800; cursor: pointer; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); display: flex; align-items: center; gap: 4px; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
+        .recur-btn::before { content:''; position:absolute; inset:-1px; background: linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.24) 48%, transparent 62%); transform: translateX(-120%); opacity:0; transition: transform 0.7s var(--ease-out-quint), opacity 0.25s ease; pointer-events:none; }
+        .recur-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .recur-btn:hover::before { transform: translateX(120%); opacity: 0.22; }
+        .recur-btn:active { transform: translateY(0) scale(0.99); }
+        .recur-btn.active { background-image: linear-gradient(135deg, var(--accent-orange), var(--accent-red)); color: #fff; border-color: transparent; box-shadow: 0 18px 46px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.10) inset; }
+        .recur-btn.active::before { opacity: 0.12; transform: translateX(0); }
         .recur-btn svg { width: 12px; height: 12px; }
         .markdown-toolbar { display: none; width: 100%; padding-top: 10px; gap: 8px; }
         .floating-input-container.expanded .markdown-toolbar { display: flex; flex-wrap: wrap; padding-right: 80px; }
-        .md-tool-btn { background: rgba(125,125,125,0.08); border: none; color: var(--text-secondary); border-radius: 8px; padding: 6px 12px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; height: 32px; }
-        .md-tool-btn:hover { background: rgba(125,125,125,0.15); color: var(--text-primary); }
+        .md-tool-btn { background: rgba(125,125,125,0.06); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 6px 12px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; height: 32px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
+        .md-tool-btn::before { content:''; position:absolute; inset:-1px; background: linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.28) 48%, transparent 62%); transform: translateX(-120%); opacity:0; transition: transform 0.7s var(--ease-out-quint), opacity 0.25s ease; pointer-events:none; }
+        .md-tool-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); transform: translateY(-1px); }
+        .md-tool-btn:hover::before { transform: translateX(120%); opacity: 0.24; }
+        .md-tool-btn:active { transform: translateY(0) scale(0.99); }
+        .md-tool-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
 
         /* THEME PICKER */
         #themeModal { width: 820px; max-width: 94vw; height: 86vh; max-height: 86vh; }
@@ -301,11 +539,11 @@
         .theme-grid::-webkit-scrollbar { width: 4px; }
         .theme-grid::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 2px; }
         
-        .theme-card { background: rgba(125,125,125,0.05); border-radius: 24px; padding: 20px; cursor: pointer; transition: 0.2s var(--spring); border: 2px solid transparent; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; flex: 1 0 240px; min-width: 240px; max-width: 360px; }
+        .theme-card { background: rgba(125,125,125,0.05); border-radius: var(--radius-card); padding: 20px; cursor: pointer; transition: 0.2s var(--spring); border: 2px solid transparent; display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; flex: 1 0 240px; min-width: 240px; max-width: 360px; }
         .collab-badge { position: absolute; top: 0; right: 0; background: var(--accent-blue); color: var(--bg-color); font-size: 10px; font-weight: 800; padding: 6px 10px; border-bottom-left-radius: 14px; text-transform: uppercase; letter-spacing: 0.5px; z-index: 5; }
         .theme-card:hover { transform: translateY(-4px); background: rgba(125,125,125,0.1); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .theme-card.selected { border-color: var(--accent-blue); background: rgba(125,125,125,0.15); }
-        .preview-box { height: 110px; border-radius: 16px; width: 100%; position: relative; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; pointer-events: none; }
+        .preview-box { height: 110px; border-radius: var(--radius-item); width: 100%; position: relative; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden; pointer-events: none; }
         .mini-header { height: 10px; width: 40%; background: currentColor; opacity: 0.8; border-radius: 5px; margin-bottom: 8px; }
         .mini-row { height: 8px; width: 100%; background: currentColor; opacity: 0.15; border-radius: 4px; }
         .mini-row.short { width: 70%; }
@@ -317,30 +555,35 @@
         .selected-icon svg { width: 14px; height: 14px; stroke-width: 4px; }
 
         /* MODALS & POPUPS */
-        .glass-popup { position: absolute; bottom: 65px; left: 0; background: var(--card-bg); backdrop-filter: blur(40px); border-radius: 20px; border: 1px solid var(--glass-border); box-shadow: 0 30px 80px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.95); transition: 0.2s; z-index: 100; width: 280px; padding: 16px; }
+        .glass-popup { position: absolute; bottom: 65px; left: 0; background: var(--card-bg); backdrop-filter: blur(40px); border-radius: var(--radius-card); border: 1px solid var(--glass-border); box-shadow: 0 30px 80px rgba(0,0,0,0.3); opacity: 0; pointer-events: none; transform: translateY(20px) scale(0.95); transition: 0.2s; z-index: 100; width: 280px; padding: 16px; }
         .glass-popup.open { opacity: 1; pointer-events: all; transform: translateY(0) scale(1); }
         .floating-input-container.expanded .glass-popup { bottom: auto; top: 70px; left: 24px; }
         .dp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .dp-nav { background: rgba(125,125,125,0.1); border: none; color: var(--text-primary); border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .dp-nav { background: rgba(125,125,125,0.06); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-primary); border-radius: var(--radius-sm); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); }
+        .dp-nav:hover { background-image: var(--control-surface-hover); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .dp-nav:active { transform: translateY(0) scale(0.97); }
+        .dp-nav:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
         .dp-day-names { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; margin-bottom: 8px; }
         .dp-day-name { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
         .dp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-        .dp-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; border-radius: 6px; cursor: pointer; color: var(--text-primary); }
+        .dp-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; border-radius: var(--radius-sm); cursor: pointer; color: var(--text-primary); }
         .dp-cell:hover { background: rgba(125,125,125,0.1); }
         .dp-cell.selected { background: var(--accent-blue); color: var(--bg-color); font-weight: 600; }
         .dp-cell.is-today { font-weight: 800; color: var(--accent-blue); position: relative; }
         .dp-cell.is-today::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent-blue); }
 
-        .detail-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95); width: 85%; max-width: 550px; max-height: 80vh; background: var(--card-bg); backdrop-filter: blur(50px); border-radius: 32px; border: 1px solid var(--glass-border); box-shadow: 0 50px 150px rgba(0,0,0,0.5); z-index: 200; opacity: 0; pointer-events: none; display: flex; flex-direction: column; transition: 0.25s var(--spring); overflow: hidden; }
+        .detail-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95); width: 85%; max-width: 550px; max-height: 80vh; background: var(--card-bg); backdrop-filter: blur(50px); border-radius: var(--radius-modal); border: 1px solid var(--glass-border); box-shadow: 0 50px 150px rgba(0,0,0,0.5); z-index: 200; opacity: 0; pointer-events: none; display: flex; flex-direction: column; transition: 0.25s var(--spring); overflow: hidden; }
         .detail-modal.open { opacity: 1; pointer-events: all; transform: translate(-50%, -50%) scale(1); }
         .detail-content { padding: 36px; overflow-y: auto; flex: 1; }
         .detail-text { font-size: 18px; line-height: 1.6; color: var(--text-primary); margin-bottom: 24px; word-break: break-word; }
         .detail-footer { padding: 16px 36px; border-top: 1px solid var(--glass-border); display: flex; justify-content: space-between; align-items: center; background: rgba(125,125,125,0.05); }
         .detail-meta { color: var(--text-secondary); font-size: 13px; font-weight: 500; }
         .detail-actions { display: flex; gap: 10px; }
-        .detail-icon-btn { width: 36px; height: 36px; border-radius: 10px; border: none; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.2s; padding: 0; color: var(--text-secondary); }
+        .detail-icon-btn { width: 38px; height: 38px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.04); background-image: var(--control-surface); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); padding: 0; color: var(--text-secondary); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); }
         .detail-icon-btn svg { width: 18px; height: 18px; } 
-        .detail-icon-btn:hover { background: rgba(125,125,125,0.1); color: var(--text-primary); }
+        .detail-icon-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .detail-icon-btn:active { transform: translateY(0) scale(0.98); }
+        .detail-icon-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
         
         /* MONTHLY CALENDAR GRID (FULL VIEW) */
         #calendarModal { max-width: 900px; width: 90vw; height: 85vh; max-height: 85%; }
@@ -356,7 +599,7 @@
         .single-month-card { 
             background: rgba(125,125,125,0.03); 
             border: 1px solid var(--glass-border); 
-            border-radius: 16px; padding: 16px 12px; 
+            border-radius: var(--radius-item); padding: 16px 12px; 
             display: flex; flex-direction: column; 
         }
         .sm-header { font-size: 14px; font-weight: 600; margin-bottom: 12px; color: var(--text-primary); text-align: center; }
@@ -374,13 +617,37 @@
         /* v68 Fix: Removed Box Shadow for cleaner look */
         .sm-l3 { background: var(--accent-blue); opacity: 1; z-index:2; }
 
+        @keyframes meshFloat {
+            0% { transform: translate3d(-2%, -1%, 0) scale(1); }
+            45% { transform: translate3d(2%, -2%, 0) scale(1.02); }
+            100% { transform: translate3d(-1%, 2%, 0) scale(1.03); }
+        }
+        @keyframes checkPop {
+            0% { transform: scale(0.94); }
+            45% { transform: scale(1.14); }
+            100% { transform: scale(1.05); }
+        }
+        @keyframes emblemBreathe {
+            0% { transform: translate3d(0, 0, 0) scale(1); filter: saturate(1) brightness(1); }
+            55% { transform: translate3d(0, 1px, 0) scale(1.02); filter: saturate(1.08) brightness(1.04); }
+            100% { transform: translate3d(0, 0, 0) scale(1); filter: saturate(1) brightness(1); }
+        }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (prefers-reduced-motion: reduce) {
+            .background-mesh { animation: none; }
+            .header-btn::before, .chart-toggle::before, .meta-trigger::before, .md-tool-btn::before { display: none; }
+            .header-btn, .chart-toggle, .meta-trigger, .md-tool-btn, .icon-btn, .action-btn, .todo-item { transition: none; }
+            .app-card::after { animation: none; }
+        }
     </style>
 </head>
 <body>
 
     <div class="background-mesh"></div>
+
+    <div class="outside-tagline" id="outsideTagline"></div>
 
     <div id="globalTooltip"></div>
 
@@ -624,7 +891,50 @@
     </div>
 
     <script>
-        lucide.createIcons();
+        const LUCIDE_SRC = 'https://unpkg.com/lucide@latest';
+        const ECHARTS_SRC = 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js';
+        let lucideLoadPromise = null;
+        let echartsLoadPromise = null;
+
+        function ensureLucide() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') return Promise.resolve(window.lucide);
+            if (lucideLoadPromise) return lucideLoadPromise;
+            lucideLoadPromise = new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = LUCIDE_SRC;
+                s.async = true;
+                s.onload = () => resolve(window.lucide);
+                s.onerror = () => reject(new Error('Failed to load lucide'));
+                document.head.appendChild(s);
+            });
+            return lucideLoadPromise;
+        }
+
+        function createIconsSafe() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+                return;
+            }
+            ensureLucide()
+                .then(() => { if (window.lucide) window.lucide.createIcons(); })
+                .catch(() => {});
+        }
+
+        function ensureEcharts() {
+            if (window.echarts) return Promise.resolve(window.echarts);
+            if (echartsLoadPromise) return echartsLoadPromise;
+            echartsLoadPromise = new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = ECHARTS_SRC;
+                s.async = true;
+                s.onload = () => resolve(window.echarts);
+                s.onerror = () => reject(new Error('Failed to load ECharts'));
+                document.head.appendChild(s);
+            });
+            return echartsLoadPromise;
+        }
+
+        ensureLucide();
         const MASTER_KEY = 'ios26_liquid_tasks_master';
         const CONFIG_KEY = 'ios26_liquid_config';
         function migrateOldData() { if (!localStorage.getItem(MASTER_KEY)) { const v10 = localStorage.getItem('ios26_todos_v10'); if (v10) localStorage.setItem(MASTER_KEY, v10); } }
@@ -658,6 +968,18 @@
             { id: 'monokai', name: 'Monokai', bg:'#272822', text:'#f8f8f2', acc:'#fd971f' },
             { id: 'onedark', name: 'One Dark', bg:'#21252b', text:'#e6e6e6', acc:'#61afef' },
             { id: 'xcode', name: 'Xcode', bg:'#18181b', text:'#ffffff', acc:'#0a84ff' },
+            { id: 'curse', name: '咒', bg:'#06030b', text:'#f5f3ff', acc:'#a855f7', type: 'collab' },
+            { id: 'apple', name: 'Apple', bg:'#0b0c10', text:'#f5f5f7', acc:'#0a84ff', type: 'collab' },
+            { id: 'samsung', name: 'Samsung', bg:'#070a17', text:'#eef2ff', acc:'#2f6fff', type: 'collab' },
+            { id: 'google', name: 'Google', bg:'#0b1016', text:'#eaf2ff', acc:'#4285f4', type: 'collab' },
+            { id: 'xiaomi', name: '小米', bg:'#0b0b0b', text:'#fafafa', acc:'#ff6900', type: 'collab' },
+            { id: 'angrymiao', name: 'Angry Miao', bg:'#050505', text:'#f5f5f5', acc:'#ff003c', type: 'collab' },
+            { id: 'steam', name: 'Steam', bg:'#0f1b2b', text:'#e6f1ff', acc:'#66c0f4', type: 'collab' },
+            { id: 'playstation', name: 'PlayStation', bg:'#001428', text:'#e9f2ff', acc:'#0070d1', type: 'collab' },
+            { id: 'nintendo', name: 'Nintendo', bg:'#fff7f7', text:'#1f1f1f', acc:'#e60012', type: 'collab' },
+            { id: 'xbox', name: 'Xbox', bg:'#06110b', text:'#eafff3', acc:'#107c10', type: 'collab' },
+            { id: 'xiaohongshu', name: '小红书', bg:'#fff7f8', text:'#1f1f1f', acc:'#ff2442', type: 'collab' },
+            { id: 'razer', name: 'Razer', bg:'#020202', text:'#eaffea', acc:'#44d62c', type: 'collab' },
             { id: 'chiikawa', name: 'Chiikawa', bg:'#fffafb', text:'#5d4037', acc:'#76c4ea', type: 'collab' },
             { id: 'hellokitty', name: 'Hello Kitty', bg:'#fff0f5', text:'#212121', acc:'#d50000', type: 'collab' },
             { id: 'christmas', name: 'Christmas', bg:'#2a1b18', text:'#fff8e1', acc:'#4caf50' },
@@ -688,6 +1010,32 @@
             pinnedTitle: "Priority Directives",
             trashModalTitle: "Data Dump",
             themeModalTitle: "Interface Customization",
+            outsideTagline: "nier / yorha\n整理你的指令。\n像机器一样精准，像人一样克制。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Targets Neutralized",
+            chartTitleTrend: "Signal Analysis",
+            chartTitleDow: "Operation Cycles",
+            chartTitleTod: "Engagement Hours",
+            chartTitlePie: "Mission Types",
+            chartLabelBar: "Bar Viz",
+            chartLabelLine: "Line Viz",
+            statLabelWeek: "Cycle Report",
+            statLabelMonth: "Lunar Report",
+            statLabelYear: "Orbit Report",
+            statLabelRate: "Success Rate",
+            recurrenceLabels: { 'none': 'Single', 'daily': 'Daily Cycle', 'workdays': 'Combat Days', 'weekly': 'Weekly Cycle', 'monthly': 'Lunar Cycle', 'yearly': 'Solar Cycle' }
+        };
+
+        const NIER_GRAY_TEXT = {
+            appTitle: "YoRHa Missions // Gray",
+            searchInputPlaceholder: "Scan Memory (Gray)…",
+            emptyTodoText: "No active units detected.\nSilence is also a signal.",
+            actTitle: "Gray Records",
+            pinnedTitle: "Priority Directives",
+            trashModalTitle: "Data Dump",
+            themeModalTitle: "Interface Customization",
+            outsideTagline: "nier: gray\n把噪声调低。\n把意志调高。",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Targets Neutralized",
             chartTitleTrend: "Signal Analysis",
             chartTitleDow: "Operation Cycles",
@@ -710,6 +1058,8 @@
             pinnedTitle: "Core Memories",
             trashModalTitle: "Retired Units",
             themeModalTitle: "Visual Cortex",
+            outsideTagline: "blade runner / baseline\n你不是机器，但可以像机器一样执行。\n保持基线。",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Retired",
             chartTitleTrend: "System Drift",
             chartTitleDow: "Shift Cycle",
@@ -732,6 +1082,8 @@
             pinnedTitle: "狂热",
             trashModalTitle: "被遗忘的时光",
             themeModalTitle: "冬未了",
+            outsideTagline: "苏打绿 / 无与伦比的美丽\n把今天写成一首歌。\n把每个完成当作一个和弦。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " 个音符",
             chartTitleTrend: "频率",
             chartTitleDow: "苏打周期",
@@ -754,6 +1106,8 @@
             pinnedTitle: "秘密",
             trashModalTitle: "丢弃的信",
             themeModalTitle: "夏日色彩",
+            outsideTagline: "蓝色大门 / 青春记事\n把喜欢的人放进心里。\n把该做的事放进今天。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " 件心事",
             chartTitleTrend: "成长轨迹",
             chartTitleDow: "单车日子",
@@ -776,6 +1130,8 @@
             pinnedTitle: "Favorites",
             trashModalTitle: "Scary Place",
             themeModalTitle: "Dress Up",
+            outsideTagline: "chiikawa\n小小的也没关系。\n做完一件，就会更勇敢一点。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " Weeded",
             chartTitleTrend: "Weeding Log",
             chartTitleDow: "Working Days",
@@ -798,6 +1154,8 @@
             pinnedTitle: "Important!",
             trashModalTitle: "Recycle",
             themeModalTitle: "Style",
+            outsideTagline: "hello kitty\n把今天过得可爱一点。\n把要做的事做得认真一点。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " Apples",
             chartTitleTrend: "Friendship",
             chartTitleDow: "Play Dates",
@@ -820,6 +1178,8 @@
             pinnedTitle: "Soul Gems",
             trashModalTitle: "Grief Seeds",
             themeModalTitle: "Transformation",
+            outsideTagline: "madoka / magical contract\n愿望写进清单。\n代价写进日程。",
+            outsideTaglineOpacity: 0.24,
             totalCompletedSuffix: " Witches Defeated",
             chartTitleTrend: "Energy Levels",
             chartTitleDow: "Time Loops",
@@ -842,6 +1202,8 @@
             pinnedTitle: "Treasure",
             trashModalTitle: "Recycle Bin",
             themeModalTitle: "Outfits",
+            outsideTagline: "usagi\n先吃饱，再开干。\n把任务当作零食，一口一口吃完。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " Yummy Things",
             chartTitleTrend: "Eating Habits",
             chartTitleDow: "Party Days",
@@ -864,6 +1226,8 @@
             pinnedTitle: "The Key",
             trashModalTitle: "Trash",
             themeModalTitle: "DUO",
+            outsideTagline: "Eason / K歌之王\n把情绪写成任务。\n把任务唱成完成。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " 首金曲",
             chartTitleTrend: "K歌之王",
             chartTitleDow: "七百年后",
@@ -886,6 +1250,8 @@
             pinnedTitle: "红海",
             trashModalTitle: "粉碎",
             themeModalTitle: "封闭货车",
+            outsideTagline: "Jackson / 少年的你\n把热爱放进日程。\n把努力写进今天。",
+            outsideTaglineOpacity: 0.22,
             totalCompletedSuffix: " 朵小红花",
             chartTitleTrend: "成长记录",
             chartTitleDow: "千禧日程",
@@ -908,6 +1274,8 @@
             pinnedTitle: "Central Dogma",
             trashModalTitle: "GeoFront Disposal",
             themeModalTitle: "Magi System",
+            outsideTagline: "eva-01 / nerv\n同步率不是借口。\n执行，直到完成。",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Angels Defeated",
             chartTitleTrend: "Sync Ratio",
             chartTitleDow: "Attack Cycle",
@@ -930,6 +1298,8 @@
             pinnedTitle: "My Stuff",
             trashModalTitle: "Useless Junk",
             themeModalTitle: "Plugsuit Mode",
+            outsideTagline: "eva-02 / unit\n别磨叽。\n把今天打穿。",
+            outsideTaglineOpacity: 0.28,
             totalCompletedSuffix: " Kills",
             chartTitleTrend: "Performance",
             chartTitleDow: "Sortie Schedule",
@@ -952,6 +1322,8 @@
             pinnedTitle: "Covenants",
             trashModalTitle: "Abyss",
             themeModalTitle: "Attunement",
+            outsideTagline: "dark souls\n不要熄火。\n一次次复活，一次次完成。",
+            outsideTaglineOpacity: 0.28,
             totalCompletedSuffix: " Lords Slain",
             chartTitleTrend: "Soul Memory",
             chartTitleDow: "Cycle",
@@ -974,6 +1346,8 @@
             pinnedTitle: "Caryll Runes",
             trashModalTitle: "Hunter's Nightmare",
             themeModalTitle: "Messengers",
+            outsideTagline: "bloodborne\n别被梦魇拖走。\n完成一件，清醒一分。",
+            outsideTaglineOpacity: 0.28,
             totalCompletedSuffix: " Prey Slaughtered",
             chartTitleTrend: "Blood Echoes",
             chartTitleDow: "Hunt Nights",
@@ -996,6 +1370,8 @@
             pinnedTitle: "Geppetto's Orders",
             trashModalTitle: "Discarded Parts",
             themeModalTitle: "Workshop",
+            outsideTagline: "lies of p\n把谎言拆成步骤。\n把真相做成结果。",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Puppets Defeated",
             chartTitleTrend: "Ergo Intake",
             chartTitleDow: "Patrol Cycle",
@@ -1018,6 +1394,8 @@
             pinnedTitle: "Great Runes",
             trashModalTitle: "Tarnished Remains",
             themeModalTitle: "Roundtable Hold",
+            outsideTagline: "Between the fog and the grace,\nwrite one more step.\nRest, then proceed.",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Demigods Felled",
             chartTitleTrend: "Runes Gained",
             chartTitleDow: "Journey",
@@ -1032,14 +1410,16 @@
             recurrenceLabels: { 'none': 'Once', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
         };
 
-        const STANDARD_TEXT = {
-            appTitle: "Tasks",
-            searchInputPlaceholder: "Search",
-            emptyTodoText: "All caught up.",
-            actTitle: "Activity Dashboard",
-            pinnedTitle: "Pinned",
-            trashModalTitle: "Trash Bin",
+        const AYU_TEXT = {
+            appTitle: "Ayu Night Shift",
+            searchInputPlaceholder: "Search tasks, notes, and signals...",
+            emptyTodoText: "Quiet night. No pending tickets.\nShip something small anyway.",
+            actTitle: "Night Ops",
+            pinnedTitle: "Priority",
+            trashModalTitle: "Discarded",
             themeModalTitle: "Appearance",
+            outsideTagline: "ayu / night shift\nlow noise, high focus.\nmake it happen.",
+            outsideTaglineOpacity: 0.26,
             totalCompletedSuffix: " Completed",
             chartTitleTrend: "Monthly Trend",
             chartTitleDow: "Day of Week",
@@ -1054,25 +1434,505 @@
             recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
         };
 
-        function getActiveTexts() {
+        const DRACULA_TEXT = {
+            appTitle: "Dracula Ledger",
+            searchInputPlaceholder: "Search… (keep it quiet)",
+            emptyTodoText: "No debts tonight.\nThe castle is silent.",
+            actTitle: "Midnight Report",
+            pinnedTitle: "Blood Oath",
+            trashModalTitle: "Ashes",
+            themeModalTitle: "Dark Ritual",
+            outsideTagline: "dracula / midnight ledger\none bite at a time.\nfinish before sunrise.",
+            outsideTaglineOpacity: 0.28,
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Nightly', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const MONOKAI_TEXT = {
+            appTitle: "Monokai Neon",
+            searchInputPlaceholder: "Find a task. Color it. Ship it.",
+            emptyTodoText: "No lines on stage.\nAdd a riff and go.",
+            actTitle: "Signal Board",
+            pinnedTitle: "Highlights",
+            trashModalTitle: "Offcuts",
+            themeModalTitle: "Palette",
+            outsideTagline: "monokai / neon console\nsharp contrast, clean moves.\nkeep the flow.",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const ONEDARK_TEXT = {
+            appTitle: "One Dark Ops",
+            searchInputPlaceholder: "Search tasks… (fast, precise)",
+            emptyTodoText: "No open incidents.\nStay sharp anyway.",
+            actTitle: "Ops Dashboard",
+            pinnedTitle: "Critical",
+            trashModalTitle: "Archived Debris",
+            themeModalTitle: "Interface",
+            outsideTagline: "one dark / ops board\nreduce noise.\nincrease throughput.",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const XCODE_TEXT = {
+            appTitle: "Xcode Build Board",
+            searchInputPlaceholder: "Search targets, tasks, and fixes…",
+            emptyTodoText: "Build is green.\nKeep it that way.",
+            actTitle: "Build Metrics",
+            pinnedTitle: "Release Blockers",
+            trashModalTitle: "Clean Build Folder",
+            themeModalTitle: "Developer Mode",
+            outsideTagline: "xcode / build board\nsmall commits.\nfast feedback.",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Done",
+            chartTitleTrend: "Build Trend",
+            chartTitleDow: "Cycle",
+            chartTitleTod: "Focus Hours",
+            chartTitlePie: "Work Types",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Pass Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const CHRISTMAS_TEXT = {
+            appTitle: "圣诞清单",
+            searchInputPlaceholder: "搜一搜：礼物 / 计划 / 祝福…",
+            emptyTodoText: "铃铛停在风里。\n今天的心愿都已点亮。",
+            actTitle: "节日仪表盘",
+            pinnedTitle: "最想要的",
+            trashModalTitle: "落在雪里的事",
+            themeModalTitle: "节日装扮",
+            outsideTagline: "christmas / wish list\n点亮一件事。\n再点亮一件事。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " 颗星",
+            chartTitleTrend: "心愿曲线",
+            chartTitleDow: "节日节奏",
+            chartTitleTod: "温暖时段",
+            chartTitlePie: "心愿类型",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "本周",
+            statLabelMonth: "本月",
+            statLabelYear: "今年",
+            statLabelRate: "完成率",
+            recurrenceLabels: { 'none': '一次', 'daily': '每天', 'workdays': '工作日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const FRIEREN_TEXT = {
+            appTitle: "旅途手记",
+            searchInputPlaceholder: "记录：下一步要做的事…",
+            emptyTodoText: "行囊很轻。\n但旅途还很长。",
+            actTitle: "旅程回顾",
+            pinnedTitle: "重要的约定",
+            trashModalTitle: "被风带走的纸条",
+            themeModalTitle: "旅装",
+            outsideTagline: "frieren / journey notes\n把时间留给重要的人。\n把任务留给今天。",
+            outsideTaglineOpacity: 0.24,
+            totalCompletedSuffix: " 次完成",
+            chartTitleTrend: "步伐",
+            chartTitleDow: "旅程节律",
+            chartTitleTod: "专注时刻",
+            chartTitlePie: "事项分布",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "本周",
+            statLabelMonth: "本月",
+            statLabelYear: "今年",
+            statLabelRate: "完成率",
+            recurrenceLabels: { 'none': '一次', 'daily': '每天', 'workdays': '工作日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const CURSE_TEXT = {
+            appTitle: "咒 · 卷轴",
+            searchInputPlaceholder: "检索：咒印 / 线索 / 目标…",
+            emptyTodoText: "符纹安静。\n今日无事可咒。",
+            actTitle: "禁术记录",
+            pinnedTitle: "禁咒",
+            trashModalTitle: "封印",
+            themeModalTitle: "结界",
+            outsideTagline: "咒 / curse\n把恐惧写成步骤。\n把步骤完成。",
+            outsideTaglineOpacity: 0.30,
+            totalCompletedSuffix: " 次镇压",
+            chartTitleTrend: "咒力波形",
+            chartTitleDow: "轮回日",
+            chartTitleTod: "夜行时刻",
+            chartTitlePie: "术式分布",
+            chartLabelBar: "柱状",
+            chartLabelLine: "曲线",
+            statLabelWeek: "本周咒印",
+            statLabelMonth: "本月术式",
+            statLabelYear: "年度封印",
+            statLabelRate: "净化率",
+            recurrenceLabels: { 'none': '一次', 'daily': '每日结界', 'workdays': '工作日', 'weekly': '每周镇压', 'monthly': '每月祭仪', 'yearly': '年祭' }
+        };
+
+        const APPLE_TEXT = {
+            appTitle: "Cupertino Focus",
+            searchInputPlaceholder: "Spotlight：搜索任务与想法…",
+            emptyTodoText: "Everything is quiet.\nShip something delightful.",
+            actTitle: "Focus Summary",
+            pinnedTitle: "Today",
+            trashModalTitle: "Recently Deleted",
+            themeModalTitle: "Appearance",
+            outsideTagline: "apple / cupertino focus\n细节要像玻璃一样干净。\n体验要像呼吸一样自然。",
+            outsideTaglineOpacity: 0.24,
+            totalCompletedSuffix: " Done",
+            chartTitleTrend: "Momentum",
+            chartTitleDow: "Weekly Rhythm",
+            chartTitleTod: "Focus Hours",
+            chartTitlePie: "Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const SAMSUNG_TEXT = {
+            appTitle: "Galaxy Planner",
+            searchInputPlaceholder: "搜索：日程 / 目标 / 想法…",
+            emptyTodoText: "No pending missions.\nTime to explore the next.",
+            actTitle: "Galaxy Insights",
+            pinnedTitle: "Starred",
+            trashModalTitle: "Recycle Bin",
+            themeModalTitle: "One UI",
+            outsideTagline: "samsung / galaxy planner\n更远的屏幕，更近的效率。\n把今天排成一条光轨。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Done",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Weekly Cycle",
+            chartTitleTod: "Peak Hours",
+            chartTitlePie: "Task Types",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const GOOGLE_TEXT = {
+            appTitle: "Workspace Tasks",
+            searchInputPlaceholder: "Search: docs, tasks, notes…",
+            emptyTodoText: "Inbox zero.\nNow do the real work.",
+            actTitle: "Insights",
+            pinnedTitle: "Starred",
+            trashModalTitle: "Bin",
+            themeModalTitle: "Workspace",
+            outsideTagline: "google / workspace\n把复杂拆成可搜索的片段。\n把片段连成路径。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const XIAOMI_TEXT = {
+            appTitle: "小米 · 待办",
+            searchInputPlaceholder: "搜索：计划 / 清单 / 灵感…",
+            emptyTodoText: "今日清单已清空。\n明天继续，别太拼。",
+            actTitle: "效率面板",
+            pinnedTitle: "置顶",
+            trashModalTitle: "回收站",
+            themeModalTitle: "个性化",
+            outsideTagline: "小米 / mi todo\n快一点，再快一点。\n把每一步都做成习惯。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " 件完成",
+            chartTitleTrend: "趋势",
+            chartTitleDow: "周节奏",
+            chartTitleTod: "高效时段",
+            chartTitlePie: "类型分布",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "本周",
+            statLabelMonth: "本月",
+            statLabelYear: "今年",
+            statLabelRate: "完成率",
+            recurrenceLabels: { 'none': '重复', 'daily': '每天', 'workdays': '工作日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const ANGRYMIAO_TEXT = {
+            appTitle: "Angry Miao Lab",
+            searchInputPlaceholder: "Search… (sharp & fast)",
+            emptyTodoText: "Nothing to cut.\nTime to design the next.",
+            actTitle: "Lab Telemetry",
+            pinnedTitle: "Hotkeys",
+            trashModalTitle: "Scrap Bin",
+            themeModalTitle: "Lab Skin",
+            outsideTagline: "angry miao / lab\n机械感要锋利。\n手感要像刀一样准。",
+            outsideTaglineOpacity: 0.28,
+            totalCompletedSuffix: " Done",
+            chartTitleTrend: "Throughput",
+            chartTitleDow: "Cycle",
+            chartTitleTod: "Rush Hours",
+            chartTitlePie: "Loadout",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Win Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const STEAM_TEXT = {
+            appTitle: "Steam Library",
+            searchInputPlaceholder: "Search quests, backlog, achievements…",
+            emptyTodoText: "Backlog cleared.\nAchievement unlocked: Calm.",
+            actTitle: "Playtime Stats",
+            pinnedTitle: "Featured",
+            trashModalTitle: "Uninstalled",
+            themeModalTitle: "Library Skin",
+            outsideTagline: "steam / library\n把 backlog 变成进度条。\n把进度条推到满格。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Achievements",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Weekly Cycle",
+            chartTitleTod: "Peak Hours",
+            chartTitlePie: "Genres",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const PLAYSTATION_TEXT = {
+            appTitle: "PlayStation Trophy List",
+            searchInputPlaceholder: "Search: quests / trophies / backlog…",
+            emptyTodoText: "No quests in the log.\nStart a new run.",
+            actTitle: "Trophy Room",
+            pinnedTitle: "Featured",
+            trashModalTitle: "Uninstalled",
+            themeModalTitle: "Console Skin",
+            outsideTagline: "playstation\n把任务当作奖杯列表。\n一个一个拿下。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Trophies",
+            chartTitleTrend: "Progress Curve",
+            chartTitleDow: "Weekly Sessions",
+            chartTitleTod: "Peak Playtime",
+            chartTitlePie: "Quest Types",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const NINTENDO_TEXT = {
+            appTitle: "Nintendo Checklist",
+            searchInputPlaceholder: "搜：关卡 / 收集 / 任务…",
+            emptyTodoText: "背包里空空的。\n出去捡一点快乐。",
+            actTitle: "冒险记录",
+            pinnedTitle: "必拿道具",
+            trashModalTitle: "丢在路边的物品",
+            themeModalTitle: "主机皮肤",
+            outsideTagline: "nintendo\n把世界当作关卡。\n把完成当作通关音效。",
+            outsideTaglineOpacity: 0.22,
+            totalCompletedSuffix: " 个收集",
+            chartTitleTrend: "通关曲线",
+            chartTitleDow: "每周冒险",
+            chartTitleTod: "黄金时段",
+            chartTitlePie: "关卡类型",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "本周",
+            statLabelMonth: "本月",
+            statLabelYear: "今年",
+            statLabelRate: "完成率",
+            recurrenceLabels: { 'none': '重复', 'daily': '每天', 'workdays': '工作日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const XBOX_TEXT = {
+            appTitle: "Xbox Achievements",
+            searchInputPlaceholder: "Search: missions / achievements…",
+            emptyTodoText: "No missions queued.\nReady when you are.",
+            actTitle: "Game Stats",
+            pinnedTitle: "Quick Resume",
+            trashModalTitle: "Recycle Bin",
+            themeModalTitle: "Console Skin",
+            outsideTagline: "xbox\n把任务排成队列。\n把队列清空。",
+            outsideTaglineOpacity: 0.26,
+            totalCompletedSuffix: " Achievements",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Weekly Cycle",
+            chartTitleTod: "Peak Hours",
+            chartTitlePie: "Work Types",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const XIAOHONGSHU_TEXT = {
+            appTitle: "小红书 · 计划本",
+            searchInputPlaceholder: "搜：笔记 / 灵感 / 清单…",
+            emptyTodoText: "今天的灵感已经写完。\n去生活里再捡一点。",
+            actTitle: "笔记仪表盘",
+            pinnedTitle: "置顶笔记",
+            trashModalTitle: "草稿箱",
+            themeModalTitle: "封面风格",
+            outsideTagline: "小红书\n把生活写成笔记。\n把计划做成作品。",
+            outsideTaglineOpacity: 0.22,
+            totalCompletedSuffix: " 条笔记",
+            chartTitleTrend: "发布趋势",
+            chartTitleDow: "每周节奏",
+            chartTitleTod: "灵感时段",
+            chartTitlePie: "内容类型",
+            chartLabelBar: "柱状图",
+            chartLabelLine: "折线图",
+            statLabelWeek: "本周",
+            statLabelMonth: "本月",
+            statLabelYear: "今年",
+            statLabelRate: "完成率",
+            recurrenceLabels: { 'none': '重复', 'daily': '每天', 'workdays': '工作日', 'weekly': '每周', 'monthly': '每月', 'yearly': '每年' }
+        };
+
+        const RAZER_TEXT = {
+            appTitle: "Razer Control",
+            searchInputPlaceholder: "Search: macros / missions / focus…",
+            emptyTodoText: "No macros running.\nTime to execute.",
+            actTitle: "Telemetry",
+            pinnedTitle: "Hotkeys",
+            trashModalTitle: "Scrap Bin",
+            themeModalTitle: "Chroma",
+            outsideTagline: "razer\n把专注调到最高。\n把延迟调到最低。",
+            outsideTaglineOpacity: 0.28,
+            totalCompletedSuffix: " Executed",
+            chartTitleTrend: "Throughput",
+            chartTitleDow: "Cycle",
+            chartTitleTod: "Rush Hours",
+            chartTitlePie: "Loadout",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Win Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        const STANDARD_TEXT = {
+            appTitle: "Tasks",
+            searchInputPlaceholder: "Search",
+            emptyTodoText: "All caught up.",
+            actTitle: "Activity Dashboard",
+            pinnedTitle: "Pinned",
+            trashModalTitle: "Trash Bin",
+            themeModalTitle: "Appearance",
+            outsideTagline: "",
+            outsideTaglineOpacity: 0,
+            totalCompletedSuffix: " Completed",
+            chartTitleTrend: "Monthly Trend",
+            chartTitleDow: "Day of Week",
+            chartTitleTod: "Productivity Hours",
+            chartTitlePie: "Task Distribution",
+            chartLabelBar: "Switch to Bar",
+            chartLabelLine: "Switch to Line",
+            statLabelWeek: "This Week",
+            statLabelMonth: "This Month",
+            statLabelYear: "This Year",
+            statLabelRate: "Completion Rate",
+            recurrenceLabels: { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' }
+        };
+
+        function getTextsByThemeId(themeId) {
             let texts = STANDARD_TEXT;
-            if (config.theme.includes('nier')) texts = NIER_TEXT;
-            else if (config.theme === 'bladerunner') texts = BLADERUNNER_TEXT;
-            else if (config.theme === 'sodagreen') texts = SODAGREEN_TEXT;
-            else if (config.theme === 'bluegate') texts = BLUEGATE_TEXT;
-            else if (config.theme === 'chiikawa') texts = CHIIKAWA_TEXT;
-            else if (config.theme === 'hellokitty') texts = HELLOKITTY_TEXT;
-            else if (config.theme === 'madoka') texts = MADOKA_TEXT;
-            else if (config.theme === 'usagi') texts = USAGI_TEXT;
-            else if (config.theme === 'eason') texts = EASON_TEXT;
-            else if (config.theme === 'jackson') texts = JACKSON_TEXT;
-            else if (config.theme === 'eva-01') texts = EVA01_TEXT;
-            else if (config.theme === 'eva-02') texts = EVA02_TEXT;
-            else if (config.theme === 'darksouls') texts = DARKSOULS_TEXT;
-            else if (config.theme === 'bloodborne') texts = BLOODBORNE_TEXT;
-            else if (config.theme === 'liesofp') texts = LIESOFPI_TEXT;
-            else if (config.theme === 'eldenring') texts = ELDENRING_TEXT;
+            if (themeId === 'nier-gray') texts = NIER_GRAY_TEXT;
+            else if (themeId.includes('nier')) texts = NIER_TEXT;
+            else if (themeId === 'ayu') texts = AYU_TEXT;
+            else if (themeId === 'dracula') texts = DRACULA_TEXT;
+            else if (themeId === 'monokai') texts = MONOKAI_TEXT;
+            else if (themeId === 'onedark') texts = ONEDARK_TEXT;
+            else if (themeId === 'xcode') texts = XCODE_TEXT;
+            else if (themeId === 'christmas') texts = CHRISTMAS_TEXT;
+            else if (themeId === 'frieren') texts = FRIEREN_TEXT;
+            else if (themeId === 'curse') texts = CURSE_TEXT;
+            else if (themeId === 'apple') texts = APPLE_TEXT;
+            else if (themeId === 'samsung') texts = SAMSUNG_TEXT;
+            else if (themeId === 'google') texts = GOOGLE_TEXT;
+            else if (themeId === 'xiaomi') texts = XIAOMI_TEXT;
+            else if (themeId === 'angrymiao') texts = ANGRYMIAO_TEXT;
+            else if (themeId === 'steam') texts = STEAM_TEXT;
+            else if (themeId === 'playstation') texts = PLAYSTATION_TEXT;
+            else if (themeId === 'nintendo') texts = NINTENDO_TEXT;
+            else if (themeId === 'xbox') texts = XBOX_TEXT;
+            else if (themeId === 'xiaohongshu') texts = XIAOHONGSHU_TEXT;
+            else if (themeId === 'razer') texts = RAZER_TEXT;
+            else if (themeId === 'bladerunner') texts = BLADERUNNER_TEXT;
+            else if (themeId === 'sodagreen') texts = SODAGREEN_TEXT;
+            else if (themeId === 'bluegate') texts = BLUEGATE_TEXT;
+            else if (themeId === 'chiikawa') texts = CHIIKAWA_TEXT;
+            else if (themeId === 'hellokitty') texts = HELLOKITTY_TEXT;
+            else if (themeId === 'madoka') texts = MADOKA_TEXT;
+            else if (themeId === 'usagi') texts = USAGI_TEXT;
+            else if (themeId === 'eason') texts = EASON_TEXT;
+            else if (themeId === 'jackson') texts = JACKSON_TEXT;
+            else if (themeId === 'eva-01') texts = EVA01_TEXT;
+            else if (themeId === 'eva-02') texts = EVA02_TEXT;
+            else if (themeId === 'darksouls') texts = DARKSOULS_TEXT;
+            else if (themeId === 'bloodborne') texts = BLOODBORNE_TEXT;
+            else if (themeId === 'liesofp') texts = LIESOFPI_TEXT;
+            else if (themeId === 'eldenring') texts = ELDENRING_TEXT;
             return texts;
+        }
+
+        function getActiveTexts() {
+            return getTextsByThemeId(config.theme);
         }
 
         function syncChartToggleUI() {
@@ -1108,15 +1968,7 @@
             
             // Only update Title if it matches one of the defaults
             const currentTitle = document.getElementById('appTitle').innerText;
-            const allTitles = [
-                STANDARD_TEXT.appTitle, NIER_TEXT.appTitle, 
-                BLADERUNNER_TEXT.appTitle, SODAGREEN_TEXT.appTitle, BLUEGATE_TEXT.appTitle,
-                CHIIKAWA_TEXT.appTitle, HELLOKITTY_TEXT.appTitle, MADOKA_TEXT.appTitle,
-                USAGI_TEXT.appTitle, EASON_TEXT.appTitle, JACKSON_TEXT.appTitle,
-                EVA01_TEXT.appTitle, EVA02_TEXT.appTitle, DARKSOULS_TEXT.appTitle, BLOODBORNE_TEXT.appTitle,
-                LIESOFPI_TEXT.appTitle, ELDENRING_TEXT.appTitle,
-                "火佛修一"
-            ];
+            const allTitles = [...new Set(THEMES.map(t => getTextsByThemeId(t.id).appTitle).concat(["火佛修一", STANDARD_TEXT.appTitle]))];
             
             if (allTitles.includes(currentTitle) || currentTitle === "Tasks") {
                  document.getElementById('appTitle').innerText = texts.appTitle;
@@ -1134,6 +1986,13 @@
             
             const themeTitle = document.getElementById('themeModalTitle');
             if(themeTitle) themeTitle.innerText = texts.themeModalTitle;
+
+            const outside = document.getElementById('outsideTagline');
+            if (outside) {
+                const tagline = texts.outsideTagline || '';
+                outside.innerText = tagline;
+                outside.style.opacity = tagline ? String(texts.outsideTaglineOpacity ?? 0.26) : '0';
+            }
 
             const pinnedTitle = document.getElementById('pinnedTitle');
             if(pinnedTitle) pinnedTitle.innerHTML = `<i data-lucide="pin" style="width:12px;"></i> ${texts.pinnedTitle}`;
@@ -1165,9 +2024,8 @@
             document.getElementById('recurYearly').innerHTML = `<i data-lucide="calendar-clock"></i> ${texts.recurrenceLabels.yearly}`;
 
             syncChartToggleUI();
-            lucide.createIcons();
-            // Re-render heatmap to update suffix
-            renderHeatmap(currentHeatmapYear);
+            createIconsSafe();
+            if (isActivityView) renderHeatmap(currentHeatmapYear);
         }
 
         document.documentElement.setAttribute('data-theme', config.theme);
@@ -1280,7 +2138,7 @@
         window.saveTitle = function(newTitle) { config.title = newTitle.trim() || 'Tasks'; saveConfig(); }
 
         // --- VIEW MANAGEMENT (v68 Fix) ---
-        window.toggleActivityView = function() {
+        window.toggleActivityView = async function() {
             isActivityView = !isActivityView;
             if (isActivityView) {
                 els.listView.style.display = 'none';
@@ -1292,7 +2150,8 @@
                 els.inputContainer.classList.add('input-hidden');
                 
                 renderHeatmap(currentHeatmapYear);
-                renderChart(); // Init ECharts
+                try { await ensureEcharts(); } catch (e) {}
+                renderChart();
                 renderAdvancedStats();
             } else {
                 els.listView.style.display = 'block';
@@ -1330,6 +2189,7 @@
 
         // --- ECHARTS INTEGRATION (v68) ---
         function initChart() {
+             if (!window.echarts) return;
              if (myChart) myChart.dispose();
              myChart = echarts.init(els.activityChart);
              renderChart();
@@ -1352,6 +2212,7 @@
 
         function renderChart() {
             if (!isActivityView) return;
+            if (!window.echarts) return;
             if (!myChart) { initChart(); return; }
 
             const data = getMonthlyData(currentHeatmapYear);
@@ -1480,6 +2341,7 @@
 
         function renderAdvancedStats() {
             calculateStats();
+            if (!window.echarts) return;
             
             const style = getComputedStyle(document.documentElement);
             const colorAccent = style.getPropertyValue('--accent-blue').trim();
@@ -1568,24 +2430,27 @@
             });
         }
 
-        window.toggleChartType = function() {
+        window.toggleChartType = async function() {
             chartType = chartType === 'line' ? 'bar' : 'line';
             syncChartToggleUI();
-            lucide.createIcons();
+            createIconsSafe();
+            if (isActivityView && !window.echarts) { try { await ensureEcharts(); } catch (e) {} }
             renderChart();
         }
 
-        window.toggleDowChartType = function() {
+        window.toggleDowChartType = async function() {
             dowChartType = dowChartType === 'line' ? 'bar' : 'line';
             syncChartToggleUI();
-            lucide.createIcons();
+            createIconsSafe();
+            if (isActivityView && !window.echarts) { try { await ensureEcharts(); } catch (e) {} }
             if (isActivityView) renderAdvancedStats();
         }
 
-        window.toggleTodChartType = function() {
+        window.toggleTodChartType = async function() {
             todChartType = todChartType === 'line' ? 'bar' : 'line';
             syncChartToggleUI();
-            lucide.createIcons();
+            createIconsSafe();
+            if (isActivityView && !window.echarts) { try { await ensureEcharts(); } catch (e) {} }
             if (isActivityView) renderAdvancedStats();
         }
         
@@ -1787,7 +2652,7 @@
                 `;
                 els.themeGrid.appendChild(option);
             });
-            lucide.createIcons();
+            createIconsSafe();
             els.modalOverlay.classList.add('active');
             els.themeModal.classList.add('open');
         }
@@ -1819,7 +2684,7 @@
                     </div>`;
                 els.trashList.appendChild(el);
             });
-            lucide.createIcons();
+            createIconsSafe();
         }
         
         window.restoreTodo = function(id) { todos = todos.map(t => t.id === id ? {...t, deleted: false} : t); saveTodos(); renderTrash(); renderTodos(); if(isActivityView) { renderHeatmap(currentHeatmapYear); renderChart(); } }
@@ -1899,7 +2764,7 @@
                 if (editingTaskId) { editingTaskId = null; els.todoInput.value = ''; newTaskDate = null; window.setRecurrence('none'); els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); els.actionBtn.classList.remove('save-mode'); els.actionIcon.setAttribute('data-lucide', 'arrow-up'); }
                 els.taskDatePicker.classList.remove('open');
             }
-            lucide.createIcons();
+            createIconsSafe();
         }
 
         window.closeOverlays = function() { if(isExpanded) window.toggleExpand(); if(els.detailModal.classList.contains('open')) window.closeDetail(); if(els.themeModal.classList.contains('open')) window.closeThemePicker(); if(els.trashModal.classList.contains('open')) window.closeTrash(); if(els.calendarModal.classList.contains('open')) window.closeCalendarModal(); }
@@ -1919,7 +2784,7 @@
             editingTaskId = id; els.todoInput.value = todo.text; window.setRecurrence(todo.recurrence || 'none'); 
             if (todo.deadline) { newTaskDate = todo.deadline; const d = new Date(newTaskDate); els.taskDateDisplay.innerText = d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); els.taskDateTrigger.classList.add('active'); }
             else { newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); }
-            els.actionBtn.classList.add('save-mode'); els.actionIcon.setAttribute('data-lucide', 'check'); lucide.createIcons();
+            els.actionBtn.classList.add('save-mode'); els.actionIcon.setAttribute('data-lucide', 'check'); createIconsSafe();
             if (!isExpanded) window.toggleExpand(); else els.todoInput.focus();
         }
 
@@ -1960,7 +2825,7 @@
             actionButtons += `<button class="detail-icon-btn delete" onclick="window.deleteTodo(${todo.id}); window.closeDetail();" title="Delete"><i data-lucide="trash-2"></i></button>`;
             actionButtons += `<button class="detail-icon-btn close" onclick="window.closeDetail()" title="Close"><i data-lucide="x"></i></button>`;
             els.detailMeta.innerText = metaText; els.detailActions.innerHTML = actionButtons;
-            els.modalOverlay.classList.add('active'); els.detailModal.classList.add('open'); lucide.createIcons();
+            els.modalOverlay.classList.add('active'); els.detailModal.classList.add('open'); createIconsSafe();
         }
         
         window.closeDetail = function() { els.detailModal.classList.remove('open'); if (!isExpanded) els.modalOverlay.classList.remove('active'); currentDetailId = null; }
@@ -2032,7 +2897,7 @@
             els.emptyTodo.style.display = (normalTasks.length === 0 && pinnedTasks.length === 0) ? 'flex' : 'none';
             els.emptyTodoText.innerText = showArchived ? 'No archived tasks.' : (config.theme.includes('nier') ? NIER_TEXT.emptyTodoText : STANDARD_TEXT.emptyTodoText);
             normalTasks.forEach(t => els.todoList.appendChild(createTodoElement(t)));
-            lucide.createIcons();
+            createIconsSafe();
         }
 
         function init() {
