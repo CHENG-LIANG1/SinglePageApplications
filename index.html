@@ -160,8 +160,8 @@
 
         .outside-tagline {
             position: fixed;
-            left: 22px;
-            top: 18px;
+            left: calc(22px + env(safe-area-inset-left, 0px));
+            top: calc(18px + env(safe-area-inset-top, 0px));
             max-width: min(520px, calc(100vw - 44px));
             color: var(--text-primary);
             opacity: 0;
@@ -176,7 +176,166 @@
             transition: opacity 0.35s ease;
         }
         @media (max-width: 720px) {
-            .outside-tagline { top: 12px; left: 14px; font-size: 11px; max-width: calc(100vw - 28px); }
+            .outside-tagline { top: calc(12px + env(safe-area-inset-top, 0px)); left: calc(14px + env(safe-area-inset-left, 0px)); font-size: 11px; max-width: calc(100vw - 28px - 150px); }
+        }
+
+        .outside-ornaments {
+            position: fixed;
+            inset: calc(12px + env(safe-area-inset-top, 0px)) calc(12px + env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) calc(12px + env(safe-area-inset-left, 0px));
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.9;
+            background:
+                radial-gradient(10px 10px at 16px 16px, rgba(255,255,255,0.18), transparent 60%),
+                radial-gradient(10px 10px at calc(100% - 16px) 16px, rgba(255,255,255,0.14), transparent 60%),
+                radial-gradient(10px 10px at calc(100% - 16px) calc(100% - 16px), rgba(255,255,255,0.12), transparent 60%),
+                radial-gradient(10px 10px at 16px calc(100% - 16px), rgba(255,255,255,0.12), transparent 60%),
+                linear-gradient(90deg, rgba(255,255,255,0.08), transparent 34%),
+                linear-gradient(180deg, rgba(255,255,255,0.08), transparent 34%);
+            mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.92), rgba(0,0,0,0.35) 68%, transparent 78%);
+        }
+        .outside-ornaments::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.10);
+            opacity: 0.65;
+        }
+        .outside-ornaments::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 22px;
+            background: radial-gradient(800px 320px at 14% 0%, rgba(255,255,255,0.06), transparent 60%), radial-gradient(680px 300px at 90% 10%, rgba(255,255,255,0.04), transparent 62%);
+            opacity: 0.9;
+        }
+
+        .outside-badge {
+            position: fixed;
+            right: calc(18px + env(safe-area-inset-right, 0px));
+            top: calc(18px + env(safe-area-inset-top, 0px));
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.22);
+            background-image: var(--control-surface);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.14);
+            backdrop-filter: blur(16px) saturate(160%);
+            color: var(--text-primary);
+            pointer-events: none;
+            z-index: 3;
+            max-width: min(320px, calc(100vw - 36px));
+        }
+        .outside-badge-title {
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .outside-badge-title::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: var(--accent-gradient);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+        }
+        .outside-badge-sub {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        .outside-strip {
+            position: fixed;
+            right: calc(18px + env(safe-area-inset-right, 0px));
+            top: calc(110px + env(safe-area-inset-top, 0px));
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: 1;
+            text-shadow: 0 18px 50px rgba(0,0,0,0.35);
+            transform: translateZ(0);
+        }
+
+        .outside-status {
+            position: fixed;
+            left: calc(18px + env(safe-area-inset-left, 0px));
+            bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(0,0,0,0.20);
+            background-image: var(--control-surface);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.20), inset 0 1px 0 rgba(255,255,255,0.14);
+            backdrop-filter: blur(16px) saturate(160%);
+            color: var(--text-secondary);
+            pointer-events: none;
+            z-index: 2;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            max-width: min(420px, calc(100vw - 36px));
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .outside-status b { color: var(--text-primary); font-weight: 900; }
+        .outside-status .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--accent-gradient);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+            flex: 0 0 auto;
+        }
+
+        @media (max-width: 720px) {
+            .outside-badge { right: calc(14px + env(safe-area-inset-right, 0px)); top: calc(14px + env(safe-area-inset-top, 0px)); padding: 9px 11px; border-radius: 14px; }
+            .outside-strip {
+                writing-mode: horizontal-tb;
+                right: auto;
+                left: 50%;
+                top: calc(64px + env(safe-area-inset-top, 0px));
+                transform: translateX(-50%);
+                letter-spacing: 1px;
+                opacity: 0.18;
+                white-space: nowrap;
+                max-width: calc(100vw - 28px);
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .outside-status { left: calc(14px + env(safe-area-inset-left, 0px)); bottom: calc(14px + env(safe-area-inset-bottom, 0px)); padding: 9px 11px; border-radius: 14px; max-width: calc(100vw - 28px); }
+            .outside-ornaments { inset: calc(10px + env(safe-area-inset-top, 0px)) calc(10px + env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) calc(10px + env(safe-area-inset-left, 0px)); }
+        }
+
+        @media (max-height: 620px) {
+            .outside-strip { font-size: 11px; top: calc(56px + env(safe-area-inset-top, 0px)); }
+            .outside-badge { padding: 8px 10px; }
+            .outside-status { padding: 8px 10px; }
         }
 
         .app-card {
@@ -455,6 +614,30 @@
         .todo-content { flex: 1; display: flex; flex-direction: column; gap: 6px; justify-content: center; min-width: 0; cursor: pointer; }
         .todo-text { font-size: 16px; color: var(--text-primary); font-weight: 400; line-height: 1.6; }
         .todo-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 2px; }
+        .subtask-preview { display: flex; align-items: center; gap: 10px; width: 100%; min-width: 0; padding: 6px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.05); background: rgba(125,125,125,0.02); background-image: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01)); color: var(--text-secondary); box-shadow: 0 12px 26px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.06); }
+        .subtask-preview-dot { width: 7px; height: 7px; border-radius: 999px; background: rgba(255,255,255,0.18); flex-shrink: 0; opacity: 0.9; box-shadow: 0 10px 20px rgba(0,0,0,0.12); }
+        .subtask-preview.p-critical .subtask-preview-dot { background: var(--accent-red); }
+        .subtask-preview.p-high .subtask-preview-dot { background: var(--accent-orange); }
+        .subtask-preview.p-medium .subtask-preview-dot { background: var(--accent-blue); }
+        .subtask-preview-text { flex: 1; min-width: 0; font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); opacity: 0.85; }
+        .subtask-preview-date { font-size: 11px; font-weight: 900; color: var(--text-secondary); opacity: 0.9; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+        .subtask-progress { display: flex; align-items: center; gap: 10px; width: 100%; flex: 1 0 100%; padding: 0; border: none; background: transparent; box-shadow: none; }
+        .subtask-progress-track { flex: 1; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.07); overflow: hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,0.06); }
+        .subtask-progress-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(255,255,255,0.12), rgba(255,255,255,0.0) 30%), var(--accent-gradient); width: 0%; transition: width 0.35s var(--ease-out-quint); filter: saturate(1.05); }
+        .subtask-progress-label { font-size: 11px; font-weight: 900; letter-spacing: 0.3px; flex-shrink: 0; font-variant-numeric: tabular-nums; opacity: 0.75; }
+        .subtasks-panel { width: 100%; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.06); }
+        .todo-item.subtasks-expanded { max-height: 520px; }
+        .todo-item.subtasks-expanded .subtasks-panel { max-height: 236px; overflow-y: auto; padding-right: 6px; overscroll-behavior: contain; }
+        .todo-item.subtasks-expanded .subtasks-panel::-webkit-scrollbar { width: 4px; }
+        .todo-item.subtasks-expanded .subtasks-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 10px; }
+        .subtask-item { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.02); background-image: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 60%); }
+        .subtask-check { width: 20px; height: 20px; border-radius: 7px; border: 2px solid var(--text-secondary); opacity: 0.65; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; background: transparent; color: var(--bg-color); transition: transform 0.18s var(--ease-out-quint), opacity 0.18s ease; }
+        .subtask-check svg { width: 12px; height: 12px; stroke-width: 3px; stroke-dasharray: 18; stroke-dashoffset: 18; transition: stroke-dashoffset 0.32s var(--ease-out-quint); }
+        .subtask-item.done .subtask-check { background: var(--accent-gradient); border-color: transparent; opacity: 1; }
+        .subtask-item.done .subtask-check svg { stroke-dashoffset: 0; }
+        .subtask-item-text { flex: 1; min-width: 0; font-size: 12px; font-weight: 700; line-height: 1.35; color: var(--text-primary); opacity: 0.9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .subtask-item.done .subtask-item-text { text-decoration: line-through; color: var(--text-secondary); opacity: 0.65; }
+        .subtask-item-date { font-size: 11px; font-weight: 800; color: var(--text-secondary); opacity: 0.9; flex-shrink: 0; font-variant-numeric: tabular-nums; }
         .deadline-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; color: var(--text-secondary); height: 24px; padding: 0 8px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.04); background-image: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02)); box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
         .deadline-badge.p-critical { color: var(--accent-red); border-color: rgba(255, 69, 58, 0.3); background: rgba(255, 69, 58, 0.1); }
         .deadline-badge.p-high { color: var(--accent-orange); border-color: rgba(255, 159, 10, 0.3); background: rgba(255, 159, 10, 0.1); }
@@ -469,6 +652,8 @@
         .icon-btn:hover { background: rgba(125,125,125,0.10); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16); }
         .icon-btn:active { transform: translateY(0) scale(0.97); }
         .icon-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
+        .icon-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: 0 10px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
+        .icon-btn:disabled:hover { background: rgba(125,125,125,0.04); color: var(--text-secondary); border-color: rgba(255,255,255,0.06); transform: none; box-shadow: 0 10px 24px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
         .icon-btn.archive:hover { background: rgba(159, 90, 253, 0.15); color: var(--accent-purple); }
         .icon-btn.unarchive:hover { background: rgba(41, 151, 255, 0.15); color: var(--accent-blue); }
         .icon-btn.delete:hover { background: rgba(255, 69, 58, 0.15); color: var(--accent-red); }
@@ -477,7 +662,7 @@
         /* FLOATING INPUT */
         .floating-input-container { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 70%; max-width: 700px; z-index: 50; transition: all 0.4s var(--spring); }
         .input-hidden { transform: translateX(-50%) translateY(200%); opacity: 0; pointer-events: none; }
-        .floating-input-container.expanded { bottom: 50%; left: 50%; transform: translate(-50%, 50%); width: 80%; max-width: 800px; height: auto; min-height: 320px; }
+        .floating-input-container.expanded { bottom: 50%; left: 50%; transform: translate(-50%, 50%); width: 80%; max-width: 800px; height: min(70vh, 520px); min-height: 320px; }
         .input-capsule { width: 100%; min-height: 56px; height: auto; background: var(--input-bg); backdrop-filter: blur(40px); border-radius: var(--radius-capsule); display: flex; align-items: flex-end; padding: 8px 8px 8px 16px; border: 1px solid var(--glass-border); box-shadow: 0 25px 70px rgba(0,0,0,0.3); transition: 0.3s var(--spring); position: relative; flex-direction: row; }
         .input-left-controls { display: flex; gap: 8px; margin-bottom: 7px; margin-right: 12px; align-items: center; flex-shrink: 0; }
         .meta-trigger { background: rgba(125,125,125,0.06); background-image: var(--control-surface); color: var(--text-secondary); border-radius: var(--radius-chip); padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
@@ -500,9 +685,9 @@
         .action-btn:hover { transform: translateY(-1px) scale(1.06); filter: saturate(1.05) brightness(1.03); box-shadow: 0 22px 60px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.12) inset; }
         .action-btn:active { transform: translateY(0) scale(0.98); }
         .action-btn:focus-visible { outline: none; box-shadow: 0 22px 60px rgba(0,0,0,0.28), 0 0 0 1px rgba(255,255,255,0.12) inset, 0 0 0 3px var(--glass-border); }
-        .floating-input-container.expanded .input-capsule { flex-direction: column; align-items: flex-start; padding: 28px; background: var(--card-bg); border-radius: var(--radius-capsule-expanded); box-shadow: 0 50px 120px rgba(0,0,0,0.5); }
+        .floating-input-container.expanded .input-capsule { flex-direction: column; align-items: flex-start; padding: 28px; background: var(--card-bg); border-radius: var(--radius-capsule-expanded); box-shadow: 0 50px 120px rgba(0,0,0,0.5); height: 100%; overflow: hidden; }
         .floating-input-container.expanded .input-left-controls { width: 100%; justify-content: flex-start; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); }
-        .floating-input-container.expanded .text-input { font-size: 16px; max-height: none; min-height: 150px; overflow-y: auto; padding: 0; margin: 0; scrollbar-width: thin; scrollbar-color: rgba(125,125,125,0.2) transparent; }
+        .floating-input-container.expanded .text-input { font-size: 16px; max-height: 220px; min-height: 140px; overflow-y: auto; padding: 0; margin: 0; scrollbar-width: thin; scrollbar-color: rgba(125,125,125,0.2) transparent; }
         .floating-input-container.expanded .action-btn { position: absolute; bottom: 28px; right: 28px; width: 64px; height: 64px; background: var(--accent-gradient); color: var(--btn-on-accent); box-shadow: 0 26px 78px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.12) inset; z-index: 60; }
         .recurrence-options { display: none; width: 100%; gap: 6px; margin-bottom: 20px; }
         .floating-input-container.expanded .recurrence-options { display: flex; flex-wrap: wrap; }
@@ -516,6 +701,25 @@
         .recur-btn svg { width: 12px; height: 12px; }
         .markdown-toolbar { display: none; width: 100%; padding-top: 10px; gap: 8px; }
         .floating-input-container.expanded .markdown-toolbar { display: flex; flex-wrap: wrap; padding-right: 80px; }
+        .subtasks-editor { display: none; width: 100%; margin-top: 14px; padding-top: 14px; padding-right: 88px; padding-bottom: 96px; border-top: 1px solid var(--glass-border); overflow: hidden; }
+        .floating-input-container.expanded .subtasks-editor { display: block; }
+        .subtasks-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+        .subtasks-title { font-size: 12px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.85; }
+        .subtasks-hint { font-size: 11px; font-weight: 700; color: var(--text-secondary); opacity: 0.85; line-height: 1.4; margin-top: -6px; margin-bottom: 10px; }
+        .subtasks-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-height: 220px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; }
+        .subtasks-list::-webkit-scrollbar { width: 4px; }
+        .subtasks-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 10px; }
+        .subtask-edit-row { display: grid; grid-template-columns: 1fr 130px 30px; gap: 10px; align-items: center; }
+        .subtask-edit-row.no-date { grid-template-columns: 1fr 30px; }
+        .subtask-text-input { width: 100%; height: 34px; padding: 0 12px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.05); background-image: var(--control-surface); color: var(--text-primary); outline: none; font-size: 12px; font-weight: 800; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
+        .subtask-date-input { width: 100%; height: 34px; padding: 0 10px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.05); background-image: var(--control-surface); color: var(--text-primary); outline: none; font-size: 12px; font-weight: 800; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
+        .meta-trigger.subtask-date-trigger { height: 34px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 800; padding: 0 10px; justify-content: flex-start; }
+        .meta-trigger.subtask-date-trigger svg { width: 13px; height: 13px; }
+        .meta-trigger.disabled { opacity: 0.35; pointer-events: none; }
+        .subtask-add-btn { height: 32px; padding: 0 12px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.06); background: rgba(125,125,125,0.05); background-image: var(--control-surface); color: var(--text-primary); cursor: pointer; font-size: 12px; font-weight: 900; letter-spacing: 0.4px; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); }
+        .subtask-add-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .subtask-add-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
+        .subtask-add-btn:disabled:hover { background-image: var(--control-surface); border-color: rgba(255,255,255,0.06); transform: none; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); }
         .md-tool-btn { background: rgba(125,125,125,0.06); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 6px 12px; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 6px; height: 32px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
         .md-tool-btn::before { content:''; position:absolute; inset:-1px; background: linear-gradient(120deg, transparent 0 35%, rgba(255,255,255,0.28) 48%, transparent 62%); transform: translateX(-120%); opacity:0; transition: transform 0.7s var(--ease-out-quint), opacity 0.25s ease; pointer-events:none; }
         .md-tool-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16); transform: translateY(-1px); }
@@ -524,7 +728,7 @@
         .md-tool-btn:focus-visible { outline: none; box-shadow: 0 14px 34px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.16), 0 0 0 3px var(--glass-border); }
 
         /* THEME PICKER */
-        #themeModal { width: 820px; max-width: 94vw; height: 86vh; max-height: 86vh; }
+        #themeModal { width: 820px; max-width: 94vw; height: 60vh; max-height: 86vh; }
         .theme-grid { 
             display: flex;
             flex-wrap: wrap;
@@ -568,6 +772,7 @@
         .dp-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
         .dp-cell { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 13px; border-radius: var(--radius-sm); cursor: pointer; color: var(--text-primary); }
         .dp-cell:hover { background: rgba(125,125,125,0.1); }
+        .dp-cell.disabled { opacity: 0.28; cursor: not-allowed; pointer-events: none; }
         .dp-cell.selected { background: var(--accent-blue); color: var(--bg-color); font-weight: 600; }
         .dp-cell.is-today { font-weight: 800; color: var(--accent-blue); position: relative; }
         .dp-cell.is-today::after { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%); width: 4px; height: 4px; border-radius: 50%; background: var(--accent-blue); }
@@ -647,7 +852,15 @@
 
     <div class="background-mesh"></div>
 
+    <div class="outside-ornaments" aria-hidden="true"></div>
+
     <div class="outside-tagline" id="outsideTagline"></div>
+    <div class="outside-badge" id="outsideBadge" aria-hidden="true">
+        <div class="outside-badge-title" id="outsideBadgeTitle"></div>
+        <div class="outside-badge-sub" id="outsideBadgeSub"></div>
+    </div>
+    <div class="outside-strip" id="outsideStrip" aria-hidden="true"></div>
+    <div class="outside-status" id="outsideStatus" aria-hidden="true"><span class="dot"></span><span id="outsideStatusText"></span></div>
 
     <div id="globalTooltip"></div>
 
@@ -845,6 +1058,18 @@
                     <div class="dp-grid" id="dpGrid"></div>
                 </div>
 
+                <div class="glass-popup" id="subtaskDatePicker">
+                    <div class="dp-header">
+                        <button class="dp-nav" onclick="window.changeSubtaskMonth(-1)"><i data-lucide="chevron-left" style="width:16px;"></i></button>
+                        <span style="font-weight:600; font-size:15px;" id="subDpTitle">Month</span>
+                        <button class="dp-nav" onclick="window.changeSubtaskMonth(1)"><i data-lucide="chevron-right" style="width:16px;"></i></button>
+                    </div>
+                    <div class="dp-day-names">
+                        <span class="dp-day-name">Su</span><span class="dp-day-name">Mo</span><span class="dp-day-name">Tu</span><span class="dp-day-name">We</span><span class="dp-day-name">Th</span><span class="dp-day-name">Fr</span><span class="dp-day-name">Sa</span>
+                    </div>
+                    <div class="dp-grid" id="subDpGrid"></div>
+                </div>
+
                 <div class="input-capsule">
                     <div class="input-left-controls">
                         <div class="meta-trigger" id="taskDateTrigger" onclick="window.toggleTaskDatePicker()">
@@ -880,6 +1105,15 @@
                         <button class="md-tool-btn" onclick="window.insertMarkdown('\n> ', '')"><i data-lucide="quote" style="width:14px;"></i></button>
                     </div>
 
+                    <div class="subtasks-editor" id="subtasksEditor">
+                        <div class="subtasks-head">
+                            <div class="subtasks-title">Subtasks</div>
+                            <button class="subtask-add-btn" id="subtaskAddBtn" onclick="window.addDraftSubtask()">Add</button>
+                        </div>
+                        <div class="subtasks-hint" id="subtasksHint"></div>
+                        <div class="subtasks-list" id="subtasksList"></div>
+                    </div>
+
                     <button class="action-btn" id="actionBtn" onclick="window.addTodo()">
                         <i data-lucide="arrow-up" style="width:24px;" id="actionIcon"></i>
                     </button>
@@ -895,7 +1129,8 @@
         const ECHARTS_SRC = 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js';
         let lucideLoadPromise = null;
         let echartsLoadPromise = null;
-        function saveTodos() {localStorage.setItem(MASTER_KEY, JSON.stringify(todos)}
+        function saveTodos() {localStorage.setItem(MASTER_KEY, JSON.stringify(todos))}
+
         function ensureLucide() {
             if (window.lucide && typeof window.lucide.createIcons === 'function') return Promise.resolve(window.lucide);
             if (lucideLoadPromise) return lucideLoadPromise;
@@ -937,10 +1172,83 @@
         ensureLucide();
         const MASTER_KEY = 'ios26_liquid_tasks_master';
         const CONFIG_KEY = 'ios26_liquid_config';
+        const SUBTASK_LIMIT = 10;
         function migrateOldData() { if (!localStorage.getItem(MASTER_KEY)) { const v10 = localStorage.getItem('ios26_todos_v10'); if (v10) localStorage.setItem(MASTER_KEY, v10); } }
         migrateOldData();
 
-        let todos = JSON.parse(localStorage.getItem(MASTER_KEY)) || [];
+        function escapeHtml(text) {
+            return String(text ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function isISODateString(v) { return typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v); }
+
+        function compareISODateStrings(a, b) {
+            if (!isISODateString(a) && !isISODateString(b)) return 0;
+            if (!isISODateString(a)) return 1;
+            if (!isISODateString(b)) return -1;
+            return a.localeCompare(b);
+        }
+
+        function clampISODateToMax(dateStr, maxDateStr) {
+            if (!isISODateString(maxDateStr)) return isISODateString(dateStr) ? dateStr : null;
+            if (!isISODateString(dateStr)) return maxDateStr;
+            return compareISODateStrings(dateStr, maxDateStr) > 0 ? maxDateStr : dateStr;
+        }
+
+        function getUrgencyInfo(deadlineStr) {
+            if (!isISODateString(deadlineStr)) return null;
+            const d = new Date(deadlineStr);
+            const diffDays = Math.ceil((d - new Date().setHours(0,0,0,0)) / (86400000));
+            const pClass = diffDays <= 0 ? "p-critical" : (diffDays === 1 ? "p-high" : (diffDays <= 3 ? "p-high" : (diffDays <= 7 ? "p-medium" : "")));
+            const rel = diffDays <= 0 ? (diffDays < 0 ? "Overdue" : "Today") : (diffDays + "d left");
+            const dateLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+            const sortKey = isFinite(diffDays) ? diffDays : 999999;
+            return { diffDays, pClass, rel, dateLabel, sortKey };
+        }
+
+        function sortSubtasksByUrgency(subtasks) {
+            const arr = Array.isArray(subtasks) ? subtasks.slice() : [];
+            arr.sort((a, b) => {
+                if (!!a.completed !== !!b.completed) return (a.completed ? 1 : 0) - (b.completed ? 1 : 0);
+                const aInfo = getUrgencyInfo(a.deadline);
+                const bInfo = getUrgencyInfo(b.deadline);
+                const aKey = aInfo ? aInfo.sortKey : 999999;
+                const bKey = bInfo ? bInfo.sortKey : 999999;
+                if (aKey !== bKey) return aKey - bKey;
+                if (aInfo && bInfo && a.deadline !== b.deadline) return compareISODateStrings(a.deadline, b.deadline);
+                return (a.id || 0) - (b.id || 0);
+            });
+            return arr;
+        }
+
+        function normalizeSubtask(subtask, parentDeadline) {
+            const safeId = Number.isFinite(subtask?.id) ? subtask.id : (Date.now() + Math.floor(Math.random() * 100000));
+            const safeText = String(subtask?.text ?? '').trim();
+            const safeCompleted = !!subtask?.completed;
+            const normalizedDeadline = isISODateString(parentDeadline) ? clampISODateToMax(subtask?.deadline, parentDeadline) : null;
+            return { id: safeId, text: safeText, completed: safeCompleted, deadline: normalizedDeadline };
+        }
+
+        function normalizeTodo(todo) {
+            const recurrence = todo?.recurrence || 'none';
+            const deadline = isISODateString(todo?.deadline) ? todo.deadline : null;
+            const subtasksRaw = Array.isArray(todo?.subtasks) ? todo.subtasks : [];
+            const hasRecurrence = recurrence && recurrence !== 'none';
+            const subtasks = hasRecurrence ? [] : subtasksRaw.slice(0, SUBTASK_LIMIT).map(s => normalizeSubtask(s, deadline)).filter(s => s.text.length > 0);
+            return { ...todo, deadline, recurrence, subtasks };
+        }
+
+        function normalizeTodos(inputTodos) {
+            const arr = Array.isArray(inputTodos) ? inputTodos : [];
+            return arr.map(t => normalizeTodo(t));
+        }
+
+        let todos = normalizeTodos(JSON.parse(localStorage.getItem(MASTER_KEY)) || []);
         let config = JSON.parse(localStorage.getItem(CONFIG_KEY)) || { title: 'Tasks', theme: 'ayu' };
         
         let searchTerm = ''; 
@@ -957,10 +1265,14 @@
         
         let newTaskDate = null;
         let pickerCurrentDate = new Date(); 
+        let subtaskPickerCurrentDate = new Date();
+        let subtaskPickerTargetId = null;
         let isExpanded = false;
         let editingTaskId = null;
         let newRecurrence = 'none';
         let currentHeatmapYear = new Date().getFullYear();
+        let draftSubtasks = [];
+        let expandedTodoIds = new Set();
 
         const THEMES = [
             { id: 'ayu', name: 'Ayu', bg:'#0b0e14', text:'#e6e1cf', acc:'#ffb454' },
@@ -1963,6 +2275,52 @@
             }
         }
 
+        function getThemeMetaById(id) {
+            return THEMES.find(t => t.id === id) || { id, name: id, type: '' };
+        }
+
+        function getOutsideTaglineCompact(texts) {
+            if (!texts || !texts.outsideTagline) return '';
+            return texts.outsideTagline.split('\n').filter(Boolean).slice(0, 2).join(' · ');
+        }
+
+        function formatOutsideTime() {
+            return new Date().toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', weekday: 'short', hour: '2-digit', minute: '2-digit' });
+        }
+
+        function updateOutsideStatus() {
+            const el = document.getElementById('outsideStatusText');
+            if (!el) return;
+            const meta = getThemeMetaById(config.theme);
+            let total = 0;
+            let completed = 0;
+            todos.forEach(t => {
+                if (!t.deleted) {
+                    total++;
+                    if (t.completed || t.archived) completed++;
+                }
+            });
+            el.innerHTML = `<b>${formatOutsideTime()}</b> · ${meta.name} · ${completed}/${total}`;
+        }
+
+        function updateOutsideChrome() {
+            const texts = getActiveTexts();
+            const meta = getThemeMetaById(config.theme);
+
+            const titleEl = document.getElementById('outsideBadgeTitle');
+            const subEl = document.getElementById('outsideBadgeSub');
+            const stripEl = document.getElementById('outsideStrip');
+
+            if (titleEl) titleEl.innerText = meta.name || meta.id;
+            if (subEl) {
+                const compact = getOutsideTaglineCompact(texts);
+                subEl.innerText = compact || (texts.themeModalTitle || '');
+            }
+            if (stripEl) stripEl.innerText = meta.name || meta.id;
+
+            updateOutsideStatus();
+        }
+
         function updateThemeText() {
             const texts = getActiveTexts();
             
@@ -1993,6 +2351,7 @@
                 outside.innerText = tagline;
                 outside.style.opacity = tagline ? String(texts.outsideTaglineOpacity ?? 0.26) : '0';
             }
+            updateOutsideChrome();
 
             const pinnedTitle = document.getElementById('pinnedTitle');
             if(pinnedTitle) pinnedTitle.innerHTML = `<i data-lucide="pin" style="width:12px;"></i> ${texts.pinnedTitle}`;
@@ -2055,6 +2414,9 @@
             taskRecurDisplay: document.getElementById('taskRecurDisplay'), 
             dpTitle: document.getElementById('dpTitle'),
             dpGrid: document.getElementById('dpGrid'),
+            subtaskDatePicker: document.getElementById('subtaskDatePicker'),
+            subDpTitle: document.getElementById('subDpTitle'),
+            subDpGrid: document.getElementById('subDpGrid'),
             searchInput: document.getElementById('searchInput'),
             toggleArchived: document.getElementById('toggleArchived'),
             btnActivity: document.getElementById('btnActivity'),
@@ -2062,6 +2424,10 @@
             emptyTodoText: document.getElementById('emptyTodoText'),
             actionBtn: document.getElementById('actionBtn'),
             actionIcon: document.getElementById('actionIcon'),
+            subtasksEditor: document.getElementById('subtasksEditor'),
+            subtasksHint: document.getElementById('subtasksHint'),
+            subtasksList: document.getElementById('subtasksList'),
+            subtaskAddBtn: document.getElementById('subtaskAddBtn'),
             heatmapGrid: document.getElementById('heatmapGrid'),
             heatmapYear: document.getElementById('heatmapYear'),
             themeModal: document.getElementById('themeModal'),
@@ -2095,7 +2461,8 @@
             if (foundData) { if (!localStorage.getItem(MASTER_KEY)) localStorage.setItem(MASTER_KEY, JSON.stringify(foundData)); return foundData; }
             return [];
         }
-        todos = attemptDataRecovery();
+        todos = normalizeTodos(attemptDataRecovery());
+        saveTodos();
 
         function getWeekKey(d) {
             d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -2704,6 +3071,104 @@
                 .replace(/<br><ul>/g, '<ul>').replace(/<\/ul><br>/g, '</ul>');
         }
 
+        function normalizeDraftSubtasksForSave() {
+            const parentHasDeadline = isISODateString(newTaskDate);
+            const parentDeadline = parentHasDeadline ? newTaskDate : null;
+            const cleaned = (Array.isArray(draftSubtasks) ? draftSubtasks : [])
+                .map(s => normalizeSubtask(s, parentDeadline))
+                .filter(s => s.text.length > 0)
+                .slice(0, SUBTASK_LIMIT);
+            return cleaned;
+        }
+
+        function syncDraftSubtaskDeadlines() {
+            const parentHasDeadline = isISODateString(newTaskDate);
+            const parentDeadline = parentHasDeadline ? newTaskDate : null;
+            draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).map(s => normalizeSubtask(s, parentDeadline));
+        }
+
+        function canEditSubtasksForCurrentDraft() {
+            const hasRecurrence = newRecurrence && newRecurrence !== 'none';
+            if (hasRecurrence) return false;
+            if (editingTaskId) {
+                const todo = todos.find(t => t.id === editingTaskId);
+                if (todo?.recurrence && todo.recurrence !== 'none') return false;
+            }
+            return true;
+        }
+
+        function renderSubtasksEditor() {
+            if (!els.subtasksEditor) return;
+            if (!isExpanded) return;
+            const parentHasDeadline = isISODateString(newTaskDate);
+            const parentDeadline = parentHasDeadline ? newTaskDate : null;
+            const canEdit = canEditSubtasksForCurrentDraft();
+            const count = Array.isArray(draftSubtasks) ? draftSubtasks.length : 0;
+            const atLimit = count >= SUBTASK_LIMIT;
+
+            let hint = '';
+            if (!canEdit) hint = '重复任务不支持子任务。';
+            else if (!parentHasDeadline) hint = '未设置主任务截止日期时，子任务不支持独立截止日期。';
+            else hint = `最多 ${SUBTASK_LIMIT} 个子任务，子任务截止日期不能晚于主任务。`;
+            els.subtasksHint.textContent = hint;
+
+            if (els.subtaskAddBtn) {
+                els.subtaskAddBtn.disabled = !canEdit || atLimit;
+            }
+
+            const rows = (Array.isArray(draftSubtasks) ? draftSubtasks : []).slice(0, SUBTASK_LIMIT);
+            els.subtasksList.innerHTML = rows.map(s => {
+                const safeId = Number.isFinite(s?.id) ? s.id : 0;
+                const safeText = String(s?.text ?? '');
+                const normalizedDeadline = parentHasDeadline ? clampISODateToMax(s?.deadline, parentDeadline) : null;
+                const rowClass = parentHasDeadline ? 'subtask-edit-row' : 'subtask-edit-row no-date';
+                const disabledAttr = canEdit ? '' : 'disabled';
+                const dateCell = parentHasDeadline
+                    ? `<div class="meta-trigger subtask-date-trigger active${canEdit ? '' : ' disabled'}" onclick="window.openSubtaskDatePicker(${safeId})"><i data-lucide="calendar"></i><span>${new Date(normalizedDeadline || parentDeadline).toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' })}</span></div>`
+                    : '';
+                return `
+                    <div class="${rowClass}">
+                        <input class="subtask-text-input" value="${escapeHtml(safeText)}" placeholder="Subtask..." oninput="window.updateDraftSubtaskText(${safeId}, this.value)" ${disabledAttr}>
+                        ${dateCell}
+                        <button class="icon-btn delete" onclick="window.removeDraftSubtask(${safeId})" title="Remove" ${disabledAttr}><i data-lucide="x"></i></button>
+                    </div>
+                `;
+            }).join('');
+            createIconsSafe();
+        }
+
+        window.addDraftSubtask = function() {
+            if (!canEditSubtasksForCurrentDraft()) return;
+            const parentHasDeadline = isISODateString(newTaskDate);
+            const parentDeadline = parentHasDeadline ? newTaskDate : null;
+            const current = Array.isArray(draftSubtasks) ? draftSubtasks.slice(0, SUBTASK_LIMIT) : [];
+            if (current.length >= SUBTASK_LIMIT) return;
+            const id = Date.now() + Math.floor(Math.random() * 100000);
+            draftSubtasks = [...current, { id, text: '', completed: false, deadline: parentDeadline }];
+            renderSubtasksEditor();
+        };
+
+        window.updateDraftSubtaskText = function(id, value) {
+            draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).map(s => s.id === id ? { ...s, text: value } : s);
+        };
+
+        window.updateDraftSubtaskDeadline = function(id, value) {
+            const parentHasDeadline = isISODateString(newTaskDate);
+            if (!parentHasDeadline) return;
+            const parentDeadline = newTaskDate;
+            const clamped = clampISODateToMax(value, parentDeadline);
+            draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).map(s => s.id === id ? { ...s, deadline: clamped } : s);
+        };
+
+        window.toggleDraftSubtaskCompleted = function(id) {
+            draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).map(s => s.id === id ? { ...s, completed: !s.completed } : s);
+        };
+
+        window.removeDraftSubtask = function(id) {
+            draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).filter(s => s.id !== id);
+            renderSubtasksEditor();
+        };
+
         window.insertMarkdown = function(startTag, endTag) {
             const input = els.todoInput;
             const start = input.selectionStart; const end = input.selectionEnd; const text = input.value;
@@ -2725,8 +3190,65 @@
                 const el = document.createElement('div'); el.className = 'dp-cell'; el.innerText = d;
                 if (newTaskDate) { const sel = new Date(newTaskDate); if (sel.getFullYear() === y && sel.getMonth() === m && sel.getDate() === d) el.classList.add('selected'); }
                 if (y === today.getFullYear() && m === today.getMonth() && d === today.getDate()) el.classList.add('is-today');
-                el.onclick = () => { newTaskDate = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; els.taskDateDisplay.innerText = new Date(y,m,d).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); els.taskDateTrigger.classList.add('active'); window.setRecurrence('none'); els.taskDatePicker.classList.remove('open'); };
+                el.onclick = () => { newTaskDate = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; els.taskDateDisplay.innerText = new Date(y,m,d).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); els.taskDateTrigger.classList.add('active'); window.setRecurrence('none'); syncDraftSubtaskDeadlines(); renderSubtasksEditor(); els.taskDatePicker.classList.remove('open'); };
                 els.dpGrid.appendChild(el);
+            }
+        }
+
+        function closeSubtaskDatePicker() {
+            if (els.subtaskDatePicker) els.subtaskDatePicker.classList.remove('open');
+            subtaskPickerTargetId = null;
+        }
+
+        window.openSubtaskDatePicker = function(subtaskId) {
+            if (!isExpanded) return;
+            if (!canEditSubtasksForCurrentDraft()) return;
+            if (!isISODateString(newTaskDate)) return;
+            subtaskPickerTargetId = subtaskId;
+            const parentDeadline = newTaskDate;
+            const st = (Array.isArray(draftSubtasks) ? draftSubtasks : []).find(s => s.id === subtaskId);
+            const selected = clampISODateToMax(st?.deadline, parentDeadline) || parentDeadline;
+            subtaskPickerCurrentDate = new Date(selected);
+            renderSubtaskDatePicker();
+            els.taskDatePicker.classList.remove('open');
+            els.subtaskDatePicker.classList.add('open');
+            createIconsSafe();
+        };
+
+        window.changeSubtaskMonth = function(d) {
+            if (!els.subtaskDatePicker.classList.contains('open')) return;
+            subtaskPickerCurrentDate.setMonth(subtaskPickerCurrentDate.getMonth() + d);
+            renderSubtaskDatePicker();
+        };
+
+        function renderSubtaskDatePicker() {
+            if (!els.subtaskDatePicker) return;
+            if (!isISODateString(newTaskDate)) return;
+            const parentDeadline = newTaskDate;
+            const selected = (() => {
+                const st = (Array.isArray(draftSubtasks) ? draftSubtasks : []).find(s => s.id === subtaskPickerTargetId);
+                return clampISODateToMax(st?.deadline, parentDeadline) || parentDeadline;
+            })();
+
+            const y = subtaskPickerCurrentDate.getFullYear(), m = subtaskPickerCurrentDate.getMonth(), today = new Date();
+            els.subDpTitle.innerText = subtaskPickerCurrentDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+            els.subDpGrid.innerHTML = '';
+            const first = new Date(y, m, 1).getDay(), days = new Date(y, m+1, 0).getDate();
+            for(let i=0; i<first; i++) els.subDpGrid.appendChild(document.createElement('div'));
+            for(let d=1; d<=days; d++) {
+                const el = document.createElement('div'); el.className = 'dp-cell'; el.innerText = d;
+                const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+                if (compareISODateStrings(dateStr, parentDeadline) > 0) el.classList.add('disabled');
+                if (selected) { const sel = new Date(selected); if (sel.getFullYear() === y && sel.getMonth() === m && sel.getDate() === d) el.classList.add('selected'); }
+                if (y === today.getFullYear() && m === today.getMonth() && d === today.getDate()) el.classList.add('is-today');
+                if (!el.classList.contains('disabled')) {
+                    el.onclick = () => {
+                        draftSubtasks = (Array.isArray(draftSubtasks) ? draftSubtasks : []).map(s => s.id === subtaskPickerTargetId ? { ...s, deadline: dateStr } : s);
+                        closeSubtaskDatePicker();
+                        renderSubtasksEditor();
+                    };
+                }
+                els.subDpGrid.appendChild(el);
             }
         }
 
@@ -2737,11 +3259,19 @@
         }
 
         window.setRecurrence = function(type) {
+            if (type !== 'none') {
+                const hasDraftSubtasks = normalizeDraftSubtasksForSave().length > 0;
+                if (hasDraftSubtasks) { alert('含子任务的主任务不支持重复执行规则。'); return; }
+                if (editingTaskId) {
+                    const todo = todos.find(t => t.id === editingTaskId);
+                    if (Array.isArray(todo?.subtasks) && todo.subtasks.length > 0) { alert('含子任务的主任务不支持重复执行规则。'); return; }
+                }
+            }
             newRecurrence = type;
             const texts = getActiveTexts();
             const fallbackLabels = { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' };
             els.taskRecurDisplay.innerText = (texts.recurrenceLabels && texts.recurrenceLabels[type]) ? texts.recurrenceLabels[type] : fallbackLabels[type];
-            if(type !== 'none') { els.taskRecurTrigger.classList.add('active'); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); } else { els.taskRecurTrigger.classList.remove('active'); }
+            if(type !== 'none') { els.taskRecurTrigger.classList.add('active'); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); draftSubtasks = []; } else { els.taskRecurTrigger.classList.remove('active'); }
             document.querySelectorAll('.recur-btn').forEach(btn => btn.classList.remove('active'));
             const recurBtnIdByType = {
                 none: 'recurNone',
@@ -2754,15 +3284,18 @@
             const btnId = recurBtnIdByType[type] || 'recurNone';
             const btn = document.getElementById(btnId);
             if (btn) btn.classList.add('active');
+            renderSubtasksEditor();
         }
 
         window.toggleExpand = function() {
             isExpanded = !isExpanded;
-            if(isExpanded) { els.inputContainer.classList.add('expanded'); els.modalOverlay.classList.add('active'); els.expandBtn.innerHTML = '<i data-lucide="minimize-2"></i>'; els.todoInput.focus(); }
+            if(isExpanded) { els.inputContainer.classList.add('expanded'); els.modalOverlay.classList.add('active'); els.expandBtn.innerHTML = '<i data-lucide="minimize-2"></i>'; els.todoInput.focus(); renderSubtasksEditor(); }
             else { 
                 els.inputContainer.classList.remove('expanded'); els.modalOverlay.classList.remove('active'); els.expandBtn.innerHTML = '<i data-lucide="maximize-2"></i>'; els.todoInput.style.cssText = ''; 
                 if (editingTaskId) { editingTaskId = null; els.todoInput.value = ''; newTaskDate = null; window.setRecurrence('none'); els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); els.actionBtn.classList.remove('save-mode'); els.actionIcon.setAttribute('data-lucide', 'arrow-up'); }
+                draftSubtasks = [];
                 els.taskDatePicker.classList.remove('open');
+                closeSubtaskDatePicker();
             }
             createIconsSafe();
         }
@@ -2771,12 +3304,16 @@
 
         window.addTodo = function() {
             if(!els.todoInput.value.trim()) return;
+            const savedSubtasks = normalizeDraftSubtasksForSave();
+            if (savedSubtasks.length > SUBTASK_LIMIT) { alert(`子任务最多 ${SUBTASK_LIMIT} 个。`); return; }
+            if (newRecurrence && newRecurrence !== 'none' && savedSubtasks.length > 0) { alert('重复任务不支持子任务。'); return; }
             if (editingTaskId) {
-                todos = todos.map(t => t.id === editingTaskId ? { ...t, text: els.todoInput.value.trim(), deadline: newTaskDate, recurrence: newRecurrence } : t);
+                todos = todos.map(t => t.id === editingTaskId ? { ...t, text: els.todoInput.value.trim(), deadline: newTaskDate, recurrence: newRecurrence, subtasks: savedSubtasks } : t);
             } else {
-                todos.unshift({ id: Date.now(), text: els.todoInput.value.trim(), completed: false, archived: false, deleted: false, pinned: false, deadline: newTaskDate, recurrence: newRecurrence, completionHistory: [] });
+                todos.unshift({ id: Date.now(), text: els.todoInput.value.trim(), completed: false, archived: false, deleted: false, pinned: false, deadline: newTaskDate, recurrence: newRecurrence, completionHistory: [], subtasks: savedSubtasks });
             }
-            saveTodos(); els.todoInput.value = ''; window.setRecurrence('none'); if(isExpanded) window.toggleExpand(); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); renderTodos();
+            todos = normalizeTodos(todos);
+            saveTodos(); els.todoInput.value = ''; draftSubtasks = []; window.setRecurrence('none'); if(isExpanded) window.toggleExpand(); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); renderTodos();
         };
 
         window.openEditSheet = function(id) {
@@ -2784,9 +3321,36 @@
             editingTaskId = id; els.todoInput.value = todo.text; window.setRecurrence(todo.recurrence || 'none'); 
             if (todo.deadline) { newTaskDate = todo.deadline; const d = new Date(newTaskDate); els.taskDateDisplay.innerText = d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); els.taskDateTrigger.classList.add('active'); }
             else { newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); }
+            draftSubtasks = Array.isArray(todo.subtasks) ? todo.subtasks.map(s => ({ ...s })) : [];
+            syncDraftSubtaskDeadlines();
             els.actionBtn.classList.add('save-mode'); els.actionIcon.setAttribute('data-lucide', 'check'); createIconsSafe();
-            if (!isExpanded) window.toggleExpand(); else els.todoInput.focus();
+            if (!isExpanded) window.toggleExpand(); else { els.todoInput.focus(); renderSubtasksEditor(); }
         }
+
+        window.toggleTodoExpand = function(id) {
+            if (expandedTodoIds.has(id)) expandedTodoIds.delete(id);
+            else expandedTodoIds.add(id);
+            renderTodos();
+        };
+
+        window.toggleSubtask = function(todoId, subtaskId) {
+            const todo = todos.find(t => t.id === todoId);
+            if (!todo) return;
+            if (todo.archived || showArchived) return;
+            todos = todos.map(t => {
+                if (t.id !== todoId) return t;
+                const subs = Array.isArray(t.subtasks) ? t.subtasks : [];
+                const next = subs.map(s => s.id === subtaskId ? { ...s, completed: !s.completed } : s);
+                return { ...t, subtasks: next };
+            });
+            saveTodos();
+            const after = todos.find(t => t.id === todoId);
+            if (after && Array.isArray(after.subtasks) && after.subtasks.length > 0 && after.subtasks.every(s => !!s.completed) && !after.completed) {
+                window.toggleTodo(todoId);
+                return;
+            }
+            renderTodos();
+        };
 
         window.togglePin = function(id) { todos = todos.map(t => t.id === id ? {...t, pinned: !t.pinned} : t); saveTodos(); renderTodos(); }
 
@@ -2848,11 +3412,47 @@
 
             const el = document.createElement('div');
             const isRecurringDone = (!showArchived && todo.recurrence && todo.recurrence !== 'none' && todo.completed);
-            el.className = `todo-item ${todo.completed ? 'completed' : ''} ${isRecurringDone ? 'recurring-done' : ''} ${todo.pinned ? 'pinned' : ''}`;
             el.id = `todo-${todo.id}`;
             const isReadOnly = (showArchived || todo.archived);
+            const subtasks = Array.isArray(todo.subtasks) ? todo.subtasks : [];
+            const expanded = expandedTodoIds.has(todo.id);
+            el.className = `todo-item ${todo.completed ? 'completed' : ''} ${isRecurringDone ? 'recurring-done' : ''} ${todo.pinned ? 'pinned' : ''} ${expanded ? 'subtasks-expanded' : ''}`;
+
+            const subtasksSorted = sortSubtasksByUrgency(subtasks);
+            const urgent = subtasksSorted.find(s => !s.completed) || subtasksSorted[0];
+            const urgentInfo = urgent ? getUrgencyInfo(urgent.deadline) : null;
+
+            const previewHtml = (!expanded && urgent && urgent.text)
+                ? `<div class="subtask-preview ${urgentInfo?.pClass || ''}"><span class="subtask-preview-dot"></span><span class="subtask-preview-text">${escapeHtml(urgent.text)}</span>${urgentInfo ? `<span class="subtask-preview-date">${urgentInfo.rel} · ${urgentInfo.dateLabel}</span>` : ''}</div>`
+                : '';
+
+            const subtasksPanelHtml = (expanded && subtasks.length > 0)
+                ? `<div class="subtasks-panel">${subtasksSorted.map(s => {
+                        const doneClass = s.completed ? 'subtask-item done' : 'subtask-item';
+                        const info = getUrgencyInfo(s.deadline);
+                        const btnDisabled = isReadOnly ? 'disabled' : '';
+                        const checkOnclick = isReadOnly ? '' : `onclick="event.stopPropagation(); window.toggleSubtask(${todo.id}, ${s.id})"`;
+                        return `<div class="${doneClass}" onclick="event.stopPropagation();">
+                            <button class="subtask-check" ${checkOnclick} ${btnDisabled}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></button>
+                            <div class="subtask-item-text">${escapeHtml(s.text)}</div>
+                            ${info ? `<div class="deadline-badge ${info.pClass}"><i data-lucide="clock" style="width:10px;"></i> ${info.dateLabel} · ${info.rel}</div>` : ''}
+                        </div>`;
+                    }).join('')}</div>`
+                : '';
+
+            const subtaskTotal = subtasks.length;
+            const subtaskDone = subtasks.filter(s => !!s.completed).length;
+            const subtaskPercent = subtaskTotal > 0 ? Math.round((subtaskDone / subtaskTotal) * 100) : 0;
+            const progressHtml = subtaskTotal > 0
+                ? `<div class="subtask-progress"><div class="subtask-progress-track"><div class="subtask-progress-fill" style="width:${subtaskPercent}%"></div></div><div class="subtask-progress-label">${subtaskDone}/${subtaskTotal}</div></div>`
+                : '';
 
             let actionButtons = '';
+            if (subtasks.length > 0) {
+                const expandIcon = expanded ? 'chevron-up' : 'chevron-down';
+                const expandOnclick = `onclick="event.stopPropagation(); window.toggleTodoExpand(${todo.id})"`;
+                actionButtons += `<button class="icon-btn expand" ${expandOnclick} title="${expanded ? 'Collapse' : 'Expand'}"><i data-lucide="${expandIcon}"></i></button>`;
+            }
             if (!isReadOnly) {
                 actionButtons += `<button class="icon-btn edit" onclick="window.openEditSheet(${todo.id})" title="Edit"><i data-lucide="pencil"></i></button>`;
                 actionButtons += `<button class="icon-btn pin" onclick="window.togglePin(${todo.id})" title="${todo.pinned ? 'Unpin' : 'Pin'}"><i data-lucide="${todo.pinned ? 'pin-off' : 'pin'}"></i></button>`;
@@ -2866,7 +3466,8 @@
                 <div class="custom-checkbox" onclick="event.stopPropagation(); window.toggleTodo(${todo.id})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
                 <div class="todo-content" onclick="window.openDetail(${todo.id})">
                     <div class="todo-text" data-tooltip="${todo.text.replace(/"/g, '&quot;')}">${parseMarkdown(todo.text)}</div>
-                    ${deadlineHtml ? `<div class="todo-meta">${deadlineHtml}</div>` : ''}
+                    ${(previewHtml || deadlineHtml || progressHtml) ? `<div class="todo-meta">${deadlineHtml}${previewHtml ? previewHtml : ''}${progressHtml}</div>` : ''}
+                    ${subtasksPanelHtml}
                 </div>
                 <div class="item-actions">${actionButtons}</div>`;
             return el;
@@ -2898,13 +3499,19 @@
             els.emptyTodoText.innerText = showArchived ? 'No archived tasks.' : (config.theme.includes('nier') ? NIER_TEXT.emptyTodoText : STANDARD_TEXT.emptyTodoText);
             normalTasks.forEach(t => els.todoList.appendChild(createTodoElement(t)));
             createIconsSafe();
+            updateOutsideStatus();
         }
 
         function init() {
             document.getElementById('dateDisplay').innerText = new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
             updateThemeText();
             renderTodos();
-            document.addEventListener('click', (e) => { if (!els.taskDatePicker.contains(e.target) && !els.taskDateTrigger.contains(e.target)) els.taskDatePicker.classList.remove('open'); });
+            updateOutsideStatus();
+            setInterval(updateOutsideStatus, 60 * 1000);
+            document.addEventListener('click', (e) => {
+                if (!els.taskDatePicker.contains(e.target) && !els.taskDateTrigger.contains(e.target)) els.taskDatePicker.classList.remove('open');
+                if (els.subtaskDatePicker.classList.contains('open') && !els.subtaskDatePicker.contains(e.target) && !e.target.closest('.subtask-date-trigger')) closeSubtaskDatePicker();
+            });
             els.todoInput.addEventListener('input', function() { if(!isExpanded) { this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px'; } });
             els.todoInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !isExpanded) { e.preventDefault(); window.addTodo(); } });
             els.searchInput.addEventListener('input', (e) => { searchTerm = e.target.value.trim(); renderTodos(); });
