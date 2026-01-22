@@ -895,7 +895,7 @@
         const ECHARTS_SRC = 'https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js';
         let lucideLoadPromise = null;
         let echartsLoadPromise = null;
-
+        function saveTodos() {localStorage.setItem(MASTER_KEY, JSON.stringify(todos)}
         function ensureLucide() {
             if (window.lucide && typeof window.lucide.createIcons === 'function') return Promise.resolve(window.lucide);
             if (lucideLoadPromise) return lucideLoadPromise;
