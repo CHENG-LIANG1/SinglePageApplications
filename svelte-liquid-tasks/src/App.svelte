@@ -17,7 +17,7 @@
     saveTodos,
   } from './lib/storage.js'
   import { THEMES, getTextsByThemeId, getThemeMetaById } from './lib/themes.js'
-  import { escapeHtml, getUrgencyInfo, normalizeDraftSubtasksForSave, parseMarkdown, sortSubtasksByUrgency } from './lib/utils.js'
+  import { escapeHtml, getUrgencyInfo, isoToLocalDate, normalizeDraftSubtasksForSave, parseMarkdown, sortSubtasksByUrgency } from './lib/utils.js'
 
   let todos = []
   let config = { title: 'Tasks', theme: 'ayu' }
@@ -84,7 +84,7 @@
     }
     if (a.completed !== b.completed) return a.completed - b.completed
     if (!a.completed) {
-      if (a.deadline && b.deadline) return new Date(a.deadline) - new Date(b.deadline)
+      if (a.deadline && b.deadline) return compareISODateStrings(a.deadline, b.deadline)
       if (a.deadline && !b.deadline) return -1
       if (!a.deadline && b.deadline) return 1
     }
@@ -951,7 +951,8 @@
 
   function taskDeadlineDisplay() {
     if (!newTaskDate) return 'Due'
-    const d = new Date(newTaskDate)
+    const d = isoToLocalDate(newTaskDate)
+    if (!d) return 'Due'
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
   }
 
@@ -959,7 +960,8 @@
     const parentDeadline = isISODateString(newTaskDate) ? newTaskDate : null
     const normalized = parentDeadline ? clampISODateToMax(deadline, parentDeadline) || parentDeadline : null
     if (!normalized) return ''
-    const d = new Date(normalized)
+    const d = isoToLocalDate(normalized)
+    if (!d) return ''
     return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
   }
 
@@ -973,8 +975,8 @@
     }
     if (todo.deadline) {
       const info = getUrgencyInfo(todo.deadline)
-      const d = new Date(todo.deadline)
-      const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+      const d = isoToLocalDate(todo.deadline)
+      const label = d ? d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) : info?.dateLabel || ''
       const rel = info ? info.rel : ''
       return { type: 'deadline', className: info?.pClass || '', label, rel }
     }
@@ -1464,7 +1466,10 @@
       </div>
     </div>
 
-    <div class={`floating-input-container ${isActivityView || showArchived ? 'input-hidden' : ''} ${isExpanded ? 'expanded' : ''}`} id="inputContainer">
+    <div
+      class={`floating-input-container ${isActivityView || showArchived ? 'input-hidden' : ''} ${isExpanded ? 'expanded' : ''} ${isExpanded && draftSubtasks.length > 0 ? 'has-subtasks' : ''}`}
+      id="inputContainer"
+    >
       <div class={`glass-popup ${isTaskDatePickerOpen ? 'open' : ''}`} id="taskDatePicker">
         <div class="dp-header">
           <button class="dp-nav" on:click={() => changeTaskMonth(-1)}><i data-lucide="chevron-left" style="width:16px;"></i></button>

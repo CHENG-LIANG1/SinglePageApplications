@@ -1,5 +1,28 @@
 import { compareISODateStrings, isISODateString, clampISODateToMax } from './storage.js'
 
+export function isoToLocalDate(iso) {
+  if (!isISODateString(iso)) return null
+  const [y, m, d] = iso.split('-').map(Number)
+  return new Date(y, m - 1, d)
+}
+
+function isoToUtcDayNumber(iso) {
+  if (!isISODateString(iso)) return null
+  const [y, m, d] = iso.split('-').map(Number)
+  return Math.floor(Date.UTC(y, m - 1, d) / 86400000)
+}
+
+function localTodayUtcDayNumber() {
+  const now = new Date()
+  return Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000)
+}
+
+function diffDaysFromTodayISO(iso) {
+  const day = isoToUtcDayNumber(iso)
+  if (!Number.isFinite(day)) return null
+  return day - localTodayUtcDayNumber()
+}
+
 export function escapeHtml(text) {
   return String(text ?? '')
     .replace(/&/g, '&amp;')
@@ -34,8 +57,9 @@ export function parseMarkdown(text) {
 
 export function getUrgencyInfo(deadlineStr) {
   if (!isISODateString(deadlineStr)) return null
-  const d = new Date(deadlineStr)
-  const diffDays = Math.ceil((d - new Date().setHours(0, 0, 0, 0)) / 86400000)
+  const d = isoToLocalDate(deadlineStr)
+  const diffDays = diffDaysFromTodayISO(deadlineStr)
+  if (!d || !Number.isFinite(diffDays)) return null
   const pClass = diffDays <= 0 ? 'p-critical' : diffDays === 1 ? 'p-high' : diffDays <= 3 ? 'p-high' : diffDays <= 7 ? 'p-medium' : ''
   const rel = diffDays <= 0 ? (diffDays < 0 ? 'Overdue' : 'Today') : `${diffDays}d left`
   const dateLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
@@ -69,4 +93,3 @@ export function normalizeDraftSubtasksForSave(draftSubtasks, parentDeadline) {
     .filter((s) => String(s?.text ?? '').trim().length > 0)
   return cleaned
 }
-

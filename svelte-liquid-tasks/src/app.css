@@ -1,3 +1,4 @@
+
         :root {
             --spring: cubic-bezier(0.32, 0.72, 0, 1);
             --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -650,7 +651,7 @@
         /* FLOATING INPUT */
         .floating-input-container { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 70%; max-width: 700px; z-index: 50; transition: all 0.4s var(--spring); }
         .input-hidden { transform: translateX(-50%) translateY(200%); opacity: 0; pointer-events: none; }
-        .floating-input-container.expanded { bottom: 50%; left: 50%; transform: translate(-50%, 50%); width: 80%; max-width: 800px; height: min(70vh, 520px); min-height: 320px; }
+        .floating-input-container.expanded { bottom: 50%; left: 50%; transform: translate(-50%, 50%); width: 80%; max-width: 800px; height: min(78vh, 640px); min-height: 360px; }
         .input-capsule { width: 100%; min-height: 56px; height: auto; background: var(--input-bg); backdrop-filter: blur(40px); border-radius: var(--radius-capsule); display: flex; align-items: flex-end; padding: 8px 8px 8px 16px; border: 1px solid var(--glass-border); box-shadow: 0 25px 70px rgba(0,0,0,0.3); transition: 0.3s var(--spring); position: relative; flex-direction: row; }
         .input-left-controls { display: flex; gap: 8px; margin-bottom: 7px; margin-right: 12px; align-items: center; flex-shrink: 0; }
         .meta-trigger { background: rgba(125,125,125,0.06); background-image: var(--control-surface); color: var(--text-secondary); border-radius: var(--radius-chip); padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 4px; height: 30px; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); border: 1px solid rgba(255,255,255,0.06); box-shadow: 0 10px 26px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
@@ -676,6 +677,7 @@
         .floating-input-container.expanded .input-capsule { flex-direction: column; align-items: flex-start; padding: 28px; background: var(--card-bg); border-radius: var(--radius-capsule-expanded); box-shadow: 0 50px 120px rgba(0,0,0,0.5); height: 100%; overflow: hidden; }
         .floating-input-container.expanded .input-left-controls { width: 100%; justify-content: flex-start; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); }
         .floating-input-container.expanded .text-input { font-size: 16px; max-height: 220px; min-height: 140px; overflow-y: auto; padding: 0; margin: 0; scrollbar-width: thin; scrollbar-color: rgba(125,125,125,0.2) transparent; }
+        .floating-input-container.expanded.has-subtasks .text-input { min-height: 48px; max-height: 48px; overflow-y: auto; }
         .floating-input-container.expanded .action-btn { position: absolute; bottom: 28px; right: 28px; width: 64px; height: 64px; background: var(--accent-gradient); color: var(--btn-on-accent); box-shadow: 0 26px 78px rgba(0,0,0,0.36), 0 0 0 1px rgba(255,255,255,0.12) inset; z-index: 60; }
         .recurrence-options { display: none; width: 100%; gap: 6px; margin-bottom: 20px; }
         .floating-input-container.expanded .recurrence-options { display: flex; flex-wrap: wrap; }
@@ -689,12 +691,12 @@
         .recur-btn svg { width: 12px; height: 12px; }
         .markdown-toolbar { display: none; width: 100%; padding-top: 10px; gap: 8px; }
         .floating-input-container.expanded .markdown-toolbar { display: flex; flex-wrap: wrap; padding-right: 80px; }
-        .subtasks-editor { display: none; width: 100%; margin-top: 14px; padding-top: 14px; padding-right: 88px; padding-bottom: 96px; border-top: 1px solid var(--glass-border); overflow: hidden; }
+        .subtasks-editor { display: none; width: 100%; margin-top: 14px; padding-top: 14px; padding-right: 88px; padding-bottom: 72px; border-top: 1px solid var(--glass-border); overflow: hidden; }
         .floating-input-container.expanded .subtasks-editor { display: block; }
         .subtasks-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
         .subtasks-title { font-size: 12px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.85; }
         .subtasks-hint { font-size: 11px; font-weight: 700; color: var(--text-secondary); opacity: 0.85; line-height: 1.4; margin-top: -6px; margin-bottom: 10px; }
-        .subtasks-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-height: 220px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; }
+        .subtasks-list { display: flex; flex-direction: column; gap: 10px; width: 100%; max-height: 320px; overflow-y: auto; overscroll-behavior: contain; padding-right: 6px; padding-bottom: 40px; }
         .subtasks-list::-webkit-scrollbar { width: 4px; }
         .subtasks-list::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.14); border-radius: 10px; }
         .subtask-edit-row { display: grid; grid-template-columns: 1fr 130px 30px; gap: 10px; align-items: center; }
