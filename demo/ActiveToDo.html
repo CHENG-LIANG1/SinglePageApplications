@@ -703,6 +703,13 @@
         .recur-btn.active { background-image: linear-gradient(135deg, var(--accent-orange), var(--accent-red)); color: #fff; border-color: transparent; box-shadow: 0 18px 46px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.10) inset; }
         .recur-btn.active::before { opacity: 0.12; transform: translateX(0); }
         .recur-btn svg { width: 12px; height: 12px; }
+        .weekly-day-options { display: none; width: 100%; gap: 6px; margin: -10px 0 20px; align-items: center; flex-wrap: wrap; }
+        .floating-input-container.expanded .weekly-day-options.show { display: flex; }
+        .weekly-day-label { font-size: 11px; font-weight: 900; letter-spacing: 1.2px; text-transform: uppercase; opacity: 0.7; margin-right: 2px; }
+        .weekday-btn { background: rgba(125,125,125,0.05); background-image: var(--control-surface); border: 1px solid rgba(255,255,255,0.06); color: var(--text-secondary); border-radius: var(--radius-sm); padding: 6px 9px; font-size: 11px; font-weight: 900; cursor: pointer; transition: transform 0.18s var(--ease-out-quint), box-shadow 0.18s var(--ease-out-quint), background 0.18s var(--ease-out-quint), color 0.18s var(--ease-out-quint), border-color 0.18s var(--ease-out-quint); display: flex; align-items: center; justify-content: center; min-width: 34px; box-shadow: 0 10px 22px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.10); position: relative; overflow: hidden; }
+        .weekday-btn:hover { background-image: var(--control-surface-hover); color: var(--text-primary); border-color: var(--glass-border); transform: translateY(-1px); box-shadow: 0 14px 34px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.16); }
+        .weekday-btn:active { transform: translateY(0) scale(0.99); }
+        .weekday-btn.active { background-image: linear-gradient(135deg, var(--accent-orange), var(--accent-red)); color: #fff; border-color: transparent; box-shadow: 0 18px 46px rgba(0,0,0,0.22), 0 0 0 1px rgba(255,255,255,0.10) inset; }
         .markdown-toolbar { display: none; width: 100%; padding-top: 10px; gap: 8px; }
         .floating-input-container.expanded .markdown-toolbar { display: flex; flex-wrap: wrap; padding-right: 80px; }
         .subtasks-editor { display: none; width: 100%; margin-top: 14px; padding-top: 14px; padding-right: 88px; padding-bottom: 72px; border-top: 1px solid var(--glass-border); overflow: hidden; }
@@ -1055,7 +1062,7 @@
                         <button class="dp-nav" onclick="window.changeTaskMonth(1)"><i data-lucide="chevron-right" style="width:16px;"></i></button>
                     </div>
                     <div class="dp-day-names">
-                        <span class="dp-day-name">Su</span><span class="dp-day-name">Mo</span><span class="dp-day-name">Tu</span><span class="dp-day-name">We</span><span class="dp-day-name">Th</span><span class="dp-day-name">Fr</span><span class="dp-day-name">Sa</span>
+                        <span class="dp-day-name">Sun</span><span class="dp-day-name">Mon</span><span class="dp-day-name">Tue</span><span class="dp-day-name">Wed</span><span class="dp-day-name">Thu</span><span class="dp-day-name">Fri</span><span class="dp-day-name">Sat</span>
                     </div>
                     <div class="dp-grid" id="dpGrid"></div>
                 </div>
@@ -1067,7 +1074,7 @@
                         <button class="dp-nav" onclick="window.changeSubtaskMonth(1)"><i data-lucide="chevron-right" style="width:16px;"></i></button>
                     </div>
                     <div class="dp-day-names">
-                        <span class="dp-day-name">Su</span><span class="dp-day-name">Mo</span><span class="dp-day-name">Tu</span><span class="dp-day-name">We</span><span class="dp-day-name">Th</span><span class="dp-day-name">Fr</span><span class="dp-day-name">Sa</span>
+                        <span class="dp-day-name">Sun</span><span class="dp-day-name">Mon</span><span class="dp-day-name">Tue</span><span class="dp-day-name">Wed</span><span class="dp-day-name">Thu</span><span class="dp-day-name">Fri</span><span class="dp-day-name">Sat</span>
                     </div>
                     <div class="dp-grid" id="subDpGrid"></div>
                 </div>
@@ -1096,6 +1103,17 @@
                         <button class="recur-btn" id="recurWeekly" onclick="window.setRecurrence('weekly')"><i data-lucide="calendar-days"></i> Weekly</button>
                         <button class="recur-btn" id="recurMonthly" onclick="window.setRecurrence('monthly')"><i data-lucide="calendar"></i> Monthly</button>
                         <button class="recur-btn" id="recurYearly" onclick="window.setRecurrence('yearly')"><i data-lucide="calendar-clock"></i> Yearly</button>
+                    </div>
+
+                    <div class="weekly-day-options" id="weeklyDayOptions">
+                        <span class="weekly-day-label">Every</span>
+                        <button class="weekday-btn" id="weekday-0" onclick="window.setWeeklyWeekday(0)">Sun</button>
+                        <button class="weekday-btn" id="weekday-1" onclick="window.setWeeklyWeekday(1)">Mon</button>
+                        <button class="weekday-btn" id="weekday-2" onclick="window.setWeeklyWeekday(2)">Tue</button>
+                        <button class="weekday-btn" id="weekday-3" onclick="window.setWeeklyWeekday(3)">Wed</button>
+                        <button class="weekday-btn" id="weekday-4" onclick="window.setWeeklyWeekday(4)">Thu</button>
+                        <button class="weekday-btn" id="weekday-5" onclick="window.setWeeklyWeekday(5)">Fri</button>
+                        <button class="weekday-btn" id="weekday-6" onclick="window.setWeeklyWeekday(6)">Sat</button>
                     </div>
 
                     <div class="markdown-toolbar">
@@ -1265,7 +1283,10 @@
             const subtasksRaw = Array.isArray(todo?.subtasks) ? todo.subtasks : [];
             const hasRecurrence = recurrence && recurrence !== 'none';
             const subtasks = hasRecurrence ? [] : subtasksRaw.slice(0, SUBTASK_LIMIT).map(s => normalizeSubtask(s, deadline)).filter(s => s.text.length > 0);
-            return { ...todo, deadline, recurrence, subtasks };
+            const rawWeekday = todo?.recurrenceWeekday;
+            const parsedWeekday = Number.isFinite(Number(rawWeekday)) ? Number(rawWeekday) : null;
+            const recurrenceWeekday = recurrence === 'weekly' && Number.isInteger(parsedWeekday) && parsedWeekday >= 0 && parsedWeekday <= 6 ? parsedWeekday : (recurrence === 'weekly' ? 1 : null);
+            return { ...todo, deadline, recurrence, recurrenceWeekday, subtasks };
         }
 
         function normalizeTodos(inputTodos) {
@@ -1295,6 +1316,7 @@
         let isExpanded = false;
         let editingTaskId = null;
         let newRecurrence = 'none';
+        let newRecurrenceWeekday = 1;
         let currentHeatmapYear = new Date().getFullYear();
         let draftSubtasks = [];
         let expandedTodoIds = new Set();
@@ -2437,6 +2459,7 @@
             taskDateDisplay: document.getElementById('taskDateDisplay'),
             taskRecurTrigger: document.getElementById('taskRecurTrigger'), 
             taskRecurDisplay: document.getElementById('taskRecurDisplay'), 
+            weeklyDayOptions: document.getElementById('weeklyDayOptions'),
             dpTitle: document.getElementById('dpTitle'),
             dpGrid: document.getElementById('dpGrid'),
             subtaskDatePicker: document.getElementById('subtaskDatePicker'),
@@ -2498,13 +2521,70 @@
             return d.getUTCFullYear() + "-W" + weekNo;
         }
 
-        function getCycleKey(recurrence, date) {
-            if (!date) date = new Date();
+        function getLocalDateKey(date) {
             const yyyy = date.getFullYear();
             const mm = String(date.getMonth() + 1).padStart(2, '0');
             const dd = String(date.getDate()).padStart(2, '0');
-            if (recurrence === 'daily' || recurrence === 'workdays') return `${yyyy}-${mm}-${dd}`;
-            if (recurrence === 'weekly') return getWeekKey(date);
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function normalizeWeekdayValue(value, fallback) {
+            const n = Number.isFinite(Number(value)) ? Number(value) : NaN;
+            if (Number.isInteger(n) && n >= 0 && n <= 6) return n;
+            return Number.isInteger(fallback) ? fallback : 1;
+        }
+
+        function getWeeklyTargetKey(date, targetWeekday) {
+            const base = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            const wd = normalizeWeekdayValue(targetWeekday, 1);
+            const diff = (7 + (base.getDay() - wd)) % 7;
+            base.setDate(base.getDate() - diff);
+            return getLocalDateKey(base);
+        }
+
+        function weekdayShort(day) {
+            return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][normalizeWeekdayValue(day, 1)];
+        }
+
+        function formatRecurrenceLabel(recurrence, weekday) {
+            if (!recurrence || recurrence === 'none') return 'none';
+            if (recurrence === 'weekly') return `weekly (${weekdayShort(weekday)})`;
+            return recurrence;
+        }
+
+        function getDraftRecurrenceLabel() {
+            const texts = getActiveTexts();
+            const fallbackLabels = { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' };
+            const base = (texts.recurrenceLabels && texts.recurrenceLabels[newRecurrence]) ? texts.recurrenceLabels[newRecurrence] : fallbackLabels[newRecurrence];
+            if (newRecurrence === 'weekly') return `${base} · ${weekdayShort(newRecurrenceWeekday)}`;
+            return base;
+        }
+
+        function syncWeeklyDayUI() {
+            if (!els.weeklyDayOptions) return;
+            if (newRecurrence === 'weekly') els.weeklyDayOptions.classList.add('show');
+            else els.weeklyDayOptions.classList.remove('show');
+            for (let i = 0; i < 7; i++) {
+                const btn = document.getElementById(`weekday-${i}`);
+                if (!btn) continue;
+                if (i === normalizeWeekdayValue(newRecurrenceWeekday, 1) && newRecurrence === 'weekly') btn.classList.add('active');
+                else btn.classList.remove('active');
+            }
+        }
+
+        function updateDraftRecurrenceDisplay() {
+            els.taskRecurDisplay.innerText = getDraftRecurrenceLabel();
+            if (newRecurrence !== 'none') els.taskRecurTrigger.classList.add('active');
+            else els.taskRecurTrigger.classList.remove('active');
+            syncWeeklyDayUI();
+        }
+
+        function getCycleKey(recurrence, date, weekday) {
+            if (!date) date = new Date();
+            if (recurrence === 'daily' || recurrence === 'workdays') return getLocalDateKey(date);
+            if (recurrence === 'weekly') return getWeeklyTargetKey(date, weekday);
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
             if (recurrence === 'monthly') return `${yyyy}-${mm}`;
             if (recurrence === 'yearly') return `${yyyy}`;
             return null;
@@ -2515,7 +2595,7 @@
             let changed = false;
             todos = todos.map(t => {
                 if (!t.archived && !t.deleted && t.recurrence && t.recurrence !== 'none' && t.completed) {
-                    const currentKey = getCycleKey(t.recurrence, now);
+                    const currentKey = getCycleKey(t.recurrence, now, t.recurrenceWeekday);
                     const lastKey = t.completionHistory && t.completionHistory.length > 0 ? t.completionHistory[t.completionHistory.length-1] : null;
                     if (lastKey !== currentKey) { changed = true; return { ...t, completed: false }; }
                 }
@@ -2609,6 +2689,7 @@
             if (!myChart) { initChart(); return; }
 
             const data = getMonthlyData(currentHeatmapYear);
+            const isEmpty = Array.isArray(data) && data.length > 0 && data.every(v => (Number(v) || 0) === 0);
             const style = getComputedStyle(document.documentElement);
             const colorAccent = style.getPropertyValue('--accent-blue').trim();
             const colorText = style.getPropertyValue('--text-secondary').trim();
@@ -2643,7 +2724,7 @@
                     axisLine: { show: false },
                     axisLabel: { color: colorText }
                 },
-                series: [{
+                series: isEmpty ? [] : [{
                     ...seriesBase,
                     smooth: chartType === 'line',
                     symbol: chartType === 'line' ? 'circle' : 'none',
@@ -2657,9 +2738,20 @@
                         ]),
                         opacity: 0.2
                     } : null
-                }]
+                }],
+                graphic: isEmpty ? [{
+                    type: 'text',
+                    left: 'center',
+                    top: 'middle',
+                    style: {
+                        text: 'No data',
+                        fill: colorText,
+                        fontSize: 14,
+                        fontWeight: 800
+                    }
+                }] : []
             };
-            myChart.setOption(option);
+            myChart.setOption(option, true);
         }
 
         function getDatesInScope(todo) {
@@ -2770,13 +2862,17 @@
                 }
             });
 
+            const dowEmpty = dowData.every(v => (Number(v) || 0) === 0);
+            const todEmpty = todData.every(v => (Number(v) || 0) === 0);
+            const pieEmpty = (Number(oneTime) || 0) === 0 && (Number(recurrent) || 0) === 0;
+
             // DoW Chart
             dowChartInst.setOption({
                 tooltip: { trigger: 'axis', backgroundColor: colorBg, borderColor: colorGrid, textStyle: { color: colorPrimary } },
                 grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
                 xAxis: { type: 'category', data: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], axisLine: { lineStyle: { color: colorText } }, axisTick: { show: false } },
                 yAxis: { type: 'value', splitLine: { lineStyle: { color: colorGrid, type: 'dashed' } }, axisLabel: { color: colorText } },
-                series: [{
+                series: dowEmpty ? [] : [{
                     data: dowData,
                     type: dowChartType,
                     smooth: dowChartType === 'line',
@@ -2786,8 +2882,19 @@
                     itemStyle: dowChartType === 'bar' ? { color: colorAccent, borderRadius: [6, 6, 0, 0] } : { color: colorAccent },
                     lineStyle: { width: 3, color: colorAccent },
                     areaStyle: dowChartType === 'line' ? { opacity: 0.2, color: colorAccent } : null
-                }]
-            });
+                }],
+                graphic: dowEmpty ? [{
+                    type: 'text',
+                    left: 'center',
+                    top: 'middle',
+                    style: {
+                        text: 'No data',
+                        fill: colorText,
+                        fontSize: 14,
+                        fontWeight: 800
+                    }
+                }] : []
+            }, true);
             
             // ToD Chart
             todChartInst.setOption({
@@ -2795,7 +2902,7 @@
                 grid: { left: '3%', right: '4%', bottom: '3%', containLabel: true },
                 xAxis: { type: 'category', data: Array.from({length:24},(_,i)=>i), axisLine: { lineStyle: { color: colorText } }, axisTick: { show: false } },
                 yAxis: { type: 'value', splitLine: { lineStyle: { color: colorGrid, type: 'dashed' } }, axisLabel: { color: colorText } },
-                series: [{
+                series: todEmpty ? [] : [{
                     data: todData,
                     type: todChartType,
                     smooth: todChartType === 'line',
@@ -2805,13 +2912,24 @@
                     itemStyle: todChartType === 'bar' ? { color: colorAccent, borderRadius: [6, 6, 0, 0] } : { color: colorAccent },
                     lineStyle: { width: 3, color: colorAccent },
                     areaStyle: todChartType === 'line' ? { opacity: 0.2, color: colorAccent } : null
-                }]
-            });
+                }],
+                graphic: todEmpty ? [{
+                    type: 'text',
+                    left: 'center',
+                    top: 'middle',
+                    style: {
+                        text: 'No data',
+                        fill: colorText,
+                        fontSize: 14,
+                        fontWeight: 800
+                    }
+                }] : []
+            }, true);
             
             // Pie Chart
             pieChartInst.setOption({
                 tooltip: { trigger: 'item' },
-                series: [{
+                series: pieEmpty ? [] : [{
                     type: 'pie', radius: ['40%', '70%'],
                     itemStyle: { borderRadius: 5, borderColor: style.getPropertyValue('--card-bg').trim(), borderWidth: 2 },
                     label: { show: false },
@@ -2819,8 +2937,19 @@
                         { value: oneTime, name: 'One-time', itemStyle: { color: colorAccent } },
                         { value: recurrent, name: 'Recurring', itemStyle: { color: style.getPropertyValue('--accent-purple').trim() } }
                     ]
-                }]
-            });
+                }],
+                graphic: pieEmpty ? [{
+                    type: 'text',
+                    left: 'center',
+                    top: 'middle',
+                    style: {
+                        text: 'No data',
+                        fill: colorText,
+                        fontSize: 14,
+                        fontWeight: 800
+                    }
+                }] : []
+            }, true);
         }
 
         window.toggleChartType = async function() {
@@ -3217,8 +3346,16 @@
             if(!isExpanded) input.dispatchEvent(new Event('input'));
         }
 
+        function addMonthsClamped(date, delta) {
+            const day = date.getDate();
+            const candidate = new Date(date.getFullYear(), date.getMonth() + delta, 1);
+            const maxDay = new Date(candidate.getFullYear(), candidate.getMonth() + 1, 0).getDate();
+            candidate.setDate(Math.min(day, maxDay));
+            return candidate;
+        }
+
         window.toggleTaskDatePicker = function() { els.taskDatePicker.classList.toggle('open'); if(els.taskDatePicker.classList.contains('open')) { pickerCurrentDate = newTaskDate ? new Date(newTaskDate) : new Date(); renderTaskDatePicker(); } }
-        window.changeTaskMonth = function(d) { pickerCurrentDate.setMonth(pickerCurrentDate.getMonth() + d); renderTaskDatePicker(); }
+        window.changeTaskMonth = function(d) { pickerCurrentDate = addMonthsClamped(pickerCurrentDate, d); renderTaskDatePicker(); }
 
         function renderTaskDatePicker() {
             const y = pickerCurrentDate.getFullYear(), m = pickerCurrentDate.getMonth(), today = new Date();
@@ -3257,7 +3394,7 @@
 
         window.changeSubtaskMonth = function(d) {
             if (!els.subtaskDatePicker.classList.contains('open')) return;
-            subtaskPickerCurrentDate.setMonth(subtaskPickerCurrentDate.getMonth() + d);
+            subtaskPickerCurrentDate = addMonthsClamped(subtaskPickerCurrentDate, d);
             renderSubtaskDatePicker();
         };
 
@@ -3298,6 +3435,11 @@
             window.setRecurrence(modes[(idx + 1) % modes.length]);
         }
 
+        window.setWeeklyWeekday = function(day) {
+            newRecurrenceWeekday = normalizeWeekdayValue(day, 1);
+            updateDraftRecurrenceDisplay();
+        }
+
         window.setRecurrence = function(type) {
             if (type !== 'none') {
                 const hasDraftSubtasks = normalizeDraftSubtasksForSave().length > 0;
@@ -3308,10 +3450,9 @@
                 }
             }
             newRecurrence = type;
-            const texts = getActiveTexts();
-            const fallbackLabels = { 'none': 'Repeat', 'daily': 'Daily', 'workdays': 'Workdays', 'weekly': 'Weekly', 'monthly': 'Monthly', 'yearly': 'Yearly' };
-            els.taskRecurDisplay.innerText = (texts.recurrenceLabels && texts.recurrenceLabels[type]) ? texts.recurrenceLabels[type] : fallbackLabels[type];
-            if(type !== 'none') { els.taskRecurTrigger.classList.add('active'); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); draftSubtasks = []; } else { els.taskRecurTrigger.classList.remove('active'); }
+            if (newRecurrence === 'weekly') newRecurrenceWeekday = normalizeWeekdayValue(newRecurrenceWeekday, 1);
+            updateDraftRecurrenceDisplay();
+            if(type !== 'none') { newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); draftSubtasks = []; }
             document.querySelectorAll('.recur-btn').forEach(btn => btn.classList.remove('active'));
             const recurBtnIdByType = {
                 none: 'recurNone',
@@ -3347,10 +3488,11 @@
             const savedSubtasks = normalizeDraftSubtasksForSave();
             if (savedSubtasks.length > SUBTASK_LIMIT) { alert(`子任务最多 ${SUBTASK_LIMIT} 个。`); return; }
             if (newRecurrence && newRecurrence !== 'none' && savedSubtasks.length > 0) { alert('重复任务不支持子任务。'); return; }
+            const recurrenceWeekday = newRecurrence === 'weekly' ? normalizeWeekdayValue(newRecurrenceWeekday, 1) : null;
             if (editingTaskId) {
-                todos = todos.map(t => t.id === editingTaskId ? { ...t, text: els.todoInput.value.trim(), deadline: newTaskDate, recurrence: newRecurrence, subtasks: savedSubtasks } : t);
+                todos = todos.map(t => t.id === editingTaskId ? { ...t, text: els.todoInput.value.trim(), deadline: newTaskDate, recurrence: newRecurrence, recurrenceWeekday, subtasks: savedSubtasks } : t);
             } else {
-                todos.unshift({ id: Date.now(), text: els.todoInput.value.trim(), completed: false, archived: false, deleted: false, pinned: false, deadline: newTaskDate, recurrence: newRecurrence, completionHistory: [], subtasks: savedSubtasks });
+                todos.unshift({ id: Date.now(), text: els.todoInput.value.trim(), completed: false, archived: false, deleted: false, pinned: false, deadline: newTaskDate, recurrence: newRecurrence, recurrenceWeekday, completionHistory: [], subtasks: savedSubtasks });
             }
             todos = normalizeTodos(todos);
             saveTodos(); els.todoInput.value = ''; draftSubtasks = []; window.setRecurrence('none'); if(isExpanded) window.toggleExpand(); newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); renderTodos();
@@ -3358,7 +3500,9 @@
 
         window.openEditSheet = function(id) {
             window.closeDetail(); const todo = todos.find(t => t.id === id); if (!todo) return;
-            editingTaskId = id; els.todoInput.value = todo.text; window.setRecurrence(todo.recurrence || 'none'); 
+            editingTaskId = id; els.todoInput.value = todo.text;
+            if ((todo.recurrence || 'none') === 'weekly') newRecurrenceWeekday = normalizeWeekdayValue(todo.recurrenceWeekday, 1);
+            window.setRecurrence(todo.recurrence || 'none'); 
             if (todo.deadline) { newTaskDate = todo.deadline; const d = new Date(newTaskDate); els.taskDateDisplay.innerText = d.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }); els.taskDateTrigger.classList.add('active'); }
             else { newTaskDate = null; els.taskDateDisplay.innerText = "Due"; els.taskDateTrigger.classList.remove('active'); }
             draftSubtasks = Array.isArray(todo.subtasks) ? todo.subtasks.map(s => ({ ...s })) : [];
@@ -3397,9 +3541,9 @@
         window.toggleTodo = function(id) { 
             const todo = todos.find(t => t.id === id); if (!todo) return;
             if (todo.recurrence && todo.recurrence !== 'none') {
-                const isNowCompleted = !todo.completed; const now = new Date(); const cycleKey = getCycleKey(todo.recurrence, now);
+                const isNowCompleted = !todo.completed; const now = new Date(); const cycleKey = getCycleKey(todo.recurrence, now, todo.recurrenceWeekday);
                 let newHistory = todo.completionHistory || []; const lastKey = newHistory.length > 0 ? newHistory[newHistory.length-1] : null;
-                if (isNowCompleted && lastKey !== cycleKey) { newHistory.push(cycleKey); todos.push({ id: Date.now(), text: todo.text, completed: true, archived: true, deleted: false, completedAt: now.toISOString(), deadline: null, recurrence: todo.recurrence }); }
+                if (isNowCompleted && lastKey !== cycleKey) { newHistory.push(cycleKey); todos.push({ id: Date.now(), text: todo.text, completed: true, archived: true, deleted: false, completedAt: now.toISOString(), deadline: null, recurrence: todo.recurrence, recurrenceWeekday: todo.recurrenceWeekday }); }
                 todos = todos.map(t => t.id === id ? { ...t, completed: isNowCompleted, completionHistory: newHistory } : t);
                 saveTodos(); renderTodos(); if(isNowCompleted && showArchived) { renderHeatmap(currentHeatmapYear); renderChart(); }
             } else {
@@ -3417,7 +3561,7 @@
             currentDetailId = id; els.detailContent.innerHTML = `<div class="detail-text">${parseMarkdown(todo.text)}</div>`;
             let metaText = "Created " + new Date(todo.id).toLocaleDateString();
             if(todo.deadline) metaText += ` · Due ${todo.deadline}`;
-            if(todo.recurrence && todo.recurrence !== 'none') metaText += ` · Repeats ${todo.recurrence}`;
+            if(todo.recurrence && todo.recurrence !== 'none') metaText += ` · Repeats ${formatRecurrenceLabel(todo.recurrence, todo.recurrenceWeekday)}`;
             const isReadOnly = (showArchived || todo.archived);
             let actionButtons = '';
             if (!isReadOnly) {
@@ -3437,8 +3581,8 @@
         function createTodoElement(todo) {
             let deadlineHtml = '';
             if(!showArchived && todo.recurrence && todo.recurrence !== 'none') {
-                 if (todo.completed) { const resetLabel = { 'daily': 'Tomorrow', 'weekly': 'Next Week', 'workdays': 'Next Workday', 'monthly': 'Next Month', 'yearly': 'Next Year' }[todo.recurrence] || 'Next Cycle'; deadlineHtml = `<div class="deadline-badge reset-prompt">✓ Resets ${resetLabel}</div>`; }
-                 else { deadlineHtml = `<div class="deadline-badge repeat">↻ ${todo.recurrence}</div>`; }
+                 if (todo.completed) { const resetLabel = todo.recurrence === 'weekly' ? `Next ${weekdayShort(todo.recurrenceWeekday)}` : ({ 'daily': 'Tomorrow', 'workdays': 'Next Workday', 'monthly': 'Next Month', 'yearly': 'Next Year' }[todo.recurrence] || 'Next Cycle'); deadlineHtml = `<div class="deadline-badge reset-prompt">✓ Resets ${resetLabel}</div>`; }
+                 else { deadlineHtml = `<div class="deadline-badge repeat">↻ ${formatRecurrenceLabel(todo.recurrence, todo.recurrenceWeekday)}</div>`; }
             } else if (todo.deadline) {
                 const d = isoToLocalDate(todo.deadline);
                 const diffDays = diffDaysFromTodayISO(todo.deadline);
